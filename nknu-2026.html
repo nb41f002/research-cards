@@ -979,8 +979,116 @@ body::before {
 }
 
 /* =========================================================
-   入場動畫
+   Card 13: The Invitation (新增)
    ========================================================= */
+.invitation {
+  background:
+    radial-gradient(ellipse at 70% 30%, rgba(184, 85, 46, 0.08), transparent 55%),
+    linear-gradient(180deg, var(--paper-light) 0%, var(--paper) 100%);
+}
+.invitation__lead {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(18px, 1.9vw, 23px);
+  color: var(--ink-soft);
+  line-height: 1.85;
+  max-width: 36em;
+  margin: 18px 0 30px;
+}
+.invitation__lead em {
+  font-style: normal;
+  color: var(--warm);
+  font-weight: 600;
+}
+
+.invitation__fields-label {
+  font-family: var(--font-en);
+  font-style: italic;
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+  margin: 26px 0 14px;
+}
+.invitation__fields {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-bottom: 36px;
+  max-width: 42em;
+}
+.field-tag {
+  padding: 7px 16px;
+  border: 1px solid var(--warm);
+  color: var(--warm);
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 14px;
+  border-radius: 999px;
+  background: rgba(184, 85, 46, 0.04);
+  transition: all 0.2s ease;
+}
+.field-tag:hover {
+  background: var(--warm);
+  color: var(--paper);
+}
+
+.invitation__contact {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 24px 28px;
+  background: rgba(245, 239, 228, 0.65);
+  border-left: 3px solid var(--warm);
+  max-width: 32em;
+  margin-bottom: 36px;
+}
+.contact-row {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  font-size: 14.5px;
+  color: var(--ink-soft);
+}
+.contact-row__label {
+  font-family: var(--font-en);
+  font-style: italic;
+  font-weight: 600;
+  color: var(--warm);
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  min-width: 70px;
+  flex-shrink: 0;
+}
+.contact-row a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--line);
+  transition: border-color 0.2s;
+}
+.contact-row a:hover { border-color: var(--warm); }
+
+.invitation__signoff {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(15px, 1.4vw, 17px);
+  color: var(--ink-faint);
+  max-width: 28em;
+  line-height: 1.7;
+  border-top: 1px solid var(--line);
+  padding-top: 24px;
+  margin-top: auto;
+}
+.invitation__signature {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-style: normal;
+  color: var(--ink);
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 16px;
+}
 .card > * {
   opacity: 0;
   transform: translateY(20px);
@@ -1010,7 +1118,7 @@ body::before {
 <body>
 
 <div class="progress-bar"><div class="progress-bar__fill" id="progress"></div></div>
-<div class="counter" id="counter">01 / 12</div>
+<div class="counter" id="counter">01 / 13</div>
 
 <nav class="nav-dots" id="navDots"></nav>
 
@@ -1018,7 +1126,7 @@ body::before {
 
 <!-- ============== Card 1: Cover ============== -->
 <section class="card cover" id="c1">
-  <div class="cover__eyebrow">A Research Card Series · 2026</div>
+  <div class="cover__eyebrow">A Research Card Series · 2026　·　約 3 分鐘</div>
   <h1 class="cover__title">
     當「貓在樹下」<br>
     產出邏輯怪異的圖——<br>
@@ -1387,6 +1495,47 @@ body::before {
   <div class="contact__footer">
     <span>© 2026 Yeh, Jung-Chen</span>
     <span>Designed as a research card series.</span>
+  </div>
+</section>
+
+<!-- ============== Card 13: The Open Invitation ============== -->
+<section class="card invitation" id="c13">
+  <span class="card__num">13 · What&rsquo;s Next</span>
+  <p class="card__label">An Open Invitation</p>
+  <h2 class="card__title">這份研究，<br>正準備走向下一階段。</h2>
+
+  <p class="invitation__lead">
+    教案設計只是起點。下一步是 <em>專家評鑑</em>，
+    以及將提示詞鷹架平臺<em> 開源化</em>，給更多現場的老師使用。
+  </p>
+
+  <p class="invitation__fields-label">Especially welcome conversations from</p>
+  <div class="invitation__fields">
+    <span class="field-tag">課程與教學</span>
+    <span class="field-tag">教學設計</span>
+    <span class="field-tag">資訊科技教育</span>
+    <span class="field-tag">特殊教育</span>
+    <span class="field-tag">教育評鑑</span>
+    <span class="field-tag">AI 教育應用</span>
+    <span class="field-tag">藝術 / 美感教育</span>
+  </div>
+
+  <div class="invitation__contact">
+    <div class="contact-row">
+      <span class="contact-row__label">Email</span>
+      <span><a href="mailto:zoeyeh0822@gmail.com">zoeyeh0822@gmail.com</a></span>
+    </div>
+    <div class="contact-row">
+      <span class="contact-row__label">In Person</span>
+      <span>5/15 高師大 · 5/23 清大 · 5/25–26 陽明交大</span>
+    </div>
+  </div>
+
+  <div class="invitation__signoff">
+    <p>謝謝你讀到這裡。<br>
+    這份研究從 2024 年那位低下頭的學生開始，走到今天——<br>
+    有人願意花三分鐘認真讀，對我來說，意義很深。</p>
+    <span class="invitation__signature">—— 葉容辰</span>
   </div>
 </section>
 
