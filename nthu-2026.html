@@ -1,0 +1,1460 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#2D4A3E">
+<title>AI 賦能時代下的教師角色重塑｜葉容辰</title>
+<meta name="description" content="情緒領導與認知鷹架在生成式 AI 融入國中教學的實踐——教師角色從知識傳遞者，轉變為認知鷹架搭建者、倫理界定者、情緒領導者。葉容辰｜南臺科技大學教育經營所">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+
+<style>
+/* =========================================================
+   設計系統 · 全暗色主題（清大專屬識別）
+   森林綠主背景 + 象牙白文字 + 黃銅金強調
+   注意：--ink 系列現為「亮色」（文字），--paper 系列現為「暗色」（背景）
+   ========================================================= */
+:root {
+  --ink: #F8F4ED;            /* 主文字色 - 象牙白 */
+  --ink-soft: #C9D5CC;       /* 次文字色 - 淡沙青 */
+  --ink-faint: #8FA39A;      /* 弱文字色 - 沙青灰 */
+  --paper: #2D4A3E;          /* 主背景 - 深森林綠 */
+  --paper-deep: #1F3329;     /* 深背景 - 強調區用 */
+  --paper-light: #355549;    /* 淺背景 - 微變化用 */
+  --warm: #C9A875;           /* 強調色 - 黃銅金（適應暗底已提亮） */
+  --warm-soft: #B8956A;      /* 軟金 */
+  --warm-faint: rgba(201, 168, 117, 0.18);
+  --leaf: #95AB8C;           /* 鼠尾草綠（提亮） */
+  --gold: #D4B585;           /* 亮金 */
+  --line: rgba(248, 244, 237, 0.13);
+
+  --font-display: 'Noto Serif TC', 'Source Han Serif TC', serif;
+  --font-body: 'Noto Sans TC', 'PingFang TC', system-ui, sans-serif;
+  --font-en: 'Cormorant Garamond', 'EB Garamond', Georgia, serif;
+}
+
+/* 告訴瀏覽器這是刻意的暗色設計，防止 iOS 二次反轉 */
+html { color-scheme: dark; }
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-weight: 400;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 100vh;
+  scroll-behavior: smooth;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(201, 168, 117, 0.06) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(248, 244, 237, 0.04) 0%, transparent 50%);
+  opacity: 0.7;
+}
+
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: rgba(248, 244, 237, 0.1);
+  z-index: 100;
+}
+.progress-bar__fill {
+  height: 100%;
+  width: 0;
+  background: var(--warm);
+  transition: width 0.25s ease;
+}
+
+.counter {
+  position: fixed;
+  top: 18px;
+  right: 22px;
+  z-index: 99;
+  font-family: var(--font-en);
+  font-style: italic;
+  font-size: 14px;
+  color: var(--ink-soft);
+  background: rgba(31, 51, 41, 0.85);
+  backdrop-filter: blur(8px);
+  padding: 4px 10px;
+  border-radius: 999px;
+  letter-spacing: 0.02em;
+  border: 1px solid var(--line);
+}
+
+.nav-dots {
+  position: fixed;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  z-index: 98;
+}
+.nav-dots a {
+  display: block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(248, 244, 237, 0.2);
+  transition: all 0.25s ease;
+}
+.nav-dots a.active { background: var(--warm); transform: scale(1.4); }
+.nav-dots a:hover { background: var(--ink); }
+@media (max-width: 768px) { .nav-dots { display: none; } }
+
+/* =========================================================
+   卡片基礎
+   ========================================================= */
+.card {
+  min-height: 100vh;
+  padding: 9vh 8vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  overflow: hidden;
+}
+@media (max-width: 640px) { .card { padding: 7vh 7vw; } }
+
+.card__num {
+  position: absolute;
+  top: 8vh;
+  left: 8vw;
+  font-family: var(--font-en);
+  font-style: italic;
+  font-size: 13px;
+  letter-spacing: 0.25em;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+}
+@media (max-width: 640px) { .card__num { top: 6vh; left: 7vw; font-size: 11px; } }
+
+.card__label {
+  font-family: var(--font-en);
+  font-style: italic;
+  font-size: 15px;
+  letter-spacing: 0.06em;
+  color: var(--warm);
+  margin-bottom: 14px;
+  font-weight: 500;
+}
+
+.card__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(28px, 4.6vw, 52px);
+  line-height: 1.25;
+  color: var(--ink);
+  letter-spacing: -0.005em;
+  margin-bottom: 24px;
+}
+
+.card__body {
+  font-family: var(--font-body);
+  font-size: clamp(15px, 1.4vw, 18px);
+  line-height: 1.85;
+  color: var(--ink-soft);
+  max-width: 38em;
+}
+.card__body p + p { margin-top: 14px; }
+
+.divider {
+  width: 50px;
+  height: 1.5px;
+  background: var(--warm);
+  margin: 22px 0;
+}
+
+/* =========================================================
+   Card 1: Cover
+   ========================================================= */
+.cover {
+  background:
+    radial-gradient(ellipse at top right, rgba(201, 168, 117, 0.12), transparent 60%),
+    radial-gradient(ellipse at bottom left, rgba(149, 171, 140, 0.08), transparent 50%),
+    var(--paper);
+  align-items: flex-start;
+}
+.cover__eyebrow {
+  font-family: var(--font-en);
+  font-style: italic;
+  font-size: 14px;
+  letter-spacing: 0.3em;
+  color: var(--warm);
+  text-transform: uppercase;
+  margin-bottom: 30px;
+}
+.cover__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(32px, 5.8vw, 70px);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin-bottom: 24px;
+  max-width: 22ch;
+}
+.cover__title em {
+  font-family: var(--font-en);
+  font-style: italic;
+  font-weight: 600;
+  color: var(--warm);
+}
+.cover__subtitle-en {
+  font-family: var(--font-en);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(15px, 1.5vw, 21px);
+  line-height: 1.4;
+  color: var(--ink-soft);
+  max-width: 38em;
+  margin-bottom: 50px;
+}
+.cover__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 14px;
+  color: var(--ink-soft);
+  margin-top: auto;
+  padding-top: 30px;
+  border-top: 1px solid var(--line);
+  max-width: 32em;
+}
+.cover__meta strong {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--ink);
+  font-size: 18px;
+  margin-bottom: 4px;
+}
+.cover__scroll-hint {
+  position: absolute;
+  bottom: 4vh;
+  right: 8vw;
+  font-family: var(--font-en);
+  font-style: italic;
+  font-size: 13px;
+  color: var(--ink-faint);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  animation: bob 2.4s ease-in-out infinite;
+}
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+
+/* =========================================================
+   Card 2: The Story
+   ========================================================= */
+.story { background: linear-gradient(to bottom right, var(--paper-light), var(--paper)); }
+.story__date {
+  font-family: var(--font-en);
+  font-style: italic;
+  font-size: 14px;
+  letter-spacing: 0.2em;
+  color: var(--warm);
+  margin-bottom: 30px;
+}
+.story__quote-mark {
+  font-family: var(--font-en);
+  font-size: 100px;
+  line-height: 0.5;
+  color: var(--warm-faint);
+  margin-bottom: 4px;
+  font-style: italic;
+}
+.story__lead {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(20px, 2.4vw, 28px);
+  line-height: 1.65;
+  color: var(--ink);
+  max-width: 26em;
+  margin-bottom: 14px;
+}
+.story__voices {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 18px 0;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(17px, 1.9vw, 22px);
+  color: var(--ink-soft);
+  font-style: italic;
+}
+.story__voices span { padding-left: 14px; border-left: 2px solid var(--warm-soft); }
+.story__close {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(16px, 1.7vw, 21px);
+  color: var(--warm);
+  margin-top: 18px;
+  font-style: italic;
+  max-width: 24em;
+  line-height: 1.5;
+}
+
+/* =========================================================
+   Card 3: Problem + Research Questions
+   ========================================================= */
+.problem__statement {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(22px, 2.4vw, 28px);
+  line-height: 1.6;
+  color: var(--ink);
+  margin: 18px 0 28px;
+  max-width: 28em;
+}
+.problem__statement em {
+  font-style: normal;
+  color: var(--warm);
+}
+
+.questions {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 12px;
+  max-width: 44em;
+}
+.question {
+  display: flex;
+  gap: 18px;
+  align-items: baseline;
+  padding-bottom: 14px;
+  border-bottom: 1px dashed var(--line);
+}
+.question__num {
+  font-family: var(--font-en);
+  font-style: italic;
+  font-size: 22px;
+  color: var(--warm);
+  font-weight: 600;
+  flex-shrink: 0;
+  min-width: 28px;
+}
+.question__text {
+  font-family: var(--font-body);
+  font-size: clamp(14px, 1.3vw, 17px);
+  color: var(--ink-soft);
+  line-height: 1.7;
+}
+.question__text strong { color: var(--ink); font-weight: 600; }
+
+/* =========================================================
+   Card 4: Method + Theory
+   ========================================================= */
+.method__flow {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin: 28px 0 40px;
+  flex-wrap: wrap;
+}
+.method__stage {
+  padding: 10px 18px;
+  border: 1px solid var(--warm);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--warm);
+  border-radius: 2px;
+  background: rgba(184, 149, 106, 0.04);
+}
+.method__arrow {
+  color: var(--ink-faint);
+  font-family: var(--font-en);
+}
+
+.method__pillars-label {
+  font-family: var(--font-en);
+  font-style: italic;
+  font-size: 13px;
+  letter-spacing: 0.2em;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.pillars {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+@media (max-width: 900px) {
+  .pillars { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 500px) {
+  .pillars { grid-template-columns: 1fr; }
+}
+.pillar {
+  padding: 14px 16px;
+  background: var(--paper-light);
+  border-top: 2px solid var(--warm);
+  border-radius: 2px;
+}
+.pillar__name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--ink);
+  margin-bottom: 3px;
+}
+.pillar__en {
+  font-family: var(--font-en);
+  font-style: italic;
+  font-size: 12px;
+  color: var(--ink-faint);
+  letter-spacing: 0.06em;
+  margin-bottom: 8px;
+}
+.pillar__desc {
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  line-height: 1.55;
+}
+
+/* =========================================================
+   Card 5-6: Semester practices
+   ========================================================= */
+.semester__caption {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(18px, 1.9vw, 23px);
+  color: var(--ink);
+  line-height: 1.55;
+  max-width: 32em;
+  margin: 18px 0 20px;
+}
+.semester__caption em {
+  font-style: normal;
+  color: var(--warm);
+}
+.semester__details {
+  font-size: clamp(14px, 1.3vw, 16px);
+  color: var(--ink-soft);
+  line-height: 1.85;
+  max-width: 36em;
+  margin-bottom: 24px;
+}
+.semester__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 18px;
+}
+.tag-soft {
+  padding: 5px 13px;
+  border: 1px solid var(--line);
+  color: var(--ink-soft);
+  font-family: var(--font-body);
+  font-size: 12.5px;
+  border-radius: 999px;
+  background: var(--paper-light);
+}
+.semester__highlight {
+  margin-top: 22px;
+  padding: 16px 20px;
+  background: rgba(31, 51, 41, 0.55);
+  border-left: 3px solid var(--warm);
+  font-family: var(--font-display);
+  font-weight: 500;
+  color: var(--ink);
+  font-size: clamp(14px, 1.3vw, 16px);
+  line-height: 1.7;
+  max-width: 36em;
+  font-style: italic;
+}
+
+/* =========================================================
+   Card 7-8: Findings (warm cards)
+   ========================================================= */
+.finding-a { background: radial-gradient(ellipse at 80% 20%, rgba(201, 168, 117, 0.1), transparent 50%), var(--paper); }
+.finding-b-warm { background: linear-gradient(to bottom right, var(--paper-light), var(--paper)); }
+
+.finding__big-quote {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(24px, 3.2vw, 38px);
+  line-height: 1.45;
+  color: var(--ink);
+  margin: 22px 0 30px;
+  max-width: 20em;
+}
+.finding__big-quote em {
+  font-style: normal;
+  color: var(--warm);
+}
+.finding__details {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-width: 38em;
+}
+.finding__detail {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+.finding__icon {
+  font-family: var(--font-en);
+  font-style: italic;
+  color: var(--warm);
+  flex-shrink: 0;
+  font-size: 18px;
+  width: 24px;
+  font-weight: 600;
+}
+.finding__text {
+  font-size: clamp(14px, 1.3vw, 16px);
+  color: var(--ink-soft);
+  line-height: 1.75;
+}
+.finding__text strong { color: var(--ink); font-weight: 500; }
+.finding__citation {
+  font-family: var(--font-en);
+  font-style: italic;
+  font-size: 13px;
+  color: var(--ink-faint);
+}
+
+/* =========================================================
+   Card 9: Hero - Three Role Transformation
+   ========================================================= */
+.role-hero {
+  background: linear-gradient(135deg, var(--paper-deep) 0%, #142319 100%);
+  color: var(--ink);
+}
+.role-hero .card__num { color: rgba(248, 244, 237, 0.4); }
+.role-hero .card__label { color: var(--warm); }
+.role-hero .card__title { color: var(--ink); margin-bottom: 30px; }
+
+.role-before {
+  margin: 20px 0 30px;
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.role-before__label {
+  font-family: var(--font-en);
+  font-style: italic;
+  font-size: 13px;
+  letter-spacing: 0.25em;
+  color: rgba(248, 244, 237, 0.5);
+  text-transform: uppercase;
+}
+.role-before__name {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(20px, 2.3vw, 28px);
+  color: rgba(248, 244, 237, 0.5);
+  text-decoration: line-through;
+  text-decoration-color: var(--warm);
+  text-decoration-thickness: 2px;
+}
+
+.role-arrow {
+  font-family: var(--font-en);
+  font-style: italic;
+  font-size: 18px;
+  color: var(--warm);
+  margin: 16px 0;
+  letter-spacing: 0.15em;
+}
+
+.role-after {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-top: 18px;
+}
+@media (max-width: 800px) {
+  .role-after { grid-template-columns: 1fr; gap: 12px; }
+}
+.role-card {
+  padding: 22px 20px;
+  background: rgba(248, 244, 237, 0.05);
+  border-top: 2px solid var(--warm);
+  border-radius: 2px;
+}
+.role-card__icon {
+  font-family: var(--font-en);
+  font-style: italic;
+  font-size: 22px;
+  color: var(--warm);
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+.role-card__name-en {
+  font-family: var(--font-en);
+  font-style: italic;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  color: var(--warm);
+  margin-bottom: 4px;
+  text-transform: uppercase;
+}
+.role-card__name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(17px, 1.8vw, 21px);
+  color: var(--ink);
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+.role-card__desc {
+  font-size: 13px;
+  color: rgba(248, 244, 237, 0.78);
+  line-height: 1.65;
+}
+
+/* =========================================================
+   Card 10: Conclusion
+   ========================================================= */
+.conclusion {
+  background: radial-gradient(ellipse at center, var(--paper-light) 0%, var(--paper) 70%);
+  align-items: center;
+  text-align: center;
+}
+.conclusion .card__num { left: 50%; transform: translateX(-50%); }
+.conclusion .card__label { color: var(--warm); margin-bottom: 30px; }
+.conclusion__quote {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(24px, 3.2vw, 38px);
+  line-height: 1.65;
+  color: var(--ink);
+  max-width: 22em;
+}
+.conclusion__quote em {
+  font-style: normal;
+  background: linear-gradient(180deg, transparent 65%, var(--warm-faint) 65%);
+  padding: 0 6px;
+  color: var(--ink);
+}
+.conclusion__quote .accent { color: var(--warm); font-style: italic; }
+.conclusion__sig {
+  margin-top: 40px;
+  font-family: var(--font-en);
+  font-style: italic;
+  font-size: 14px;
+  color: var(--ink-faint);
+  letter-spacing: 0.15em;
+}
+
+/* =========================================================
+   Card 11: Resources (NEW)
+   ========================================================= */
+.resources { background: linear-gradient(180deg, var(--paper) 0%, var(--paper-light) 100%); }
+
+.resources__intro {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(16px, 1.5vw, 19px);
+  color: var(--ink-soft);
+  line-height: 1.75;
+  max-width: 36em;
+  margin-bottom: 26px;
+}
+
+.resource-group { margin-bottom: 22px; }
+.resource-group__label {
+  font-family: var(--font-en);
+  font-style: italic;
+  font-size: 13px;
+  letter-spacing: 0.22em;
+  color: var(--warm);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+.resource-group__label .cn {
+  font-family: var(--font-display);
+  font-style: normal;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: 0.05em;
+  margin-left: 4px;
+}
+
+.resource-links {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+@media (max-width: 640px) {
+  .resource-links { grid-template-columns: 1fr; }
+}
+
+.resource-link {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 18px;
+  background: var(--paper-light);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  text-decoration: none;
+  color: var(--ink);
+  transition: all 0.2s ease;
+}
+.resource-link:hover, .resource-link:focus {
+  border-color: var(--warm);
+  background: rgba(201, 168, 117, 0.12);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
+}
+
+.resource-link__content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+.resource-link__title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--ink);
+  line-height: 1.3;
+}
+.resource-link__desc {
+  font-size: 11.5px;
+  color: var(--ink-faint);
+  margin-top: 3px;
+  font-family: var(--font-en);
+  font-style: italic;
+  letter-spacing: 0.04em;
+}
+.resource-link__arrow {
+  font-family: var(--font-en);
+  color: var(--warm);
+  font-size: 18px;
+  flex-shrink: 0;
+  font-weight: 600;
+}
+
+/* =========================================================
+   Card 12: Contact (dark navy)
+   ========================================================= */
+.contact { background: var(--paper-deep); color: var(--ink); }
+.contact .card__num { color: rgba(248, 244, 237, 0.4); }
+.contact .card__label { color: var(--warm); }
+.contact .card__title { color: var(--ink); }
+.contact .divider { background: var(--warm); }
+
+.contact__layout {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 60px;
+  margin-top: 30px;
+  align-items: start;
+}
+@media (max-width: 800px) { .contact__layout { grid-template-columns: 1fr; gap: 30px; } }
+
+.contact__info {
+  font-size: 15px;
+  line-height: 1.85;
+  color: rgba(248, 244, 237, 0.85);
+}
+.contact__info strong {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--ink);
+}
+.contact__info p { margin-bottom: 14px; }
+
+.contact__poster {
+  padding: 30px;
+  background: rgba(248, 244, 237, 0.06);
+  border: 1px solid rgba(248, 244, 237, 0.15);
+  border-radius: 4px;
+  text-align: center;
+}
+.poster-num {
+  font-family: var(--font-en);
+  font-style: italic;
+  font-size: 80px;
+  font-weight: 600;
+  color: var(--warm);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.poster-num-alt {
+  font-family: var(--font-en);
+  font-style: italic;
+  font-size: 14px;
+  color: rgba(248, 244, 237, 0.5);
+  margin-bottom: 14px;
+  letter-spacing: 0.1em;
+}
+.poster-label {
+  font-family: var(--font-en);
+  font-style: italic;
+  font-size: 12px;
+  color: rgba(248, 244, 237, 0.6);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+.poster-when {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 18px;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+.poster-where {
+  font-size: 13px;
+  color: rgba(248, 244, 237, 0.7);
+  line-height: 1.6;
+}
+
+.contact__footer {
+  margin-top: auto;
+  padding-top: 40px;
+  font-family: var(--font-en);
+  font-style: italic;
+  font-size: 13px;
+  color: rgba(248, 244, 237, 0.45);
+  letter-spacing: 0.1em;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+/* =========================================================
+   Card 13: Invitation (warm closing)
+   ========================================================= */
+.invitation {
+  background:
+    radial-gradient(ellipse at 70% 30%, rgba(201, 168, 117, 0.12), transparent 55%),
+    linear-gradient(180deg, var(--paper-light) 0%, var(--paper) 100%);
+}
+.invitation__lead {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(18px, 1.9vw, 23px);
+  color: var(--ink-soft);
+  line-height: 1.85;
+  max-width: 36em;
+  margin: 18px 0 30px;
+}
+.invitation__lead em { font-style: normal; color: var(--warm); font-weight: 600; }
+
+.invitation__fields-label {
+  font-family: var(--font-en);
+  font-style: italic;
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+  margin: 26px 0 14px;
+}
+.invitation__fields {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-bottom: 36px;
+  max-width: 42em;
+}
+.field-tag {
+  padding: 7px 16px;
+  border: 1px solid var(--warm);
+  color: var(--warm);
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 14px;
+  border-radius: 999px;
+  background: rgba(184, 149, 106, 0.04);
+  transition: all 0.2s ease;
+}
+.field-tag:hover { background: var(--warm); color: var(--paper); }
+
+.invitation__contact {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 24px 28px;
+  background: rgba(31, 51, 41, 0.6);
+  border-left: 3px solid var(--warm);
+  max-width: 32em;
+  margin-bottom: 36px;
+}
+.contact-row {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  font-size: 14.5px;
+  color: var(--ink-soft);
+}
+.contact-row__label {
+  font-family: var(--font-en);
+  font-style: italic;
+  font-weight: 600;
+  color: var(--warm);
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  min-width: 70px;
+  flex-shrink: 0;
+}
+.contact-row a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--line);
+  transition: border-color 0.2s;
+}
+.contact-row a:hover { border-color: var(--warm); }
+
+.invitation__signoff {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(15px, 1.4vw, 17px);
+  color: var(--ink-faint);
+  max-width: 28em;
+  line-height: 1.7;
+  border-top: 1px solid var(--line);
+  padding-top: 24px;
+  margin-top: auto;
+}
+.invitation__signature {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-style: normal;
+  color: var(--ink);
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 16px;
+}
+
+/* =========================================================
+   入場動畫
+   ========================================================= */
+.card > * { opacity: 0; transform: translateY(20px); }
+.card.in-view > * { animation: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+.card.in-view > *:nth-child(1) { animation-delay: 0.05s; }
+.card.in-view > *:nth-child(2) { animation-delay: 0.15s; }
+.card.in-view > *:nth-child(3) { animation-delay: 0.25s; }
+.card.in-view > *:nth-child(4) { animation-delay: 0.35s; }
+.card.in-view > *:nth-child(5) { animation-delay: 0.45s; }
+.card.in-view > *:nth-child(6) { animation-delay: 0.55s; }
+.card.in-view > *:nth-child(n+7) { animation-delay: 0.65s; }
+@keyframes rise { to { opacity: 1; transform: translateY(0); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .card > * { opacity: 1; transform: none; }
+  .card.in-view > * { animation: none; }
+  body { scroll-behavior: auto; }
+}
+</style>
+</head>
+<body>
+
+<div class="progress-bar"><div class="progress-bar__fill" id="progress"></div></div>
+<div class="counter" id="counter">01 / 13</div>
+<nav class="nav-dots" id="navDots"></nav>
+
+<main>
+
+<!-- ============== Card 1: Cover ============== -->
+<section class="card cover" id="c1">
+  <div class="cover__eyebrow">A Research Card Series · 2026　·　約 3 分鐘</div>
+  <h1 class="cover__title">
+    AI 生成只花了 10 秒。<br>
+    然後，學生低下了頭——<br>
+    <em>教師的角色，從那一刻開始重塑。</em>
+  </h1>
+  <p class="cover__subtitle-en">
+    Reshaping the Teacher&rsquo;s Role in an Age of AI Empowerment: Emotional Leadership and Scaffolding in Generative AI–Integrated Junior High School Instruction
+  </p>
+  <div class="cover__meta">
+    <strong>葉容辰　Yeh, Jung-Chen</strong>
+    <span>南臺科技大學人文社會學院　教育經營碩士在職專班</span>
+    <span>2026「從在地場域到全球網絡：教師教育的再想像」學術研討會</span>
+    <span>2026.05.23　國立清華大學　海報編號 44 (C09)</span>
+  </div>
+  <div class="cover__scroll-hint">scroll ↓</div>
+</section>
+
+<!-- ============== Card 2: The Story ============== -->
+<section class="card story" id="c2">
+  <span class="card__num">02 · The Moment</span>
+  <p class="story__date">2024 · 國中資訊科技課堂</p>
+  <div class="story__quote-mark">"</div>
+  <p class="story__lead">
+    AI 生成圖片只花了 10 秒。<br>
+    但 10 秒之後——
+  </p>
+  <div class="story__voices">
+    <span>「老師，這不是我想要的。」</span>
+    <span>「老師，怎麼還是錯的？」</span>
+    <span>「老師，我不會。」</span>
+  </div>
+  <p class="story__close">
+    一個一個聲音傳來。<br>
+    那一刻我發現：<br>
+    我教的，不再只是資訊科技。
+  </p>
+</section>
+
+<!-- ============== Card 3: Problem + Questions ============== -->
+<section class="card problem" id="c3">
+  <span class="card__num">03 · The Real Gap</span>
+  <p class="card__label">Beyond "AI Empowerment"</p>
+  <h2 class="card__title">當代課堂的挑戰，<br>已非單純的技術導入。</h2>
+  <p class="problem__statement">
+    而是<em>「人機協作」中的引導藝術</em>——
+    當師資培訓只教 AI 操作、不談教師的引導角色，
+    第一線教師面對 AI 教學常有無所適從之感。
+  </p>
+
+  <div class="questions">
+    <div class="question">
+      <span class="question__num">Q1</span>
+      <span class="question__text">教師如何透過<strong>認知鷹架</strong>，協助學生跨越 AI 生成過程中的語言與概念障礙？</span>
+    </div>
+    <div class="question">
+      <span class="question__num">Q2</span>
+      <span class="question__text">教師的<strong>情緒領導力</strong>如何轉化學生面臨生成挫折時的焦慮與挫敗？</span>
+    </div>
+    <div class="question">
+      <span class="question__num">Q3</span>
+      <span class="question__text">在 AI 協作教學中，<strong>教師的專業角色</strong>產生了哪些實質性的轉變？</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============== Card 4: Method + Theory ============== -->
+<section class="card method" id="c4">
+  <span class="card__num">04 · Methodology</span>
+  <p class="card__label">Action Research × ADDIE</p>
+  <h2 class="card__title">將 AI 視為「共創夥伴」<br>而非工具。</h2>
+
+  <p class="card__body" style="margin-bottom: 8px;">
+    以行動研究為奠基、結合 ADDIE 教學設計模型，於臺灣南部某公立國中資訊科技課程進行六週教學實施。
+  </p>
+
+  <div class="method__flow">
+    <span class="method__stage">A 分析</span>
+    <span class="method__arrow">→</span>
+    <span class="method__stage">D 設計</span>
+    <span class="method__arrow">→</span>
+    <span class="method__stage">D 發展</span>
+    <span class="method__arrow">→</span>
+    <span class="method__stage">I 實施</span>
+    <span class="method__arrow">→</span>
+    <span class="method__stage">E 評鑑</span>
+  </div>
+
+  <p class="method__pillars-label">Four Theoretical Pillars</p>
+  <div class="pillars">
+    <div class="pillar">
+      <div class="pillar__name">ADDIE 模型</div>
+      <div class="pillar__en">Branch (2009)</div>
+      <p class="pillar__desc">系統化規劃六週課程，循環迭代修正</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar__name">鷹架理論</div>
+      <div class="pillar__en">Vygotsky · ZPD</div>
+      <p class="pillar__desc">在能力與目標間搭建支持結構，逐步移除</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar__name">認知負荷理論</div>
+      <div class="pillar__en">Sweller (1988)</div>
+      <p class="pillar__desc">降低外在認知負荷，專注於核心創意</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar__name">心流理論</div>
+      <div class="pillar__en">Csikszentmihalyi (1990)</div>
+      <p class="pillar__desc">挑戰與技能匹配時，產生內在動機</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============== Card 5: Upper Semester - AI 繪圖 ============== -->
+<section class="card semester" id="c5">
+  <span class="card__num">05 · Semester I</span>
+  <p class="card__label">Visual · AI 繪圖協作</p>
+  <h2 class="card__title">視覺化提示詞鷹架——<br>把抽象意象，<br>拆解成可操作的提示。</h2>
+
+  <p class="semester__caption">
+    以 <em>Gemini 3 Flash Image</em> 為共創夥伴，搭配自製<em>「視覺化提示詞圖卡」</em>作為認知鷹架。
+  </p>
+  <div class="semester__details">
+    學生於跨領域主題下進行視覺敘事創作，教師從操作示範逐步轉為個別化引導。
+    當學生面對「不知如何描述心中畫面」的瓶頸時，圖卡作為中介媒材，引導其將抽象意象拆解為可操作的提示詞，於迭代修正中體會成功經驗。
+  </div>
+
+  <div class="semester__tags">
+    <span class="tag-soft">提示詞鷹架</span>
+    <span class="tag-soft">視覺化圖卡</span>
+    <span class="tag-soft">跨領域敘事</span>
+    <span class="tag-soft">概念具象化</span>
+  </div>
+</section>
+
+<!-- ============== Card 6: Lower Semester - AI 作曲 ============== -->
+<section class="card semester" id="c6">
+  <span class="card__num">06 · Semester II</span>
+  <p class="card__label">Sonic · AI 作曲協作</p>
+  <h2 class="card__title">下拉選單式鷹架——<br>從「聽眾」<br>變成「創作者」。</h2>
+
+  <p class="semester__caption">
+    結合 <em>SUNO AI</em> 與 <em>Custom GPT「SUNO 中文作詞」</em>，建構<em>「下拉選單式」</em>鷹架降低語言門檻。
+  </p>
+  <div class="semester__details">
+    學生由聽眾轉為創作者，從歌詞構思到風格選擇皆需多次迭代與情緒調節。當學生因生成成果不如預期而產生挫敗時，教師的同理回應能將焦慮轉化為再嘗試的動能。
+  </div>
+
+  <div class="semester__highlight">
+    在反覆試錯中，學生展現出<strong>超越評分要求的學習熱忱</strong>。
+  </div>
+
+  <div class="semester__tags">
+    <span class="tag-soft">下拉式鷹架</span>
+    <span class="tag-soft">SUNO 共創</span>
+    <span class="tag-soft">跨語言創作</span>
+    <span class="tag-soft">情緒調節</span>
+  </div>
+</section>
+
+<!-- ============== Card 7: Finding I - Cognitive ============== -->
+<section class="card finding-a" id="c7">
+  <span class="card__num">07 · Finding I</span>
+  <p class="card__label">Cognitive Scaffolding</p>
+  <h2 class="card__title">當門檻消失了，<br>學生才有餘力去「創意」。</h2>
+
+  <p class="finding__big-quote">
+    視覺化圖卡與下拉選單，<br>
+    讓學生<em>跨越語言隔閡</em>，<br>
+    把專注力，留給最珍貴的<em>創意思考</em>。
+  </p>
+
+  <div class="finding__details">
+    <div class="finding__detail">
+      <span class="finding__icon">→</span>
+      <p class="finding__text">
+        <strong>降低外在認知負荷</strong>：提示詞鷹架（Prompt Scaffolds）作為認知中介，學生不需要同時處理語言、概念、技術三重負擔
+      </p>
+    </div>
+    <div class="finding__detail">
+      <span class="finding__icon">→</span>
+      <p class="finding__text">
+        <strong>差異化的支援</strong>：對不同需求學生提供視覺化或結構化鷹架，落實 <span class="finding__citation">Vygotsky</span> ZPD 在 AI 教學的轉譯
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============== Card 8: Finding II - Emotional Leadership → Flow ============== -->
+<section class="card finding-b-warm" id="c8">
+  <span class="card__num">08 · Finding II</span>
+  <p class="card__label">Emotional Leadership · Flow</p>
+  <h2 class="card__title">教師的一句同理，<br>能把焦慮，<br>轉成驅力。</h2>
+
+  <p class="finding__big-quote">
+    當學生面臨生成挫折時，<br>
+    教師<em>適時的同理回應</em>與重構引導，<br>
+    協助其進入「<em>心流（Flow）</em>」狀態。
+  </p>
+
+  <div class="finding__details">
+    <div class="finding__detail">
+      <span class="finding__icon">→</span>
+      <p class="finding__text">
+        <strong>從挫敗到再嘗試</strong>：教師的情緒領導，是讓 AI 課堂不至於崩潰的關鍵介入
+      </p>
+    </div>
+    <div class="finding__detail">
+      <span class="finding__icon">→</span>
+      <p class="finding__text">
+        <strong>超越課堂要求的學習熱忱</strong>：學生在反覆試錯中展現自主學習動能——這是 <span class="finding__citation">Csikszentmihalyi</span> 心流理論在 AI 教室的真實顯影
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============== Card 9: HERO - Three Role Transformation ============== -->
+<section class="card role-hero" id="c9">
+  <span class="card__num">09 · Finding III</span>
+  <p class="card__label">The Threefold Transformation</p>
+  <h2 class="card__title">教師的角色，<br>正在三重轉變。</h2>
+
+  <div class="role-before">
+    <span class="role-before__label">From</span>
+    <span class="role-before__name">知識傳遞者　Knowledge Transmitter</span>
+  </div>
+
+  <div class="role-arrow">↓ ↓ ↓</div>
+
+  <div class="role-after">
+    <div class="role-card">
+      <div class="role-card__icon">▣</div>
+      <div class="role-card__name-en">Cognitive Scaffolder</div>
+      <div class="role-card__name">認知鷹架搭建者</div>
+      <p class="role-card__desc">為學生在能力與目標之間，搭建可拆解、可操作的支持結構</p>
+    </div>
+    <div class="role-card">
+      <div class="role-card__icon">◆</div>
+      <div class="role-card__name-en">Ethical Arbiter</div>
+      <div class="role-card__name">倫理界定者</div>
+      <p class="role-card__desc">在 AI 共創的灰色地帶，劃出創作、引用、抄襲的界線</p>
+    </div>
+    <div class="role-card">
+      <div class="role-card__icon">●</div>
+      <div class="role-card__name-en">Emotional Leader</div>
+      <div class="role-card__name">情緒領導者</div>
+      <p class="role-card__desc">當學生挫敗時穩住現場，把焦慮轉化為再嘗試的動能</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============== Card 10: Conclusion ============== -->
+<section class="card conclusion" id="c10">
+  <span class="card__num">10 · The Heart</span>
+  <p class="card__label">Beyond Technology</p>
+  <p class="conclusion__quote">
+    無論科技如何更迭，<br>
+    教育本質終需回歸對「<span class="accent">人</span>」的<em>賦能與關懷</em>。
+    <br><br>
+    讓 AI 不再是冰冷的工具，<br>
+    而能成為承載<em>人文溫度</em>的共創夥伴。
+  </p>
+  <p class="conclusion__sig">教育本質 · 對人的賦能與關懷</p>
+</section>
+
+<!-- ============== Card 11: Resources (NEW) ============== -->
+<section class="card resources" id="c11">
+  <span class="card__num">11 · Beyond the Cards</span>
+  <p class="card__label">Explore the Materials</p>
+  <h2 class="card__title">延伸資源</h2>
+  <p class="resources__intro">
+    這份研究背後的所有教材、學生作品、創作工具——<br>
+    全部公開，讓你看見現場真實發生的事。
+  </p>
+
+  <div class="resource-group">
+    <div class="resource-group__label">Visual <span class="cn">／ AI 繪圖協作</span></div>
+    <div class="resource-links">
+      <a class="resource-link" href="https://canva.link/h2fshrqguzz9atv" target="_blank" rel="noopener">
+        <div class="resource-link__content">
+          <span class="resource-link__title">AI 繪圖教材</span>
+          <span class="resource-link__desc">Canva · Teaching Slides</span>
+        </div>
+        <span class="resource-link__arrow">↗</span>
+      </a>
+      <a class="resource-link" href="https://padlet.com/wrencc/ai-c2gwyji2mf9sfann" target="_blank" rel="noopener">
+        <div class="resource-link__content">
+          <span class="resource-link__title">AI 繪圖作品集</span>
+          <span class="resource-link__desc">Padlet · Student Gallery</span>
+        </div>
+        <span class="resource-link__arrow">↗</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="resource-group">
+    <div class="resource-group__label">Sonic <span class="cn">／ AI 作曲協作</span></div>
+    <div class="resource-links">
+      <a class="resource-link" href="https://canva.link/infdthx2ry9j8pn" target="_blank" rel="noopener">
+        <div class="resource-link__content">
+          <span class="resource-link__title">SUNO 教材</span>
+          <span class="resource-link__desc">Canva · Teaching Slides</span>
+        </div>
+        <span class="resource-link__arrow">↗</span>
+      </a>
+      <a class="resource-link" href="https://sites.google.com/dcjh.tn.edu.tw/suno" target="_blank" rel="noopener">
+        <div class="resource-link__content">
+          <span class="resource-link__title">SUNO 提示詞鷹架</span>
+          <span class="resource-link__desc">Google Sites · Prompt Scaffolds</span>
+        </div>
+        <span class="resource-link__arrow">↗</span>
+      </a>
+      <a class="resource-link" href="https://chatgpt.com/g/g-EEx6GDtyA-sunozuo-ci-gong-ju" target="_blank" rel="noopener">
+        <div class="resource-link__content">
+          <span class="resource-link__title">SUNO 作詞工具</span>
+          <span class="resource-link__desc">Custom GPT · Lyricist</span>
+        </div>
+        <span class="resource-link__arrow">↗</span>
+      </a>
+      <a class="resource-link" href="https://padlet.com/wrencc/suno-rhtfkpphfi6c5unq" target="_blank" rel="noopener">
+        <div class="resource-link__content">
+          <span class="resource-link__title">SUNO 作品集</span>
+          <span class="resource-link__desc">Padlet · Student Gallery</span>
+        </div>
+        <span class="resource-link__arrow">↗</span>
+      </a>
+      <a class="resource-link" href="https://open.spotify.com/artist/2nsWxxYgNaqRhrwjvzmH8M" target="_blank" rel="noopener">
+        <div class="resource-link__content">
+          <span class="resource-link__title">Spotify 精選</span>
+          <span class="resource-link__desc">Selected Student Tracks</span>
+        </div>
+        <span class="resource-link__arrow">↗</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============== Card 12: Contact ============== -->
+<section class="card contact" id="c12">
+  <span class="card__num">12 · Find Me</span>
+  <p class="card__label">Meet the Researcher</p>
+  <h2 class="card__title">歡迎來聊聊。</h2>
+  <div class="divider"></div>
+
+  <div class="contact__layout">
+    <div class="contact__info">
+      <p>
+        <strong>葉容辰　Yeh, Jung-Chen</strong><br>
+        南臺科技大學　人文社會學院<br>
+        教育經營碩士在職專班
+      </p>
+      <p>
+        <strong>研究興趣 ·</strong><br>
+        生成式 AI 融入教學、教師專業發展、情緒領導力、教學鷹架、行動研究
+      </p>
+      <p>
+        <strong>本研究使用 ·</strong><br>
+        Gemini 3 Flash Image · SUNO AI · Custom GPT
+      </p>
+    </div>
+
+    <div class="contact__poster">
+      <div class="poster-num">44</div>
+      <div class="poster-num-alt">海報設計編號 C09</div>
+      <div class="poster-label">Poster No.</div>
+      <div class="poster-when">2026.05.23　14:00–14:20</div>
+      <div class="poster-where">國立清華大學<br>台達館璟德講堂外走廊</div>
+    </div>
+  </div>
+
+  <div class="contact__footer">
+    <span>© 2026 Yeh, Jung-Chen</span>
+    <span>Designed as a research card series.</span>
+  </div>
+</section>
+
+<!-- ============== Card 13: The Open Invitation ============== -->
+<section class="card invitation" id="c13">
+  <span class="card__num">13 · What&rsquo;s Next</span>
+  <p class="card__label">An Open Invitation</p>
+  <h2 class="card__title">行動研究只是起點。</h2>
+
+  <p class="invitation__lead">
+    下一步是把這份實踐推進到 <em>師培課程</em>、深化 <em>教師專業發展體系</em>，
+    並讓更多現場老師看見——AI 教學裡，最該被討論的不是工具，而是<em>人</em>。
+  </p>
+
+  <p class="invitation__fields-label">Especially welcome conversations from</p>
+  <div class="invitation__fields">
+    <span class="field-tag">師資培育</span>
+    <span class="field-tag">教師專業發展</span>
+    <span class="field-tag">課程與教學</span>
+    <span class="field-tag">教育心理學</span>
+    <span class="field-tag">AI 教育應用</span>
+    <span class="field-tag">行動研究</span>
+    <span class="field-tag">情緒教育</span>
+  </div>
+
+  <div class="invitation__contact">
+    <div class="contact-row">
+      <span class="contact-row__label">Email</span>
+      <span><a href="mailto:zoeyeh0822@gmail.com">zoeyeh0822@gmail.com</a></span>
+    </div>
+    <div class="contact-row">
+      <span class="contact-row__label">In Person</span>
+      <span>5/15 高師大 · 5/23 清大 · 5/25–26 陽明交大</span>
+    </div>
+  </div>
+
+  <div class="invitation__signoff">
+    <p>謝謝你讀到這裡。<br>
+    一場研究的價值，不在它做了什麼，<br>
+    而在它讓誰，開始重新思考一件事。<br>
+    若這份研究讓你停下來想——對我來說，已經值得。</p>
+    <span class="invitation__signature">—— 葉容辰</span>
+  </div>
+</section>
+
+</main>
+
+<script>
+const cards = document.querySelectorAll('.card');
+const progress = document.getElementById('progress');
+const counter = document.getElementById('counter');
+const navDots = document.getElementById('navDots');
+
+cards.forEach((card, i) => {
+  const dot = document.createElement('a');
+  dot.href = '#' + card.id;
+  dot.dataset.index = i;
+  dot.title = '第 ' + (i + 1) + ' 張';
+  navDots.appendChild(dot);
+});
+const dots = navDots.querySelectorAll('a');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
+      const idx = Array.from(cards).indexOf(entry.target);
+      entry.target.classList.add('in-view');
+      progress.style.width = (((idx + 1) / cards.length) * 100) + '%';
+      counter.textContent = String(idx + 1).padStart(2, '0') + ' / ' + String(cards.length).padStart(2, '0');
+      dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+    }
+  });
+}, { threshold: [0.5] });
+cards.forEach(card => observer.observe(card));
+
+document.addEventListener('keydown', (e) => {
+  const current = Array.from(cards).findIndex(c => c.classList.contains('in-view') && c.getBoundingClientRect().top >= -100 && c.getBoundingClientRect().top <= 100);
+  if (e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === ' ') {
+    e.preventDefault();
+    cards[Math.min(current + 1, cards.length - 1)].scrollIntoView({ behavior: 'smooth' });
+  } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+    e.preventDefault();
+    cards[Math.max(current - 1, 0)].scrollIntoView({ behavior: 'smooth' });
+  } else if (e.key === 'Home') { cards[0].scrollIntoView({ behavior: 'smooth' }); }
+    else if (e.key === 'End') { cards[cards.length - 1].scrollIntoView({ behavior: 'smooth' }); }
+});
+
+window.addEventListener('load', () => { cards[0].classList.add('in-view'); });
+</script>
+
+</body>
+</html>
