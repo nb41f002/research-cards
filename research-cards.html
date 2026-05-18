@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#F4ECD8">
+<title>葉容辰 · Yeh, Jung-Chen · Spring 2026 Research Journey</title>
+<meta name="description" content="2026 春季三場學術研討會研究發表（高師大 · 清大 · 陽明交大）· 葉容辰 Yeh, Jung-Chen · 南臺科技大學教育經營所">
+
+<meta property="og:title" content="Spring 2026 · A Research Journey · 葉容辰">
+<meta property="og:description" content="Three conferences, one researcher, eleven days that shaped the spring · 三場研討會 · 十一天">
+<meta property="og:type" content="website">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Noto+Serif+TC:wght@400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --paper: #F4ECD8;
+  --paper-light: #FAF4E2;
+  --paper-deep: #E6D9B5;
+  --ink: #2A2520;
+  --ink-soft: #5A5048;
+  --ink-faint: #948A7E;
+  --line: rgba(42, 37, 32, 0.13);
+
+  --font-display: 'Cormorant Garamond', 'EB Garamond', Georgia, serif;
+  --font-display-tc: 'Noto Serif TC', 'Source Han Serif TC', serif;
+  --font-body: 'Noto Sans TC', 'PingFang TC', -apple-system, sans-serif;
+}
+
+html {
+  color-scheme: light only;
+  background: #F4ECD8 !important;
+}
+@media (prefers-color-scheme: dark) {
+  html, body {
+    background: #F4ECD8 !important;
+    color: #2A2520 !important;
+  }
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  background: var(--paper) !important;
+  color: var(--ink);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  min-height: 100vh;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    radial-gradient(circle at 15% 20%, rgba(107, 31, 46, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 85% 30%, rgba(168, 137, 59, 0.06) 0%, transparent 50%),
+    radial-gradient(circle at 50% 85%, rgba(45, 74, 62, 0.04) 0%, transparent 60%);
+}
+
+main {
+  position: relative;
+  z-index: 1;
+  padding: 9vh 6vw 6vh;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+@media (max-width: 640px) {
+  main { padding: 7vh 6vw 4vh; }
+}
+
+/* ============== Hero ============== */
+.hero {
+  text-align: center;
+  margin-bottom: 8vh;
+  padding-bottom: 5vh;
+  border-bottom: 1px solid var(--line);
+}
+
+.hero__eyebrow {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 13px;
+  letter-spacing: 0.35em;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+  margin-bottom: 28px;
+}
+
+.hero__title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(56px, 11vw, 130px);
+  line-height: 1;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+}
+
+.hero__title-zh {
+  font-family: var(--font-display-tc);
+  font-weight: 600;
+  font-size: 0.4em;
+  display: block;
+  color: var(--ink-soft);
+  letter-spacing: 0.12em;
+  margin-top: 16px;
+  font-style: normal;
+}
+
+.hero__sub {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(20px, 2.4vw, 28px);
+  color: var(--ink-soft);
+  line-height: 1.4;
+  margin: 36px auto 14px;
+  max-width: 36em;
+}
+
+.hero__sub-zh {
+  display: block;
+  font-family: var(--font-display-tc);
+  font-style: normal;
+  font-weight: 500;
+  font-size: 0.7em;
+  margin-top: 8px;
+  color: var(--ink-faint);
+  letter-spacing: 0.1em;
+}
+
+.hero__author {
+  font-size: 14px;
+  color: var(--ink-soft);
+  line-height: 1.7;
+  margin-top: 36px;
+}
+.hero__author strong {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 19px;
+  color: var(--ink);
+  display: block;
+  margin-bottom: 6px;
+  letter-spacing: 0.02em;
+}
+.hero__author span {
+  display: block;
+  font-size: 13px;
+}
+
+/* ============== Journey Cards ============== */
+.journey-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 22px;
+  margin-bottom: 8vh;
+}
+@media (max-width: 1000px) {
+  .journey-grid { grid-template-columns: 1fr; gap: 18px; max-width: 600px; margin-left: auto; margin-right: auto; }
+}
+
+.journey-card {
+  display: flex;
+  flex-direction: column;
+  padding: 36px 32px 28px;
+  background: var(--c-bg);
+  color: var(--c-text);
+  border-radius: 6px;
+  position: relative;
+  min-height: 520px;
+  cursor: pointer;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease;
+  text-decoration: none;
+
+  opacity: 0;
+  transform: translateY(28px);
+  animation: rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@media (max-width: 640px) {
+  .journey-card { padding: 32px 26px 24px; min-height: 460px; }
+}
+
+@keyframes rise {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.journey-card:hover, .journey-card:focus-within {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 50px rgba(0, 0, 0, 0.18);
+}
+
+/* Conference-specific theming */
+.journey-card.nknu {
+  --c-bg: #1A2B4A;
+  --c-text: #F5EFE4;
+  --c-soft: rgba(245, 239, 228, 0.7);
+  --c-faint: rgba(245, 239, 228, 0.45);
+  --c-accent: #D88060;
+  --c-line: rgba(245, 239, 228, 0.18);
+  animation-delay: 0.1s;
+}
+.journey-card.nthu {
+  --c-bg: #2D4A3E;
+  --c-text: #F8F4ED;
+  --c-soft: rgba(248, 244, 237, 0.7);
+  --c-faint: rgba(248, 244, 237, 0.45);
+  --c-accent: #C9A875;
+  --c-line: rgba(248, 244, 237, 0.18);
+  animation-delay: 0.25s;
+}
+.journey-card.nycu {
+  --c-bg: #6B1F2E;
+  --c-text: #F4ECD8;
+  --c-soft: rgba(244, 236, 216, 0.75);
+  --c-faint: rgba(244, 236, 216, 0.5);
+  --c-accent: #C8A75A;
+  --c-line: rgba(244, 236, 216, 0.2);
+  animation-delay: 0.4s;
+}
+
+.card-date {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.22em;
+  color: var(--c-accent);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.card-meta {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 11.5px;
+  letter-spacing: 0.18em;
+  color: var(--c-faint);
+  text-transform: uppercase;
+  padding-bottom: 22px;
+  margin-bottom: 22px;
+  border-bottom: 1px solid var(--c-line);
+}
+
+.card-conference {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-style: italic;
+  font-size: 14px;
+  color: var(--c-soft);
+  margin-bottom: 14px;
+  letter-spacing: 0.06em;
+}
+
+.card-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(22px, 2.2vw, 28px);
+  line-height: 1.2;
+  color: var(--c-text);
+  margin-bottom: 10px;
+  letter-spacing: -0.005em;
+}
+
+.card-title-zh {
+  display: block;
+  font-family: var(--font-display-tc);
+  font-weight: 500;
+  font-size: 0.7em;
+  color: var(--c-soft);
+  margin-top: 10px;
+  line-height: 1.4;
+  letter-spacing: 0.04em;
+}
+
+.card-summary {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--c-soft);
+  margin-bottom: 22px;
+}
+
+.card-summary strong {
+  color: var(--c-text);
+  font-weight: 500;
+}
+
+/* CTA */
+.card-cta {
+  margin-top: auto;
+  padding-top: 20px;
+  border-top: 1px solid var(--c-line);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-decoration: none;
+  color: var(--c-accent);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: 0.05em;
+}
+
+.cta-arrow {
+  font-family: var(--font-display);
+  font-variant-emoji: text;
+  font-size: 22px;
+  font-style: italic;
+  transition: transform 0.3s ease;
+  display: inline-block;
+}
+
+.journey-card:hover .cta-arrow {
+  transform: translateX(5px);
+}
+
+.card-cta--dual {
+  display: flex;
+  gap: 18px;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+.card-cta--dual .cta-link {
+  text-decoration: none;
+  color: var(--c-accent);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: 0.05em;
+  position: relative;
+  z-index: 2;
+}
+.card-cta--dual .cta-link:hover {
+  color: var(--c-text);
+}
+.card-cta--dual .cta-sep {
+  color: var(--c-faint);
+  font-style: italic;
+  font-family: var(--font-display);
+}
+.card-cta--dual .cta-arrow {
+  margin-left: auto;
+}
+
+/* ============== Footer ============== */
+footer {
+  margin-top: 4vh;
+  padding-top: 4vh;
+  border-top: 1px solid var(--line);
+  text-align: center;
+  font-size: 13px;
+  color: var(--ink-faint);
+  line-height: 1.85;
+}
+footer p { margin: 6px 0; }
+footer .signoff {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 16px;
+  color: var(--ink-soft);
+  margin-top: 24px;
+  letter-spacing: 0.02em;
+}
+footer a {
+  color: var(--ink-soft);
+  text-decoration: none;
+  border-bottom: 1px solid var(--line);
+  transition: border-color 0.2s;
+}
+footer a:hover { border-color: var(--ink); }
+
+@media (prefers-reduced-motion: reduce) {
+  .journey-card { opacity: 1; transform: none; animation: none; }
+  .journey-card:hover { transform: none; }
+}
+</style>
+</head>
+<body>
+<main>
+
+  <!-- ============== Hero ============== -->
+  <section class="hero">
+    <p class="hero__eyebrow">A Research Card Series</p>
+    <h1 class="hero__title">
+      Spring 2026
+      <span class="hero__title-zh">春．2026</span>
+    </h1>
+    <p class="hero__sub">
+      Three conferences. Eleven days.
+      <span class="hero__sub-zh">三場研討會 · 十一天</span>
+    </p>
+    <div class="hero__author">
+      <strong>葉容辰　Yeh, Jung-Chen</strong>
+      <span>Master&rsquo;s Program of Educational Leadership and Management</span>
+      <span>南臺科技大學 · 教育經營碩士在職專班</span>
+    </div>
+  </section>
+
+  <!-- ============== Three Journey Cards ============== -->
+  <section class="journey-grid">
+
+    <!-- ============== NKNU 5/15 ============== -->
+    <article class="journey-card nknu" data-href="nknu-2026/" tabindex="0">
+      <div class="card-date">05 · 15 / 2026</div>
+      <div class="card-meta">Poster 213</div>
+      <div class="card-conference">NKNU · 高雄師範大學</div>
+      <h2 class="card-title">
+        A Replicable Blueprint for AI in the Classroom
+        <span class="card-title-zh">ADDIE + IR · 把 AI 繪圖變成可複製的教案藍圖</span>
+      </h2>
+      <p class="card-summary">
+        An <strong>ADDIE-IR augmented framework</strong> for cross-disciplinary AI image-generation lesson plan design in junior-high classrooms — validated with five experts. Featuring the &ldquo;cat under the tree&rdquo; moment that started everything.
+      </p>
+      <a class="card-cta" href="nknu-2026/">
+        <span>Open</span>
+        <span class="cta-arrow">&rarr;</span>
+      </a>
+    </article>
+
+    <!-- ============== NTHU 5/23 ============== -->
+    <article class="journey-card nthu" data-href="nthu-2026/" tabindex="0">
+      <div class="card-date">05 · 23 / 2026</div>
+      <div class="card-meta">Poster 44 · C09</div>
+      <div class="card-conference">NTHU · 國立清華大學</div>
+      <h2 class="card-title">
+        Reshaping the Teacher&rsquo;s Role in an AI Age
+        <span class="card-title-zh">教師三重轉變 · 認知鷹架、倫理界定、情緒領導</span>
+      </h2>
+      <p class="card-summary">
+        From knowledge transmitter to <strong>cognitive scaffolder, ethical arbiter, and emotional leader</strong> — an action-research inquiry into teacher role transformation in GenAI-integrated junior-high classrooms.
+      </p>
+      <a class="card-cta" href="nthu-2026/">
+        <span>Open</span>
+        <span class="cta-arrow">&rarr;</span>
+      </a>
+    </article>
+
+    <!-- ============== NYCU 5/25 ============== -->
+    <article class="journey-card nycu" data-href="nycu-2026/" tabindex="0">
+      <div class="card-date">05 · 25 / 2026</div>
+      <div class="card-meta">Paper 24 · FacDev2026</div>
+      <div class="card-conference">NYCU · 國立陽明交通大學</div>
+      <h2 class="card-title">
+        From Listeners to Creators
+        <span class="card-title-zh">496 個學生作曲家 · 505 首歌 · 7+ 種語言</span>
+      </h2>
+      <p class="card-summary">
+        Bridging musical inequality through generative AI — a three-tiered scaffolding system that enabled <strong>496 junior-high students to compose 505 original songs across 7+ languages</strong>.
+      </p>
+      <div class="card-cta card-cta--dual">
+        <a class="cta-link" href="nycu-2026/">English</a>
+        <span class="cta-sep">·</span>
+        <a class="cta-link" href="nycu-2026-zh/">中文</a>
+        <span class="cta-arrow">&rarr;</span>
+      </div>
+    </article>
+
+  </section>
+
+  <!-- ============== Footer ============== -->
+  <footer>
+    <p><strong style="font-family: var(--font-display); font-weight: 600; color: var(--ink); font-size: 15px; letter-spacing: 0.04em;">Yeh, Jung-Chen　葉容辰</strong></p>
+    <p><a href="mailto:zoeyeh0822@gmail.com">zoeyeh0822@gmail.com</a></p>
+    <p class="signoff">
+      Three conferences, one researcher,<br>
+      eleven days that shaped the spring.
+    </p>
+  </footer>
+
+</main>
+
+<script>
+// 卡片整張可點擊（除了卡內的特定連結之外）
+document.querySelectorAll('.journey-card').forEach(card => {
+  card.addEventListener('click', (e) => {
+    if (e.target.closest('a')) return; // 子連結自己處理
+    const href = card.dataset.href;
+    if (href) window.location.href = href;
+  });
+  card.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      const href = card.dataset.href;
+      if (href) window.location.href = href;
+    }
+  });
+});
+</script>
+
+</body>
+</html>
