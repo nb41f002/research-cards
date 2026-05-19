@@ -101,8 +101,8 @@ main {
 .hero__title {
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: clamp(56px, 11vw, 130px);
-  line-height: 1;
+  font-size: clamp(48px, 9vw, 110px);
+  line-height: 1.0;
   color: var(--ink);
   letter-spacing: -0.02em;
 }
@@ -110,11 +110,11 @@ main {
 .hero__title-zh {
   font-family: var(--font-display-tc);
   font-weight: 600;
-  font-size: 0.4em;
+  font-size: 0.34em;
   display: block;
   color: var(--ink-soft);
   letter-spacing: 0.12em;
-  margin-top: 16px;
+  margin-top: 22px;
   font-style: normal;
 }
 
@@ -373,8 +373,13 @@ footer .signoff {
   font-style: italic;
   font-size: 16px;
   color: var(--ink-soft);
-  margin-top: 24px;
+  margin-top: 32px;
   letter-spacing: 0.02em;
+  line-height: 1.95;
+}
+footer .signoff br + br {
+  /* 中英文之間的視覺呼吸 */
+  line-height: 1.5;
 }
 footer a {
   color: var(--ink-soft);
@@ -395,17 +400,19 @@ footer a:hover { border-color: var(--ink); }
 
   <!-- ============== Hero ============== -->
   <section class="hero">
-    <p class="hero__eyebrow">A Research Card Series</p>
+    <p class="hero__eyebrow">A Research Portfolio</p>
     <h1 class="hero__title">
-      Spring 2026
-      <span class="hero__title-zh">春．2026</span>
+      One Question.<br>Many Forms.
+      <span class="hero__title-zh">一個提問，多種樣貌。</span>
     </h1>
     <p class="hero__sub">
-      Three conferences. Eleven days.
-      <span class="hero__sub-zh">三場研討會 · 十一天</span>
+      When generative AI enters the classroom — what changes?<br>
+      The curriculum, the teacher, or the students themselves?
+      <span class="hero__sub-zh">當生成式 AI 走進教室——改變的，是課程、教師，還是學生本身？</span>
     </p>
     <div class="hero__author">
       <strong>葉容辰　Yeh, Jung-Chen</strong>
+      <span>K-12 Educator · Graduate Researcher</span>
       <span>Master&rsquo;s Program of Educational Leadership and Management</span>
       <span>南臺科技大學 · 教育經營碩士在職專班</span>
     </div>
@@ -415,7 +422,7 @@ footer a:hover { border-color: var(--ink); }
   <section class="journey-grid">
 
     <!-- ============== NKNU 5/15 ============== -->
-    <article class="journey-card nknu" data-href="nknu-2026/" tabindex="0">
+    <article class="journey-card nknu" data-href="nknu-2026.html" tabindex="0">
       <div class="card-date">05 · 15 / 2026</div>
       <div class="card-meta">Poster 213</div>
       <div class="card-conference">NKNU · 高雄師範大學</div>
@@ -426,14 +433,14 @@ footer a:hover { border-color: var(--ink); }
       <p class="card-summary">
         An <strong>ADDIE-IR augmented framework</strong> for cross-disciplinary AI image-generation lesson plan design in junior-high classrooms — validated with five experts. Featuring the &ldquo;cat under the tree&rdquo; moment that started everything.
       </p>
-      <a class="card-cta" href="nknu-2026/">
+      <a class="card-cta" href="nknu-2026.html">
         <span>Open</span>
         <span class="cta-arrow">&rarr;</span>
       </a>
     </article>
 
     <!-- ============== NTHU 5/23 ============== -->
-    <article class="journey-card nthu" data-href="nthu-2026/" tabindex="0">
+    <article class="journey-card nthu" data-href="nthu-2026.html" tabindex="0">
       <div class="card-date">05 · 23 / 2026</div>
       <div class="card-meta">Poster 44 · C09</div>
       <div class="card-conference">NTHU · 國立清華大學</div>
@@ -444,14 +451,14 @@ footer a:hover { border-color: var(--ink); }
       <p class="card-summary">
         From knowledge transmitter to <strong>cognitive scaffolder, ethical arbiter, and emotional leader</strong> — an action-research inquiry into teacher role transformation in GenAI-integrated junior-high classrooms.
       </p>
-      <a class="card-cta" href="nthu-2026/">
+      <a class="card-cta" href="nthu-2026.html">
         <span>Open</span>
         <span class="cta-arrow">&rarr;</span>
       </a>
     </article>
 
     <!-- ============== NYCU 5/25 ============== -->
-    <article class="journey-card nycu" data-href="nycu-2026/" tabindex="0">
+    <article class="journey-card nycu" data-href="nycu-2026.html" tabindex="0">
       <div class="card-date">05 · 25 / 2026</div>
       <div class="card-meta">Paper 24 · FacDev2026</div>
       <div class="card-conference">NYCU · 國立陽明交通大學</div>
@@ -463,9 +470,9 @@ footer a:hover { border-color: var(--ink); }
         Bridging musical inequality through generative AI — a three-tiered scaffolding system that enabled <strong>496 junior-high students to compose 505 original songs across 7+ languages</strong>.
       </p>
       <div class="card-cta card-cta--dual">
-        <a class="cta-link" href="nycu-2026/">English</a>
+        <a class="cta-link" href="nycu-2026.html">English</a>
         <span class="cta-sep">·</span>
-        <a class="cta-link" href="nycu-2026-zh/">中文</a>
+        <a class="cta-link" href="nycu-2026-zh.html">中文</a>
         <span class="cta-arrow">&rarr;</span>
       </div>
     </article>
@@ -477,8 +484,13 @@ footer a:hover { border-color: var(--ink); }
     <p><strong style="font-family: var(--font-display); font-weight: 600; color: var(--ink); font-size: 15px; letter-spacing: 0.04em;">Yeh, Jung-Chen　葉容辰</strong></p>
     <p><a href="mailto:zoeyeh0822@gmail.com">zoeyeh0822@gmail.com</a></p>
     <p class="signoff">
-      Three conferences, one researcher,<br>
-      eleven days that shaped the spring.
+      A teacher and her students,<br>
+      on a road less traveled —<br>
+      and still walking.<br>
+      <br>
+      一位教師和一群學生，<br>
+      走在那條人煙罕至的路上——<br>
+      而且還在走。
     </p>
   </footer>
 
