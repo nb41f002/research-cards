@@ -1,20 +1,18 @@
 <!DOCTYPE html>
+
 <html lang="zh-Hant">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#F4ECD8">
-<title>葉容辰 · Yeh, Jung-Chen · Spring 2026 Research Journey</title>
-<meta name="description" content="2026 春季三場學術研討會研究發表（高師大 · 清大 · 陽明交大）· 葉容辰 Yeh, Jung-Chen · 南臺科技大學教育經營所">
-
-<meta property="og:title" content="Spring 2026 · A Research Journey · 葉容辰">
-<meta property="og:description" content="Three conferences, one researcher, eleven days that shaped the spring · 三場研討會 · 十一天">
-<meta property="og:type" content="website">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Noto+Serif+TC:wght@400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;600&display=swap" rel="stylesheet">
-
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<meta content="#F4ECD8" name="theme-color"/>
+<title>葉容辰 · Yeh, Jung-Chen · 2026 Research Journey</title>
+<meta content="2026 研究小卡：高師大、清大、陽明交大、國北教與南臺科技大學，含中英文版本與完整作品集。" name="description"/>
+<meta content="Spring 2026 · A Research Journey · 葉容辰" property="og:title"/>
+<meta content="Five research cards, bilingual editions, and a full creative portfolio · 五份研究小卡與中英雙語版本" property="og:description"/>
+<meta content="website" property="og:type"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&amp;family=Noto+Serif+TC:wght@400;500;600;700&amp;family=Noto+Sans+TC:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
 <style>
 :root {
   --paper: #F4ECD8;
@@ -230,6 +228,24 @@ main {
   --c-line: rgba(244, 236, 216, 0.2);
   animation-delay: 0.4s;
 }
+.journey-card.ntue {
+  --c-bg: #3B2A50;
+  --c-text: #F4F0E8;
+  --c-soft: rgba(244, 240, 232, 0.75);
+  --c-faint: rgba(244, 240, 232, 0.5);
+  --c-accent: #E0AC5C;
+  --c-line: rgba(244, 240, 232, 0.2);
+  animation-delay: 0.55s;
+}
+.journey-card.stust {
+  --c-bg: #0F4C5C;
+  --c-text: #F1EFE8;
+  --c-soft: rgba(241, 239, 232, 0.75);
+  --c-faint: rgba(241, 239, 232, 0.5);
+  --c-accent: #E8946F;
+  --c-line: rgba(241, 239, 232, 0.2);
+  animation-delay: 0.7s;
+}
 
 .card-date {
   font-family: var(--font-display);
@@ -368,6 +384,23 @@ footer {
   line-height: 1.85;
 }
 footer p { margin: 6px 0; }
+.footer-social {
+  display: flex; flex-wrap: wrap; gap: 9px;
+  justify-content: center; margin: 22px 0 4px;
+}
+.footer-social a {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 9px 18px; border: 1px solid var(--line);
+  border-radius: 999px; text-decoration: none;
+  color: var(--ink-soft);
+  font-family: var(--font-display); font-weight: 600; font-size: 14px;
+  transition: all 0.22s ease;
+}
+.footer-social a:hover {
+  background: var(--ink); color: var(--paper);
+  border-color: var(--ink); transform: translateY(-2px);
+}
+.footer-social svg { width: 15px; height: 15px; flex-shrink: 0; }
 footer .signoff {
   font-family: var(--font-display);
   font-style: italic;
@@ -394,108 +427,120 @@ footer a:hover { border-color: var(--ink); }
   .journey-card:hover { transform: none; }
 }
 </style>
-</head>
+<style>
+.hero-actions{margin-top:34px;display:flex;justify-content:center}.hero-actions a{display:inline-flex;flex-direction:column;align-items:center;gap:3px;padding:13px 24px;border:1px solid var(--ink);border-radius:999px;color:var(--ink);text-decoration:none;transition:.22s ease;background:rgba(250,244,226,.45)}.hero-actions a:hover{background:var(--ink);color:var(--paper);transform:translateY(-2px)}.hero-actions strong{font-family:var(--font-display);font-size:17px}.hero-actions span{font-size:11px;letter-spacing:.04em;opacity:.75}
+</style></head>
 <body>
 <main>
-
-  <!-- ============== Hero ============== -->
-  <section class="hero">
-    <p class="hero__eyebrow">A Research Portfolio</p>
-    <h1 class="hero__title">
-      One Question.<br>Many Forms.
+<!-- ============== Hero ============== -->
+<section class="hero">
+<p class="hero__eyebrow">A Research Portfolio</p>
+<h1 class="hero__title">
+      One Question.<br/>Many Forms.
       <span class="hero__title-zh">一個提問，多種樣貌。</span>
-    </h1>
-    <p class="hero__sub">
-      When generative AI enters the classroom — what changes?<br>
+</h1>
+<p class="hero__sub">
+      When generative AI enters the classroom — what changes?<br/>
       The curriculum, the teacher, or the students themselves?
       <span class="hero__sub-zh">當生成式 AI 走進教室——改變的，是課程、教師，還是學生本身？</span>
-    </p>
-    <div class="hero__author">
-      <strong>葉容辰　Yeh, Jung-Chen</strong>
-      <span>K-12 Educator · Graduate Researcher</span>
-      <span>Master&rsquo;s Program of Educational Leadership and Management</span>
-      <span>南臺科技大學 · 教育經營碩士在職專班</span>
-    </div>
-  </section>
-
-  <!-- ============== Three Journey Cards ============== -->
-  <section class="journey-grid">
-
-    <!-- ============== NKNU 5/15 ============== -->
-    <article class="journey-card nknu" data-href="nknu-2026.html" tabindex="0">
-      <div class="card-date">05 · 15 / 2026</div>
-      <div class="card-meta">Poster 213</div>
-      <div class="card-conference">NKNU · 高雄師範大學</div>
-      <h2 class="card-title">
+</p>
+<div class="hero__author">
+<strong>葉容辰　Yeh, Jung-Chen</strong>
+<span>K-12 Educator · Graduate Researcher</span>
+<span>Master’s Program of Educational Leadership and Management</span>
+<span>南臺科技大學 · 教育經營碩士在職專班</span>
+</div>
+<div class="hero-actions"><a href="https://echoofwren.github.io/portfolio/" rel="noopener" target="_blank"><strong>Enter the Full Portfolio</strong><span>進入完整作品集 · Research · Teaching · Generative AI</span></a></div></section>
+<!-- ============== Three Journey Cards ============== -->
+<section class="journey-grid">
+<!-- ============== NKNU 5/15 ============== -->
+<article class="journey-card nknu" data-href="nknu-2026.html" tabindex="0">
+<div class="card-date">05 · 15 / 2026</div>
+<div class="card-meta">Poster 213</div>
+<div class="card-conference">NKNU · 高雄師範大學</div>
+<h2 class="card-title">
         A Replicable Blueprint for AI in the Classroom
         <span class="card-title-zh">ADDIE + IR · 把 AI 繪圖變成可複製的教案藍圖</span>
-      </h2>
-      <p class="card-summary">
-        An <strong>ADDIE-IR augmented framework</strong> for cross-disciplinary AI image-generation lesson plan design in junior-high classrooms — validated with five experts. Featuring the &ldquo;cat under the tree&rdquo; moment that started everything.
+</h2>
+<p class="card-summary">
+        An <strong>ADDIE-IR augmented framework</strong> for cross-disciplinary AI image-generation lesson plan design in junior-high classrooms — validated with five experts. Featuring the “cat under the tree” moment that started everything.
       </p>
-      <a class="card-cta" href="nknu-2026.html">
-        <span>Open</span>
-        <span class="cta-arrow">&rarr;</span>
-      </a>
-    </article>
-
-    <!-- ============== NTHU 5/23 ============== -->
-    <article class="journey-card nthu" data-href="nthu-2026.html" tabindex="0">
-      <div class="card-date">05 · 23 / 2026</div>
-      <div class="card-meta">Poster 44 · C09</div>
-      <div class="card-conference">NTHU · 國立清華大學</div>
-      <h2 class="card-title">
-        Reshaping the Teacher&rsquo;s Role in an AI Age
+<div class="card-cta card-cta--dual"><a class="cta-link" href="nknu-2026.html">English</a><span class="cta-sep">·</span><a class="cta-link" href="nknu-2026-zh.html">中文</a><span class="cta-arrow">→</span></div>
+</article>
+<!-- ============== NTHU 5/23 ============== -->
+<article class="journey-card nthu" data-href="nthu-2026.html" tabindex="0">
+<div class="card-date">05 · 23 / 2026</div>
+<div class="card-meta">Poster 44 · C09</div>
+<div class="card-conference">NTHU · 國立清華大學</div>
+<h2 class="card-title">
+        Reshaping the Teacher’s Role in an AI Age
         <span class="card-title-zh">教師三重轉變 · 認知鷹架、倫理界定、情緒領導</span>
-      </h2>
-      <p class="card-summary">
+</h2>
+<p class="card-summary">
         From knowledge transmitter to <strong>cognitive scaffolder, ethical arbiter, and emotional leader</strong> — an action-research inquiry into teacher role transformation in GenAI-integrated junior-high classrooms.
       </p>
-      <a class="card-cta" href="nthu-2026.html">
-        <span>Open</span>
-        <span class="cta-arrow">&rarr;</span>
-      </a>
-    </article>
-
-    <!-- ============== NYCU 5/25 ============== -->
-    <article class="journey-card nycu" data-href="nycu-2026.html" tabindex="0">
-      <div class="card-date">05 · 25 / 2026</div>
-      <div class="card-meta">Paper 24 · FacDev2026</div>
-      <div class="card-conference">NYCU · 國立陽明交通大學</div>
-      <h2 class="card-title">
+<div class="card-cta card-cta--dual"><a class="cta-link" href="nthu-2026.html">English</a><span class="cta-sep">·</span><a class="cta-link" href="nthu-2026-zh.html">中文</a><span class="cta-arrow">→</span></div>
+</article>
+<!-- ============== NYCU 5/25 ============== -->
+<article class="journey-card nycu" data-href="nycu-2026.html" tabindex="0">
+<div class="card-date">05 · 25 / 2026</div>
+<div class="card-meta">Paper 24 · FacDev2026</div>
+<div class="card-conference">NYCU · 國立陽明交通大學</div>
+<h2 class="card-title">
         From Listeners to Creators
         <span class="card-title-zh">496 個學生作曲家 · 505 首歌 · 7+ 種語言</span>
-      </h2>
-      <p class="card-summary">
+</h2>
+<p class="card-summary">
         Bridging musical inequality through generative AI — a three-tiered scaffolding system that enabled <strong>496 junior-high students to compose 505 original songs across 7+ languages</strong>.
       </p>
-      <div class="card-cta card-cta--dual">
-        <a class="cta-link" href="nycu-2026.html">English</a>
-        <span class="cta-sep">·</span>
-        <a class="cta-link" href="nycu-2026-zh.html">中文</a>
-        <span class="cta-arrow">&rarr;</span>
-      </div>
-    </article>
-
-  </section>
-
-  <!-- ============== Footer ============== -->
-  <footer>
-    <p><strong style="font-family: var(--font-display); font-weight: 600; color: var(--ink); font-size: 15px; letter-spacing: 0.04em;">Yeh, Jung-Chen　葉容辰</strong></p>
-    <p><a href="mailto:zoeyeh0822@gmail.com">zoeyeh0822@gmail.com</a></p>
-    <p class="signoff">
-      A teacher and her students,<br>
-      on a road less traveled —<br>
-      and still walking.<br>
-      <br>
-      一位教師和一群學生，<br>
-      走在那條人煙罕至的路上——<br>
+<div class="card-cta card-cta--dual"><a class="cta-link" href="nycu-2026.html">English</a><span class="cta-sep">·</span><a class="cta-link" href="nycu-2026-zh.html">中文</a><span class="cta-arrow">→</span></div>
+</article>
+<article class="journey-card ntue" data-href="ntue-2026.html" tabindex="0">
+<div class="card-date">10 · 16–17 / 2026</div>
+<div class="card-meta">ICTE 2026 · 第 14 屆師資培育國際學術研討會</div>
+<div class="card-conference">NTUE · 國立臺北教育大學</div>
+<h2 class="card-title">Professional Transformation of Teachers in AI-Empowered Classrooms<span class="card-title-zh">教師於 AI 賦能課堂之專業轉化 · 18 班 · 504 名學生</span></h2>
+<p class="card-summary">An action inquiry into generative-AI image creation across <strong>18 classes and 504 students</strong> — reframing teachers as regulators of learning emotion and guides for cognitive scaffolding.</p>
+<div class="card-cta card-cta--dual"><a class="cta-link" href="ntue-2026.html">English</a><span class="cta-sep">·</span><a class="cta-link" href="ntue-2026-zh.html">中文</a><span class="cta-arrow">→</span></div>
+</article>
+<article class="journey-card stust" data-href="stust-2026.html" tabindex="0">
+<div class="card-date">10 · 02 / 2026</div>
+<div class="card-meta">International Conference on Interdisciplinary AI and Digital Humanities</div>
+<div class="card-conference">STUST · 南臺科技大學</div>
+<h2 class="card-title">Does a Learning Gap Remain under Generative-AI Support?<span class="card-title-zh">495 名學生 · 32 名特教需求學生 · 兩學期量化分析</span></h2>
+<p class="card-summary">A two-semester educational-equity analysis. After prior AI-creation performance was controlled, the adjusted SEN–general difference was <strong>not statistically significant</strong>; all 32 SEN students completed a work.</p>
+<div class="card-cta card-cta--dual"><a class="cta-link" href="stust-2026.html">English</a><span class="cta-sep">·</span><a class="cta-link" href="stust-2026-zh.html">中文</a><span class="cta-arrow">→</span></div>
+</article>
+</section>
+<!-- ============== Footer ============== -->
+<footer>
+<p><strong style="font-family: var(--font-display); font-weight: 600; color: var(--ink); font-size: 15px; letter-spacing: 0.04em;">Yeh, Jung-Chen　葉容辰</strong></p>
+<div class="footer-social"><a href="https://echoofwren.github.io/portfolio/" rel="noopener" target="_blank">✦ Portfolio 作品集</a>
+<a href="https://www.linkedin.com/in/zy-zoeyeh/" rel="noopener" target="_blank">
+<svg aria-hidden="true" fill="currentColor" viewbox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.59 0 4.26 2.36 4.26 5.44v6.3zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"></path></svg>
+        LinkedIn
+      </a>
+<a href="https://www.instagram.com/echo_of_wren/" rel="noopener" target="_blank">
+<svg aria-hidden="true" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41 1.27-.06 1.65-.07 4.85-.07M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.79.3-1.46.72-2.13 1.38C1.35 2.68.93 3.35.63 4.14c-.3.76-.5 1.64-.56 2.91C.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.3.79.72 1.46 1.38 2.13.67.66 1.34 1.08 2.13 1.38.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56.79-.3 1.46-.72 2.13-1.38.66-.67 1.08-1.34 1.38-2.13.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91-.3-.79-.72-1.46-1.38-2.13C21.32 1.35 20.65.93 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm7.85-10.4a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0z"></path></svg>
+        Instagram
+      </a>
+<a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=zoeyeh0822@gmail.com" rel="noopener" target="_blank">
+<svg aria-hidden="true" fill="currentColor" viewbox="0 0 24 24"><path d="M24 5.46v13.09c0 .8-.65 1.45-1.45 1.45h-3.28V11.4L12 16.51 4.73 11.4v8.6H1.45C.65 20 0 19.35 0 18.55V5.46c0-1.2 1.37-1.88 2.33-1.17L4.73 6.1 12 11.45l7.27-5.35 2.4-1.81c.96-.71 2.33-.03 2.33 1.17z"></path></svg>
+        Gmail
+      </a>
+</div>
+<p style="font-size:12.5px;">zoeyeh0822@gmail.com</p>
+<p class="signoff">
+      A teacher and her students,<br/>
+      on a road less traveled —<br/>
+      and still walking.<br/>
+<br/>
+      一位教師和一群學生，<br/>
+      走在那條人煙罕至的路上——<br/>
       而且還在走。
     </p>
-  </footer>
-
+</footer>
 </main>
-
 <script>
 // 卡片整張可點擊（除了卡內的特定連結之外）
 document.querySelectorAll('.journey-card').forEach(card => {
@@ -512,6 +557,5 @@ document.querySelectorAll('.journey-card').forEach(card => {
   });
 });
 </script>
-
 </body>
 </html>

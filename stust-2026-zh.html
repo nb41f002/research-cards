@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<meta content="#0F4C5C" name="theme-color"/>
+<title>生成式 AI 支持下仍存在學習落差嗎？ · 葉容辰 · 南臺科技大學</title>
+<meta content="一所國中跨年級科技課程之量化教育公平分析。495 名學生、32 名特殊教育需求學生、兩學期縱向設計。2026 AI 數位人文跨域創新國際研討會 · 葉容辰" name="description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&amp;family=Noto+Serif+TC:wght@400;500;600;700;900&amp;family=Noto+Sans+TC:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<style>
+/* =========================================================
+   設計系統 · 深青 + 淺米 + 珊瑚（南臺 · AI 數位人文跨域創新）
+   ========================================================= */
+:root {
+  --ink: #0F4C5C;
+  --ink-soft: #2F6B7A;
+  --ink-faint: #8FB3BC;
+  --paper: #F1EFE8;
+  --paper-deep: #DFDBCE;
+  --paper-light: #F9F7F1;
+  --warm: #D2603F;
+  --warm-soft: #E8946F;
+  --warm-faint: rgba(210, 96, 63, 0.16);
+  --line: rgba(15, 76, 92, 0.15);
+
+  --font-display: 'Noto Serif TC', 'Cormorant Garamond', serif;
+  --font-display-en: 'Cormorant Garamond', 'EB Garamond', Georgia, serif;
+  --font-body: 'Noto Sans TC', 'PingFang TC', system-ui, sans-serif;
+}
+
+html {
+  color-scheme: light only;
+  background: #F1EFE8 !important;
+}
+@media (prefers-color-scheme: dark) {
+  html, body { background: #F1EFE8 !important; color: #0F4C5C !important; }
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  background: var(--paper) !important;
+  color: var(--ink);
+  font-family: var(--font-body);
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-variant-emoji: text;
+}
+
+body {
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll; overflow-x: hidden;
+  height: 100vh; scroll-behavior: smooth;
+}
+
+body::before {
+  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 1;
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(210, 96, 63, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(15, 76, 92, 0.04) 0%, transparent 50%);
+  opacity: 0.7;
+}
+
+.progress-bar { position: fixed; top: 0; left: 0; width: 100%; height: 2px; background: rgba(15,76,92,0.08); z-index: 100; }
+.progress-bar__fill { height: 100%; width: 0; background: var(--warm); transition: width 0.25s ease; }
+
+.counter {
+  position: fixed; top: 18px; right: 22px; z-index: 99;
+  font-family: var(--font-display-en); font-style: italic; font-size: 14px;
+  color: var(--ink-soft); background: rgba(241,239,232,0.85);
+  backdrop-filter: blur(8px); padding: 4px 12px; border-radius: 999px; letter-spacing: 0.04em;
+}
+.home-link {
+  position: fixed; top: 18px; left: 22px; z-index: 99;
+  font-family: var(--font-display-en); font-style: italic; font-size: 13px;
+  background: rgba(241,239,232,0.85); backdrop-filter: blur(8px);
+  padding: 4px 14px; border-radius: 999px; letter-spacing: 0.06em;
+  color: var(--ink-soft); text-decoration: none; transition: color 0.2s;
+}
+.home-link:hover { color: var(--warm); }
+
+.nav-dots { position: fixed; right: 18px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 9px; z-index: 98; }
+.nav-dots a { display: block; width: 7px; height: 7px; border-radius: 50%; background: rgba(15,76,92,0.18); transition: all 0.25s ease; }
+.nav-dots a.active { background: var(--warm); transform: scale(1.4); }
+@media (max-width: 768px) { .nav-dots { display: none; } }
+
+/* ============ 卡片基礎 ============ */
+.card {
+  min-height: 100vh; padding: 9vh 8vw;
+  display: flex; flex-direction: column; justify-content: center;
+  position: relative; scroll-snap-align: start; scroll-snap-stop: always; overflow: hidden;
+}
+@media (max-width: 640px) { .card { padding: 7vh 7vw; } }
+
+.card__num {
+  position: absolute; top: 8vh; left: 8vw;
+  font-family: var(--font-display-en); font-style: italic; font-size: 13px;
+  letter-spacing: 0.25em; color: var(--ink-faint); text-transform: uppercase;
+}
+@media (max-width: 640px) { .card__num { top: 6vh; left: 7vw; font-size: 11px; } }
+
+.card__label {
+  font-family: var(--font-display-en); font-style: italic; font-size: 16px;
+  letter-spacing: 0.06em; color: var(--warm); margin-bottom: 14px; font-weight: 500;
+}
+.card__title {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: clamp(30px, 4.6vw, 52px); line-height: 1.25;
+  color: var(--ink); letter-spacing: -0.005em; margin-bottom: 24px;
+}
+.card__title em { font-style: italic; font-weight: 500; color: var(--warm); }
+.divider { width: 50px; height: 1.5px; background: var(--ink); margin: 22px 0; }
+.body-text { font-size: clamp(14.5px, 1.35vw, 17px); color: var(--ink-soft); line-height: 1.85; max-width: 36em; margin-bottom: 18px; }
+.body-text strong { color: var(--ink); font-weight: 600; }
+
+/* ============ Cover ============ */
+.cover {
+  background: radial-gradient(ellipse at top right, rgba(210,96,63,0.12), transparent 60%),
+              radial-gradient(ellipse at bottom left, rgba(15,76,92,0.06), transparent 50%), var(--paper);
+  align-items: flex-start;
+}
+.cover__eyebrow { font-family: var(--font-display-en); font-style: italic; font-size: 14px; letter-spacing: 0.3em; color: var(--warm); text-transform: uppercase; margin-bottom: 24px; }
+.cover__title { font-family: var(--font-display); font-weight: 700; font-size: clamp(40px, 7.5vw, 88px); line-height: 1.16; letter-spacing: -0.02em; color: var(--ink); margin-bottom: 14px; }
+.cover__title em { font-style: italic; font-weight: 500; color: var(--warm); }
+.cover__subtitle { font-family: var(--font-display); font-style: italic; font-weight: 500; font-size: clamp(15px, 1.7vw, 21px); line-height: 1.65; color: var(--ink-soft); max-width: 32em; margin-bottom: 32px; border-left: 2px solid var(--warm); padding-left: 18px; }
+.cover__numbers { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin: 20px 0 34px; max-width: 620px; }
+@media (max-width: 640px) { .cover__numbers { grid-template-columns: repeat(2, 1fr); gap: 16px; } }
+.cover__num { display: flex; flex-direction: column; gap: 4px; }
+.cover__num strong { font-family: var(--font-display-en); font-style: italic; font-weight: 600; font-size: clamp(30px, 3.4vw, 40px); color: var(--warm); line-height: 1; }
+.cover__num span { font-size: 12px; letter-spacing: 0.1em; color: var(--ink-soft); font-weight: 500; }
+.cover__meta { display: flex; flex-direction: column; gap: 6px; font-size: 13.5px; color: var(--ink-soft); margin-top: auto; padding-top: 26px; border-top: 1px solid var(--line); max-width: 32em; line-height: 1.7; }
+.cover__meta strong { font-family: var(--font-display); font-weight: 600; color: var(--ink); font-size: 17px; margin-bottom: 4px; }
+.cover__scroll-hint { position: absolute; bottom: 4vh; right: 8vw; font-family: var(--font-display-en); font-style: italic; font-size: 13px; color: var(--ink-faint); animation: bob 2.4s ease-in-out infinite; }
+@keyframes bob { 0%,100% { transform: translateY(0);} 50% { transform: translateY(6px);} }
+
+/* ============ Story ============ */
+.story { background: linear-gradient(to bottom right, var(--paper-light), var(--paper)); }
+.story__date { font-family: var(--font-display-en); font-style: italic; font-size: 14px; letter-spacing: 0.2em; color: var(--warm); margin-bottom: 26px; text-transform: uppercase; }
+.story__lead { font-family: var(--font-display); font-weight: 500; font-size: clamp(21px, 2.9vw, 34px); line-height: 1.55; color: var(--ink); max-width: 19em; margin-bottom: 24px; }
+.story__lead em { font-style: italic; color: var(--warm); font-weight: 600; }
+.story__close { font-family: var(--font-display); font-weight: 500; font-style: italic; font-size: clamp(16px, 1.7vw, 20px); color: var(--ink); margin-top: 26px; max-width: 26em; line-height: 1.7; padding-left: 18px; border-left: 2px solid var(--ink); }
+
+/* ============ Questions ============ */
+.questions { display: flex; flex-direction: column; gap: 14px; margin-top: 16px; max-width: 44em; }
+.question { display: flex; gap: 18px; align-items: baseline; padding-bottom: 14px; border-bottom: 1px dashed var(--line); }
+.question__num { font-family: var(--font-display-en); font-style: italic; font-weight: 600; font-size: 26px; color: var(--ink); flex-shrink: 0; min-width: 42px; }
+.question__text { font-size: clamp(14.5px, 1.3vw, 17px); color: var(--ink-soft); line-height: 1.75; }
+.question__text strong { color: var(--ink); font-weight: 600; }
+
+/* ============ Method ============ */
+.method__lead { font-family: var(--font-display); font-weight: 500; font-size: clamp(17px, 1.9vw, 22px); color: var(--ink); line-height: 1.7; margin: 14px 0 26px; max-width: 27em; }
+.method__lead .accent { color: var(--warm); font-weight: 700; }
+.method__stats { display: flex; gap: 32px; margin-bottom: 28px; flex-wrap: wrap; }
+.method__stat strong { font-family: var(--font-display-en); font-weight: 600; font-style: italic; font-size: 28px; color: var(--warm); display: block; line-height: 1; }
+.method__stat span { font-size: 12.5px; letter-spacing: 0.05em; color: var(--ink-soft); margin-top: 6px; display: block; }
+.theory-label { font-family: var(--font-display-en); font-style: italic; font-size: 13px; letter-spacing: 0.2em; color: var(--ink-faint); text-transform: uppercase; margin: 6px 0 12px; }
+.theory-pillars { display: flex; flex-wrap: wrap; gap: 8px; max-width: 44em; }
+.theory-pill { padding: 6px 14px; background: var(--paper-light); border: 1px solid var(--warm); border-radius: 999px; font-family: var(--font-display); font-size: 13.5px; color: var(--warm); font-weight: 500; }
+
+/* ============ 兩學期 ============ */
+.semesters { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 24px 0; max-width: 700px; }
+@media (max-width: 700px) { .semesters { grid-template-columns: 1fr; } }
+.semester { padding: 20px 22px; background: var(--paper-light); border: 1px solid var(--line); border-top: 3px solid var(--warm); border-radius: 4px; }
+.semester__term { font-family: var(--font-display-en); font-style: italic; font-size: 12px; letter-spacing: 0.16em; color: var(--warm); text-transform: uppercase; margin-bottom: 8px; }
+.semester__title { font-family: var(--font-display); font-weight: 700; font-size: 19px; color: var(--ink); margin-bottom: 8px; }
+.semester__desc { font-size: 13.5px; color: var(--ink-soft); line-height: 1.75; }
+
+/* ============ 結果指標 ============ */
+.result__badge { display: flex; align-items: baseline; gap: 16px; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--ink); max-width: fit-content; }
+.result__badge-num { font-family: var(--font-display-en); font-style: italic; font-weight: 600; font-size: 38px; color: var(--ink); line-height: 1; }
+.result__badge-label { font-family: var(--font-display); font-weight: 600; font-size: 15px; letter-spacing: 0.06em; color: var(--ink); }
+
+.metric-jump { display: flex; align-items: center; gap: 18px; margin: 24px 0; flex-wrap: wrap; }
+.metric-jump__from, .metric-jump__to { display: flex; flex-direction: column; }
+.metric-jump__val { font-family: var(--font-display-en); font-style: italic; font-weight: 600; font-size: clamp(30px, 4.4vw, 50px); line-height: 1; }
+.metric-jump__from .metric-jump__val { color: var(--ink-faint); }
+.metric-jump__to .metric-jump__val { color: var(--warm); }
+.metric-jump__lbl { font-size: 12px; letter-spacing: 0.06em; color: var(--ink-soft); margin-top: 6px; }
+.metric-jump__arrow { font-family: var(--font-display-en); font-size: 26px; color: var(--ink); }
+
+.stat-note {
+  display: inline-block; padding: 7px 16px; background: rgba(210,96,63,0.08);
+  border: 1px solid var(--warm); border-radius: 999px;
+  font-family: var(--font-display-en); font-style: italic; font-size: 14px; color: var(--warm);
+  letter-spacing: 0.03em; margin-top: 4px;
+}
+
+.mcnemar { display: flex; gap: 14px; flex-wrap: wrap; margin: 22px 0; }
+.mcnemar__cell { flex: 1; min-width: 150px; padding: 18px 20px; background: var(--paper-light); border: 1px solid var(--line); border-radius: 4px; }
+.mcnemar__cell--highlight { border-color: var(--warm); background: rgba(210,96,63,0.07); }
+.mcnemar__val { font-family: var(--font-display-en); font-style: italic; font-weight: 600; font-size: 34px; color: var(--ink); line-height: 1; }
+.mcnemar__cell--highlight .mcnemar__val { color: var(--warm); }
+.mcnemar__lbl { font-size: 13px; color: var(--ink-soft); margin-top: 8px; line-height: 1.6; }
+
+/* ============ 圖表 ============ */
+.chart-wrap { width: 100%; max-width: 660px; margin: 18px 0 14px; }
+.chart-wrap svg { width: 100%; height: auto; display: block; }
+.chart-caption { font-family: var(--font-display-en); font-style: italic; font-size: 12.5px; letter-spacing: 0.14em; color: var(--ink-faint); text-transform: uppercase; margin-top: 6px; }
+
+.highlight-box {
+  margin-top: 20px; padding: 18px 22px; background: var(--paper-light); border-left: 3px solid var(--warm);
+  font-family: var(--font-display); font-style: italic; font-weight: 500;
+  font-size: clamp(14.5px, 1.4vw, 17px); color: var(--ink); line-height: 1.8; max-width: 36em;
+}
+.highlight-box strong { font-style: normal; font-weight: 700; }
+
+/* ============ Hero stat ============ */
+.hero-stat { background: linear-gradient(135deg, var(--ink) 0%, #0A3642 100%); color: var(--paper); align-items: flex-start; }
+.hero-stat .card__num { color: rgba(241,239,232,0.4); }
+.hero-stat .card__label { color: var(--warm-soft); }
+.hero-stat .card__title { color: var(--paper); }
+.hero-stat .card__title em { color: var(--warm-soft); }
+.hero-stat__big {
+  font-family: var(--font-display-en); font-style: italic; font-weight: 600;
+  font-size: clamp(76px, 15vw, 190px); line-height: 0.9; color: var(--warm-soft);
+  letter-spacing: -0.03em; margin: 10px 0 6px;
+}
+.hero-stat__sub { font-family: var(--font-display); font-weight: 600; font-size: clamp(18px, 2.2vw, 26px); color: var(--paper); margin-bottom: 26px; }
+.hero-stat__caption { font-family: var(--font-display); font-weight: 500; font-size: clamp(15px, 1.6vw, 19px); color: rgba(241,239,232,0.88); max-width: 34em; line-height: 1.85; }
+.hero-stat__caption em { color: var(--warm-soft); font-style: normal; font-weight: 700; }
+
+/* ============ Limitations ============ */
+.limits { display: flex; flex-direction: column; gap: 12px; margin-top: 18px; max-width: 42em; }
+.limit { display: flex; gap: 16px; align-items: flex-start; padding: 16px 20px; background: var(--paper-light); border-radius: 4px; border-left: 3px solid var(--ink-faint); }
+.limit__mark { font-family: var(--font-display-en); font-style: italic; font-weight: 600; font-size: 24px; color: var(--ink-faint); line-height: 1.2; flex-shrink: 0; }
+.limit__text { font-size: 14px; color: var(--ink-soft); line-height: 1.75; }
+.limit__text strong { color: var(--ink); font-weight: 600; }
+
+/* ============ Conclusion ============ */
+.conclusion { background: radial-gradient(ellipse at center, var(--paper-light) 0%, var(--paper) 70%); align-items: center; text-align: center; }
+.conclusion .card__num { left: 50%; transform: translateX(-50%); }
+.conclusion__quote { font-family: var(--font-display); font-weight: 700; font-size: clamp(23px, 3.2vw, 40px); line-height: 1.65; color: var(--ink); max-width: 21em; letter-spacing: -0.005em; }
+.conclusion__quote em { font-style: italic; background: linear-gradient(180deg, transparent 65%, var(--warm-faint) 65%); padding: 0 6px; color: var(--ink); }
+.conclusion__quote .accent { color: var(--warm); font-style: italic; }
+.conclusion__sub { font-family: var(--font-display); font-weight: 500; font-size: clamp(15px, 1.6vw, 19px); color: var(--ink-soft); margin-top: 26px; max-width: 36em; line-height: 1.8; }
+.conclusion__sig { margin-top: 32px; font-family: var(--font-display-en); font-style: italic; font-size: 14px; color: var(--ink-faint); letter-spacing: 0.18em; text-transform: uppercase; }
+
+/* ============ Resources ============ */
+.resources { background: linear-gradient(180deg, var(--paper) 0%, var(--paper-light) 100%); }
+.resources__intro { font-family: var(--font-display); font-weight: 500; font-size: clamp(16px, 1.65vw, 20px); color: var(--ink-soft); line-height: 1.85; max-width: 32em; margin-bottom: 26px; }
+.resource-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; max-width: 700px; }
+@media (max-width: 640px) { .resource-grid { grid-template-columns: 1fr; } }
+.resource-link { display: flex; align-items: center; gap: 14px; padding: 16px 20px; background: var(--paper); border: 1px solid var(--line); border-radius: 4px; text-decoration: none; color: var(--ink); transition: all 0.2s ease; }
+.resource-link:hover { border-color: var(--warm); background: rgba(210,96,63,0.06); transform: translateY(-1px); }
+.resource-link__content { flex: 1; min-width: 0; }
+.resource-link__title { font-family: var(--font-display); font-weight: 600; font-size: 16px; color: var(--ink); line-height: 1.4; display: block; }
+.resource-link__desc { font-family: var(--font-display-en); font-style: italic; font-size: 13px; color: var(--ink-soft); letter-spacing: 0.04em; margin-top: 3px; display: block; }
+.resource-link__arrow { font-family: var(--font-display-en); font-variant-emoji: text; color: var(--ink-soft); font-size: 22px; flex-shrink: 0; font-style: italic; transition: color 0.2s, transform 0.2s; }
+.resource-link:hover .resource-link__arrow { color: var(--warm); transform: translateX(2px); }
+
+/* ============ Find Me ============ */
+.findme { background: var(--ink); color: var(--paper); }
+.findme .card__num { color: rgba(241,239,232,0.4); }
+.findme .card__label { color: var(--warm-soft); }
+.findme .card__title { color: var(--paper); }
+.findme .divider { background: var(--warm); }
+.session { padding: 24px 26px; background: rgba(241,239,232,0.08); border: 1px solid rgba(241,239,232,0.15); border-top: 3px solid var(--warm-soft); border-radius: 4px; max-width: 520px; margin: 26px 0; }
+.session__type { font-family: var(--font-display); font-weight: 600; font-size: 14px; letter-spacing: 0.15em; color: var(--warm-soft); margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1px solid rgba(241,239,232,0.25); }
+.session__time { font-family: var(--font-display); font-weight: 700; font-size: 22px; color: var(--paper); line-height: 1.3; margin-bottom: 6px; }
+.session__date { font-family: var(--font-display); font-style: italic; font-size: 14px; color: rgba(241,239,232,0.75); margin-bottom: 12px; }
+.session__details { font-size: 13.5px; color: rgba(241,239,232,0.85); line-height: 1.8; }
+.session__details strong { color: var(--paper); font-weight: 600; font-family: var(--font-display); font-size: 14px; }
+.findme__info { margin-top: 20px; font-size: 14.5px; line-height: 1.9; color: rgba(241,239,232,0.88); max-width: 36em; }
+.findme__info strong { font-family: var(--font-display); font-weight: 600; color: var(--paper); }
+.findme__info p { margin-bottom: 12px; }
+.findme__footer { margin-top: auto; padding-top: 36px; font-family: var(--font-display-en); font-style: italic; font-size: 13px; color: rgba(241,239,232,0.45); letter-spacing: 0.1em; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+
+/* ============ Contact ============ */
+.contact {
+  background: radial-gradient(ellipse at 70% 30%, rgba(210,96,63,0.12), transparent 55%),
+              linear-gradient(180deg, var(--paper-light) 0%, var(--paper) 100%);
+}
+.contact__lead { font-family: var(--font-display); font-weight: 500; font-size: clamp(17px, 1.9vw, 23px); color: var(--ink); line-height: 1.85; margin: 18px 0 28px; max-width: 28em; }
+.contact__lead em { font-style: italic; color: var(--warm); font-weight: 700; }
+.contact__fields-label { font-family: var(--font-display-en); font-style: italic; font-size: 13px; letter-spacing: 0.18em; color: var(--ink-faint); text-transform: uppercase; margin: 24px 0 14px; }
+.contact__fields { display: flex; flex-wrap: wrap; gap: 9px; margin-bottom: 30px; max-width: 42em; }
+.field-tag { padding: 7px 16px; border: 1px solid var(--warm); color: var(--warm); font-family: var(--font-display); font-weight: 500; font-size: 14.5px; border-radius: 999px; background: rgba(210,96,63,0.04); transition: all 0.2s ease; }
+.field-tag:hover { background: var(--warm); color: var(--paper); }
+
+.social-links { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 30px; }
+.social-link {
+  display: inline-flex; align-items: center; gap: 9px;
+  padding: 12px 20px; background: var(--paper);
+  border: 1px solid var(--ink); border-radius: 999px;
+  text-decoration: none; color: var(--ink);
+  font-family: var(--font-display); font-weight: 600; font-size: 15px;
+  transition: all 0.22s ease;
+}
+.social-link:hover, .social-link:focus {
+  background: var(--ink); color: var(--paper); transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(15,76,92,0.18);
+}
+.social-link svg { width: 17px; height: 17px; flex-shrink: 0; }
+.social-link__ext { font-family: var(--font-display-en); font-style: italic; font-size: 15px; opacity: 0.65; font-variant-emoji: text; }
+
+.contact__note { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; max-width: 32em; padding-left: 16px; border-left: 2px solid var(--line); margin-bottom: 26px; }
+.contact__signoff { font-family: var(--font-display); font-style: italic; font-weight: 500; font-size: clamp(15px, 1.4vw, 17.5px); color: var(--ink-soft); max-width: 30em; line-height: 1.9; border-top: 1px solid var(--line); padding-top: 22px; margin-top: auto; }
+.contact__signature { font-family: var(--font-display); font-weight: 700; font-style: normal; color: var(--ink); display: inline-block; margin-top: 8px; font-size: 16px; }
+
+/* ============ 動畫 ============ */
+.card > * { opacity: 0; transform: translateY(20px); }
+.card.in-view > * { animation: rise 0.7s cubic-bezier(0.22,1,0.36,1) forwards; }
+.card.in-view > *:nth-child(1) { animation-delay: 0.05s; }
+.card.in-view > *:nth-child(2) { animation-delay: 0.15s; }
+.card.in-view > *:nth-child(3) { animation-delay: 0.25s; }
+.card.in-view > *:nth-child(4) { animation-delay: 0.35s; }
+.card.in-view > *:nth-child(5) { animation-delay: 0.45s; }
+.card.in-view > *:nth-child(6) { animation-delay: 0.55s; }
+.card.in-view > *:nth-child(n+7) { animation-delay: 0.65s; }
+@keyframes rise { to { opacity: 1; transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) {
+  .card > * { opacity: 1; transform: none; }
+  .card.in-view > * { animation: none; }
+  body { scroll-behavior: auto; }
+}
+</style>
+<style>
+.lang-switch{position:fixed;top:18px;left:22px;z-index:130;font-family:var(--font-en,Georgia,serif);font-style:italic;font-size:13px;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(8px);padding:4px 12px;border-radius:999px;letter-spacing:.08em;border:1px solid var(--line)}
+.lang-switch a{color:var(--ink-soft);text-decoration:none;padding:0 4px}.lang-switch a.active{color:var(--warm);font-weight:700}.lang-switch span{color:var(--ink-faint)}
+</style><style>
+/* Shared navigation added for the bilingual research-card collection */
+.utility-nav{position:fixed;left:18px;bottom:18px;z-index:140;display:flex;gap:8px;flex-wrap:wrap;max-width:calc(100vw - 36px)}
+.utility-nav a{display:inline-flex;align-items:center;gap:6px;padding:7px 12px;border-radius:999px;text-decoration:none;font-size:12px;letter-spacing:.04em;color:var(--ink-soft);background:color-mix(in srgb,var(--paper) 88%,transparent);border:1px solid var(--line);backdrop-filter:blur(10px);box-shadow:0 4px 18px rgba(0,0,0,.08);transition:.2s ease}
+.utility-nav a:hover{color:var(--warm);transform:translateY(-1px)}
+@media(max-width:640px){.utility-nav{left:10px;bottom:10px;gap:5px}.utility-nav a{padding:6px 9px;font-size:10.5px}}
+</style></head>
+<body>
+<div class="progress-bar"><div class="progress-bar__fill" id="progress"></div></div>
+<div class="counter" id="counter">01 / 14</div>
+<div class="lang-switch"><a href="stust-2026.html">EN</a><span>·</span><a class="active" href="stust-2026-zh.html">中文</a></div>
+<nav class="nav-dots" id="navDots"></nav>
+<main>
+<!-- ============== 01 Cover ============== -->
+<section class="card cover in-view" id="c1">
+<div class="cover__eyebrow">A Research Card Series · STUST 2026 · 約 3 分鐘</div>
+<h1 class="cover__title">
+    落差，<br/>
+<em>還在嗎？</em>
+</h1>
+<p class="cover__subtitle">
+    生成式 AI 支持下仍存在學習落差嗎？——一所國中跨年級科技課程之量化教育公平分析。
+  </p>
+<div class="cover__numbers">
+<div class="cover__num"><strong>495</strong><span>完整參與學生</span></div>
+<div class="cover__num"><strong>32</strong><span>特教需求學生</span></div>
+<div class="cover__num"><strong>18</strong><span>班級</span></div>
+<div class="cover__num"><strong>2</strong><span>學期縱向</span></div>
+</div>
+<div class="cover__meta">
+<strong>葉容辰　Yeh, Jung-Chen</strong>
+<span>指導教授：李嘉宜 助理教授</span>
+<span>南臺科技大學教育經營所碩士在職專班</span>
+<span>2026 AI 數位人文跨域創新國際研討會</span>
+</div>
+<div class="cover__scroll-hint">scroll ↓</div>
+</section>
+<!-- ============== 02 The Question ============== -->
+<section class="card story" id="c2">
+<span class="card__num">02 · The Premise</span>
+<p class="story__date">一個常被說出口、卻很少被驗證的假設</p>
+<p class="story__lead">
+    我們說 AI 能<em>促進教育公平</em>。<br/>
+    但在真實課堂裡，<br/>
+    有人測過嗎？
+  </p>
+<p class="story__close">
+    針對特殊教育需求學生與一般學生的<br/>
+    大樣本量化比較——研究仍然有限。<br/>
+    所以我決定，自己算一次。
+  </p>
+</section>
+<!-- ============== 03 Research Questions ============== -->
+<section class="card" id="c3">
+<span class="card__num">03 · Research Questions</span>
+<p class="card__label">Three Indicators · 三項公平指標</p>
+<h2 class="card__title">把「公平」，<br/>拆成<em>可測量</em>的東西。</h2>
+<div class="questions">
+<div class="question">
+<span class="question__num">Q1</span>
+<span class="question__text">學生的<strong>基礎技能</strong>是否提升？</span>
+</div>
+<div class="question">
+<span class="question__num">Q2</span>
+<span class="question__text">學生的<strong>創作參與</strong>是否改善？</span>
+</div>
+<div class="question">
+<span class="question__num">Q3</span>
+<span class="question__text">SEN 學生與一般學生在 GenAI 支持下，<strong>是否仍有表現差異</strong>？</span>
+</div>
+</div>
+</section>
+<!-- ============== 04 Method ============== -->
+<section class="card" id="c4">
+<span class="card__num">04 · Methodology</span>
+<p class="card__label">Two-Semester Longitudinal Design · 兩學期縱向</p>
+<h2 class="card__title">不是問卷，<br/>是<em>整整兩學期</em>的資料。</h2>
+<p class="method__lead">
+    對象為七、八年級 <span class="accent">18 個班、495 名</span>完整參與學生，
+    其中 SEN 學生 <span class="accent">32 人（6.5%）</span>。
+  </p>
+<div class="method__stats">
+<div class="method__stat"><strong>N = 495</strong><span>完整參與學生</span></div>
+<div class="method__stat"><strong>32</strong><span>SEN 學生（6.5%）</span></div>
+<div class="method__stat"><strong>3 資料源</strong><span>打字前後測 · 評分 · 繳交紀錄</span></div>
+</div>
+<p class="theory-label">Statistical Methods · 統計方法</p>
+<div class="theory-pillars">
+<span class="theory-pill">成對樣本 t 檢定</span>
+<span class="theory-pill">McNemar 確切檢定</span>
+<span class="theory-pill">共變數分析 ANCOVA</span>
+</div>
+<div class="highlight-box">
+    關鍵設計：以<strong>上學期 AI 繪圖作業分數</strong>作為「先前 AI 創作表現」的共變量，
+    再比較兩組調整後的 SUNO 表現——排除起點差異的干擾。
+  </div>
+</section>
+<!-- ============== 05 兩學期課程 ============== -->
+<section class="card" id="c5">
+<span class="card__num">05 · The Intervention</span>
+<p class="card__label">Two Semesters, Two Scaffolds · 兩種鷹架</p>
+<h2 class="card__title">支持，不只做<br/><em>一次</em>。</h2>
+<div class="semesters">
+<div class="semester">
+<div class="semester__term">Semester I · 上學期</div>
+<div class="semester__title">AI 繪圖</div>
+<p class="semester__desc">
+        以<strong>提示詞公式</strong>與<strong>五要素圖卡</strong>提供支持——
+        把「說不清楚的想法」轉譯為結構化語言。
+      </p>
+</div>
+<div class="semester">
+<div class="semester__term">Semester II · 下學期</div>
+<div class="semester__title">SUNO 音樂創作</div>
+<p class="semester__desc">
+        採<strong>三層認知鷹架</strong>——引導概念生成、提示詞建構與互動修訂，
+        讓零音樂背景的學生也能完成作品。
+      </p>
+</div>
+</div>
+<p class="body-text" style="margin-top:8px;">
+    兩學期的鷹架設計形成連續的支持系統——這也讓「先前 AI 創作表現」成為可用的共變量。
+  </p>
+</section>
+<!-- ============== 06 結果一 ============== -->
+<section class="card" id="c6">
+<span class="card__num">06 · Result I</span>
+<div class="result__badge">
+<span class="result__badge-num">01</span>
+<span class="result__badge-label">基礎技能</span>
+</div>
+<h2 class="card__title">打字，<em>變快了</em>。</h2>
+<div class="metric-jump">
+<div class="metric-jump__from">
+<span class="metric-jump__val">23.9</span>
+<span class="metric-jump__lbl">字／分鐘 · 前測</span>
+</div>
+<span class="metric-jump__arrow">→</span>
+<div class="metric-jump__to">
+<span class="metric-jump__val">26.8</span>
+<span class="metric-jump__lbl">字／分鐘 · 後測</span>
+</div>
+</div>
+<span class="stat-note">n = 481　·　p &lt; .001　·　d = 0.27</span>
+<p class="body-text" style="margin-top:24px;">
+    中文打字速度顯著提升。看似微小的基礎技能，卻是所有 AI 創作的入口——
+    <strong>打不出字的人，就說不出想法。</strong>
+</p>
+</section>
+<!-- ============== 07 結果二 ============== -->
+<section class="card" id="c7">
+<span class="card__num">07 · Result II</span>
+<div class="result__badge">
+<span class="result__badge-num">02</span>
+<span class="result__badge-label">創作參與</span>
+</div>
+<h2 class="card__title">29 個人，<br/>從<em>沒交</em>變成交了。</h2>
+<div class="mcnemar">
+<div class="mcnemar__cell">
+<div class="mcnemar__val">457</div>
+<div class="mcnemar__lbl">上學期繳交人數</div>
+</div>
+<div class="mcnemar__cell">
+<div class="mcnemar__val">486</div>
+<div class="mcnemar__lbl">下學期繳交人數</div>
+</div>
+<div class="mcnemar__cell mcnemar__cell--highlight">
+<div class="mcnemar__val">29 → 0</div>
+<div class="mcnemar__lbl">29 人由未繳轉為繳交<br/>且<strong>無人反向變動</strong></div>
+</div>
+</div>
+<span class="stat-note">McNemar 確切檢定　·　p &lt; .001</span>
+<div class="highlight-box">
+    沒有人「從交變成不交」——
+    這條單向的路徑，是參與度改善最乾淨的證據。
+  </div>
+</section>
+<!-- ============== 08 結果三（圖表） ============== -->
+<section class="card" id="c8">
+<span class="card__num">08 · Result III</span>
+<div class="result__badge">
+<span class="result__badge-num">03</span>
+<span class="result__badge-label">群體差異</span>
+</div>
+<h2 class="card__title">差距，<em>縮到看不見</em>。</h2>
+<div class="chart-wrap">
+<svg aria-label="一般學生與特殊教育需求學生之 SUNO 創作平均分數，原始與 ANCOVA 調整後比較" role="img" viewbox="0 0 660 400" xmlns="http://www.w3.org/2000/svg">
+<!-- 格線 -->
+<g stroke="rgba(15,76,92,0.12)" stroke-dasharray="3 4" stroke-width="1">
+<line x1="72" x2="640" y1="330" y2="330"></line>
+<line x1="72" x2="640" y1="258" y2="258"></line>
+<line x1="72" x2="640" y1="186" y2="186"></line>
+<line x1="72" x2="640" y1="114" y2="114"></line>
+<line x1="72" x2="640" y1="42" y2="42"></line>
+</g>
+<!-- Y 軸標籤 -->
+<g fill="#8FB3BC" font-family="Cormorant Garamond, Georgia, serif" font-size="13" font-style="italic" text-anchor="end">
+<text x="62" y="335">0</text>
+<text x="62" y="263">25</text>
+<text x="62" y="191">50</text>
+<text x="62" y="119">75</text>
+<text x="62" y="47">100</text>
+</g>
+<!-- 基準線 -->
+<line stroke="#0F4C5C" stroke-width="1.6" x1="72" x2="640" y1="330" y2="330"></line>
+<!-- 一般學生：原始 74.69 → 高度 215.1 → y=114.9 -->
+<rect fill="#0F4C5C" height="215.1" rx="2" width="62" x="120" y="114.9"></rect>
+<text fill="#0F4C5C" font-family="Cormorant Garamond, Georgia, serif" font-size="19" font-style="italic" font-weight="600" text-anchor="middle" x="151" y="105">74.69</text>
+<!-- 一般學生：調整後 74.62 → 高度 214.9 → y=115.1 -->
+<rect fill="#D2603F" height="214.9" rx="2" width="62" x="192" y="115.1"></rect>
+<text fill="#D2603F" font-family="Cormorant Garamond, Georgia, serif" font-size="19" font-style="italic" font-weight="600" text-anchor="middle" x="223" y="105">74.62</text>
+<!-- SEN：原始 70.97 → 高度 204.4 → y=125.6 -->
+<rect fill="#0F4C5C" height="204.4" rx="2" width="62" x="408" y="125.6"></rect>
+<text fill="#0F4C5C" font-family="Cormorant Garamond, Georgia, serif" font-size="19" font-style="italic" font-weight="600" text-anchor="middle" x="439" y="116">70.97</text>
+<!-- SEN：調整後 72.00 → 高度 207.4 → y=122.6 -->
+<rect fill="#D2603F" height="207.4" rx="2" width="62" x="480" y="122.6"></rect>
+<text fill="#D2603F" font-family="Cormorant Garamond, Georgia, serif" font-size="19" font-style="italic" font-weight="600" text-anchor="middle" x="511" y="113">72.00</text>
+<!-- 差距標示線 -->
+<g fill="none" stroke="#8FB3BC" stroke-width="1.2">
+<path d="M 254 88 L 300 88 L 300 96 M 300 88 L 400 88 L 400 96"></path>
+</g>
+<text fill="#2F6B7A" font-family="Noto Sans TC, sans-serif" font-size="14" text-anchor="middle" x="330" y="80">調整後差距 2.62 分</text>
+<!-- X 軸標籤 -->
+<g fill="#0F4C5C" font-family="Noto Sans TC, sans-serif" font-size="15" text-anchor="middle">
+<text font-weight="600" x="187" y="356">一般學生</text>
+<text font-weight="600" x="475" y="356">特殊教育需求學生</text>
+</g>
+<g fill="#8FB3BC" font-family="Cormorant Garamond, Georgia, serif" font-size="14" font-style="italic" text-anchor="middle">
+<text x="187" y="374">n = 463</text>
+<text x="475" y="374">n = 32</text>
+</g>
+<!-- 圖例 -->
+<g transform="translate(72, 388)">
+<rect fill="#0F4C5C" height="12" rx="2" width="12" x="0" y="-9"></rect>
+<text fill="#2F6B7A" font-family="Noto Sans TC, sans-serif" font-size="13" x="18" y="1">原始平均</text>
+<rect fill="#D2603F" height="12" rx="2" width="12" x="100" y="-9"></rect>
+<text fill="#2F6B7A" font-family="Noto Sans TC, sans-serif" font-size="13" x="118" y="1">ANCOVA 調整後</text>
+</g>
+</svg>
+</div>
+<p class="chart-caption">圖 1 · SUNO 創作平均分數 · ANCOVA 調整前後</p>
+<div class="highlight-box">
+    原始差距 3.72 分；控制「先前 AI 繪圖表現」後，
+    調整後差距縮減至 <strong>2.62 分</strong>——
+    <strong>p = .147，未達統計顯著。</strong>
+</div>
+</section>
+<!-- ============== 09 Hero Stat ============== -->
+<section class="card hero-stat" id="c9">
+<span class="card__num">09 · The Number That Matters</span>
+<p class="card__label">32 名 SEN 學生 · 完成率</p>
+<div class="hero-stat__big">100%</div>
+<p class="hero-stat__sub">全數完成作品。無人低於 60 分。</p>
+<p class="hero-stat__caption">
+    這是我最在意的一個數字。<br/>
+    在傳統的創作型課程裡，<em>沒交作業</em>往往就是落差最直接的樣子——
+    而這一次，<em>沒有人被留在原地</em>。
+  </p>
+</section>
+<!-- ============== 10 Limitations ============== -->
+<section class="card" id="c10">
+<span class="card__num">10 · Limitations</span>
+<p class="card__label">What This Study Cannot Say · 研究限制</p>
+<h2 class="card__title">但我不能說的，<br/>也要<em>說清楚</em>。</h2>
+<div class="limits">
+<div class="limit">
+<span class="limit__mark">—</span>
+<p class="limit__text">本研究<strong>缺乏無鷹架對照組</strong>，無法排除其他同時發生的教學因素。</p>
+</div>
+<div class="limit">
+<span class="limit__mark">—</span>
+<p class="limit__text">缺乏<strong>同質成果前測</strong>——上學期 AI 繪圖與下學期 SUNO 屬不同任務型態。</p>
+</div>
+<div class="limit">
+<span class="limit__mark">—</span>
+<p class="limit__text">因此<strong>尚不能推論</strong>是 GenAI 或鷹架「造成」學習落差縮小。</p>
+</div>
+</div>
+<div class="highlight-box">
+    這份研究提供的是<strong>初步的量化證據</strong>，不是因果宣稱。
+    把限制寫清楚，結果才站得住。
+  </div>
+</section>
+<!-- ============== 11 Conclusion ============== -->
+<section class="card conclusion" id="c11">
+<span class="card__num">11 · The Heart</span>
+<p class="card__label">初步的量化證據</p>
+<p class="conclusion__quote">
+    基礎技能提升了，<br/>
+    創作參與改善了，<br/>
+    而控制先前表現後——<br/>
+<span class="accent">兩群學生的差異</span><br/>
+<em>未達顯著</em>。
+  </p>
+<p class="conclusion__sub">
+    包容性 GenAI 創作學習的初步量化證據——
+    在一所公立國中、18 個班、兩個學期的真實現場。
+  </p>
+<p class="conclusion__sig">Equity · Measured, Not Assumed</p>
+</section>
+<!-- ============== 12 Resources ============== -->
+<section class="card resources" id="c12">
+<span class="card__num">12 · Beyond the Cards</span>
+<p class="card__label">Explore the Materials · 延伸閱讀</p>
+<h2 class="card__title">完整的素材，<br/><em>都在這裡。</em></h2>
+<p class="resources__intro">
+    這份量化分析背後的兩個學期課程——鷹架工具、學生作品，全部公開。
+  </p>
+<div class="resource-grid">
+<a class="resource-link" href="https://padlet.com/wrencc/suno-rhtfkpphfi6c5unq" rel="noopener" target="_blank">
+<div class="resource-link__content">
+<span class="resource-link__title">SUNO 線上藝廊</span>
+<span class="resource-link__desc">Padlet · 505 首學生作品</span>
+</div>
+<span class="resource-link__arrow">→</span>
+</a>
+<a class="resource-link" href="https://padlet.com/wrencc/ai-c2gwyji2mf9sfann" rel="noopener" target="_blank">
+<div class="resource-link__content">
+<span class="resource-link__title">AI 繪圖線上藝廊</span>
+<span class="resource-link__desc">Padlet · 438 件學生創作</span>
+</div>
+<span class="resource-link__arrow">→</span>
+</a>
+<a class="resource-link" href="https://sites.google.com/dcjh.tn.edu.tw/suno" rel="noopener" target="_blank">
+<div class="resource-link__content">
+<span class="resource-link__title">提示鷹架網站</span>
+<span class="resource-link__desc">Google Sites · 第二層工具</span>
+</div>
+<span class="resource-link__arrow">→</span>
+</a><a class="resource-link" href="https://suno-scaffold.netlify.app/" rel="noopener" target="_blank"><div class="resource-link__content"><span class="resource-link__title">SUNO 新版提示詞鷹架</span><span class="resource-link__desc">新版互動式鷹架網站 · Netlify</span></div><span class="resource-link__arrow">↗</span></a>
+<a class="resource-link" href="nycu-2026-zh.html">
+<div class="resource-link__content">
+<span class="resource-link__title">從聆聽者到創作者</span>
+<span class="resource-link__desc">質性研究 · 三層認知鷹架</span>
+</div>
+<span class="resource-link__arrow">→</span>
+</a>
+<a class="resource-link" href="https://society.stust.edu.tw/tc/node/intl_conference" rel="noopener" target="_blank"><div class="resource-link__content"><span class="resource-link__title">南臺研討會官方資訊</span><span class="resource-link__desc">10/2 會議 · 8/15 摘要截稿 · 9/1 審查公告</span></div><span class="resource-link__arrow">↗</span></a></div>
+</section>
+<!-- ============== 13 Find Me ============== -->
+<section class="card findme" id="c13">
+<span class="card__num">13 · Find Me</span>
+<p class="card__label">2026 AI 數位人文跨域創新國際研討會</p>
+<h2 class="card__title">歡迎來聊聊。</h2>
+<div class="divider"></div>
+<div class="session">
+<div class="session__type">研討會資訊</div>
+<div class="session__time">2026 AI 數位人文跨域創新國際研討會</div>
+<div class="session__date">2026 年 10 月 2 日（星期五）</div><p style="margin-top:12px;font-size:13px;line-height:1.75;color:var(--ink-soft);max-width:38em;">摘要截稿：2026.08.15｜審查公告：2026.09.01｜線上註冊：2026.08.17–09.16</p>
+<div class="session__details">
+<strong>南臺科技大學　人文社會學院</strong><br/>
+      臺南市永康區南臺街 1 號<br/><br/>
+      投稿領域：幼保及教育領域
+    </div>
+</div>
+<div class="findme__info">
+<p>
+<strong>葉容辰　Yeh, Jung-Chen</strong><br/>
+      南臺科技大學教育經營所碩士在職專班<br/>
+      指導教授：李嘉宜 助理教授
+    </p>
+<p>
+<strong>研究興趣 ·</strong><br/>
+      生成式 AI 融入 K-12 · 教育公平與 SDG ·
+      特殊教育需求 · 認知鷹架 · 量化教育研究
+    </p>
+</div>
+<div class="findme__footer">
+<span>© 2026 Yeh, Jung-Chen</span>
+<span>STUST · 2026</span>
+</div>
+</section>
+<!-- ============== 14 Contact ============== -->
+<section class="card contact" id="c14">
+<span class="card__num">14 · Get in Touch</span>
+<p class="card__label">An Open Invitation · 誠摯邀請</p>
+<h2 class="card__title">一起把系統，<br/><em>重新織起。</em></h2>
+<p class="contact__lead">
+    特別歡迎 <em>K-12 生成式 AI 鷹架</em>的跨校複製研究——
+    尤其是願意加入<em>對照組設計</em>的夥伴，那正是這份研究下一步需要的。
+  </p>
+<div class="social-links">
+<a class="social-link" href="https://www.linkedin.com/in/zy-zoeyeh/" rel="noopener" target="_blank">
+<svg aria-hidden="true" fill="currentColor" viewbox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.59 0 4.26 2.36 4.26 5.44v6.3zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"></path></svg>
+      LinkedIn <span class="social-link__ext">→</span>
+</a>
+<a class="social-link" href="https://www.instagram.com/echo_of_wren/" rel="noopener" target="_blank">
+<svg aria-hidden="true" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41 1.27-.06 1.65-.07 4.85-.07M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.79.3-1.46.72-2.13 1.38C1.35 2.68.93 3.35.63 4.14c-.3.76-.5 1.64-.56 2.91C.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.3.79.72 1.46 1.38 2.13.67.66 1.34 1.08 2.13 1.38.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56.79-.3 1.46-.72 2.13-1.38.66-.67 1.08-1.34 1.38-2.13.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91-.3-.79-.72-1.46-1.38-2.13C21.32 1.35 20.65.93 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm7.85-10.4a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0z"></path></svg>
+      Instagram <span class="social-link__ext">→</span>
+</a>
+<a class="social-link" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=zoeyeh0822@gmail.com" rel="noopener" target="_blank">
+<svg aria-hidden="true" fill="currentColor" viewbox="0 0 24 24"><path d="M24 5.46v13.09c0 .8-.65 1.45-1.45 1.45h-3.28V11.4L12 16.51 4.73 11.4v8.6H1.45C.65 20 0 19.35 0 18.55V5.46c0-1.2 1.37-1.88 2.33-1.17L4.73 6.1 12 11.45l7.27-5.35 2.4-1.81c.96-.71 2.33-.03 2.33 1.17z"></path></svg>
+      Gmail <span class="social-link__ext">→</span>
+</a>
+</div>
+<p class="contact__note">
+    zoeyeh0822@gmail.com<br/>
+    也歡迎在研討會現場直接找我——中文或 English 都可以。
+  </p>
+<p class="contact__fields-label">特別歡迎這些領域的交流</p>
+<div class="contact__fields">
+<span class="field-tag">教育公平 · SDG</span>
+<span class="field-tag">特殊教育需求</span>
+<span class="field-tag">量化教育研究</span>
+<span class="field-tag">生成式 AI 融入 K-12</span>
+<span class="field-tag">認知鷹架</span>
+<span class="field-tag">包容性教育</span>
+</div>
+<div class="contact__signoff">
+<p>謝謝你讀到這裡。<br/>
+    數字不會說謊，但也不會自己說話——<br/>
+    是那 32 個孩子，讓這些數字有了意義。</p>
+<span class="contact__signature">—— 葉容辰</span>
+</div>
+</section>
+</main>
+<script>
+const cards = document.querySelectorAll('.card');
+const progress = document.getElementById('progress');
+const counter = document.getElementById('counter');
+const navDots = document.getElementById('navDots');
+
+cards.forEach((card, i) => {
+  const dot = document.createElement('a');
+  dot.href = '#' + card.id;
+  dot.title = '第 ' + (i + 1) + ' 張';
+  navDots.appendChild(dot);
+});
+const dots = navDots.querySelectorAll('a');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
+      const idx = Array.from(cards).indexOf(entry.target);
+      entry.target.classList.add('in-view');
+      progress.style.width = (((idx + 1) / cards.length) * 100) + '%';
+      counter.textContent = String(idx + 1).padStart(2, '0') + ' / ' + String(cards.length).padStart(2, '0');
+      dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+    }
+  });
+}, { threshold: [0.5] });
+cards.forEach(card => observer.observe(card));
+
+document.addEventListener('keydown', (e) => {
+  const current = Array.from(cards).findIndex(c => {
+    const r = c.getBoundingClientRect();
+    return r.top >= -100 && r.top <= 100;
+  });
+  if (e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === ' ') {
+    e.preventDefault();
+    cards[Math.min(current + 1, cards.length - 1)].scrollIntoView({ behavior: 'smooth' });
+  } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+    e.preventDefault();
+    cards[Math.max(current - 1, 0)].scrollIntoView({ behavior: 'smooth' });
+  }
+});
+
+window.addEventListener('load', () => { cards[0].classList.add('in-view'); });
+</script>
+<nav aria-label="Site links" class="utility-nav"><a href="index.html">⌂ 研究小卡 / Home</a><a href="https://echoofwren.github.io/portfolio/" rel="noopener" target="_blank">✦ 作品集 / Portfolio</a></nav></body>
+</html>

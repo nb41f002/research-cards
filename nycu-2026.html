@@ -1,16 +1,15 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#6B1F2E">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<meta content="#6B1F2E" name="theme-color"/>
 <title>From Listeners to Creators · Yeh, Jung-Chen · FacDev2026</title>
-<meta name="description" content="A three-tiered cognitive scaffolding system enabling 496 junior high students to compose 505 original songs in 7+ languages using SUNO AI. FacDev2026 · Paper ID 24 · Yeh, Jung-Chen">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&family=Noto+Serif+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
-
+<meta content="A three-tiered cognitive scaffolding system enabling 496 junior high students to compose 505 original songs in 7+ languages using SUNO AI. FacDev2026 · Paper ID 24 · Yeh, Jung-Chen" name="description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&amp;family=Inter:wght@300;400;500;600&amp;family=Noto+Serif+Display:ital,wght@0,400;0,600;0,700;1,400&amp;display=swap" rel="stylesheet"/>
 <style>
 /* =========================================================
    設計系統 · 酒紅 + 暖米 + 深金（FacDev2026 專屬識別）
@@ -973,499 +972,439 @@ body::before {
   body { scroll-behavior: auto; }
 }
 </style>
-</head>
+<style>
+/* Shared navigation added for the bilingual research-card collection */
+.utility-nav{position:fixed;left:18px;bottom:18px;z-index:140;display:flex;gap:8px;flex-wrap:wrap;max-width:calc(100vw - 36px)}
+.utility-nav a{display:inline-flex;align-items:center;gap:6px;padding:7px 12px;border-radius:999px;text-decoration:none;font-size:12px;letter-spacing:.04em;color:var(--ink-soft);background:color-mix(in srgb,var(--paper) 88%,transparent);border:1px solid var(--line);backdrop-filter:blur(10px);box-shadow:0 4px 18px rgba(0,0,0,.08);transition:.2s ease}
+.utility-nav a:hover{color:var(--warm);transform:translateY(-1px)}
+@media(max-width:640px){.utility-nav{left:10px;bottom:10px;gap:5px}.utility-nav a{padding:6px 9px;font-size:10.5px}}
+</style></head>
 <body>
-
 <div class="progress-bar"><div class="progress-bar__fill" id="progress"></div></div>
 <div class="counter" id="counter">01 / 15</div>
-<div class="lang-switch"><a href="#" class="active">EN</a><span>·</span><a href="nycu-2026-zh.html">中文</a></div>
+<div class="lang-switch"><a class="active" href="nycu-2026.html">EN</a><span>·</span><a href="nycu-2026-zh.html">中文</a></div>
 <nav class="nav-dots" id="navDots"></nav>
-
 <main>
-
 <!-- ============== Card 1: Cover ============== -->
-<section class="card cover" id="c1">
-  <div class="cover__eyebrow">A Research Card Series · FacDev 2026 · ~ 3 min read</div>
-  <h1 class="cover__title">
-    From Listeners<br>
-    <em>to Creators.</em>
-  </h1>
-  <p class="cover__subtitle">
+<section class="card cover in-view" id="c1">
+<div class="cover__eyebrow">A Research Card Series · FacDev 2026 · ~ 3 min read</div>
+<h1 class="cover__title">
+    From Listeners<br/>
+<em>to Creators.</em>
+</h1>
+<p class="cover__subtitle">
     Bridging musical inequality through Generative AI Music Tools — a practical study based on the ADDIE model in junior high school education.
   </p>
-
-  <div class="cover__numbers">
-    <div class="cover__num"><strong>18</strong><span>Classes</span></div>
-    <div class="cover__num"><strong>496</strong><span>Students</span></div>
-    <div class="cover__num"><strong>505</strong><span>Songs</span></div>
-    <div class="cover__num"><strong>7+</strong><span>Languages</span></div>
-  </div>
-
-  <div class="cover__meta">
-    <strong>Yeh, Jung-Chen</strong>
-    <span>Master&rsquo;s Program of Educational Leadership and Management</span>
-    <span>Southern Taiwan University of Science and Technology</span>
-    <span>FacDev2026 · National Yang Ming Chiao Tung University · Paper ID 24</span>
-  </div>
-  <div class="cover__scroll-hint">scroll ↓</div>
+<div class="cover__numbers">
+<div class="cover__num"><strong>18</strong><span>Classes</span></div>
+<div class="cover__num"><strong>496</strong><span>Students</span></div>
+<div class="cover__num"><strong>505</strong><span>Songs</span></div>
+<div class="cover__num"><strong>7+</strong><span>Languages</span></div>
+</div>
+<div class="cover__meta">
+<strong>Yeh, Jung-Chen</strong>
+<span>Master’s Program of Educational Leadership and Management</span>
+<span>Southern Taiwan University of Science and Technology</span>
+<span>FacDev2026 · National Yang Ming Chiao Tung University · Paper ID 24</span>
+</div>
+<div class="cover__scroll-hint">scroll ↓</div>
 </section>
-
 <!-- ============== Card 2: The Moment ============== -->
 <section class="card story" id="c2">
-  <span class="card__num">02 · The Moment</span>
-  <p class="story__date">May 2025 · A public junior high · Southern Taiwan</p>
-  <div class="story__quote-mark">&ldquo;</div>
-  <p class="story__lead">
-    They <em>felt the melody.</em><br>
-    They just couldn&rsquo;t<br>
+<span class="card__num">02 · The Moment</span>
+<p class="story__date">May 2025 · A public junior high · Southern Taiwan</p>
+<div class="story__quote-mark">“</div>
+<p class="story__lead">
+    They <em>felt the melody.</em><br/>
+    They just couldn’t<br/>
     type the prompt.
   </p>
-  <p class="story__close">
-    The barrier was never talent. It was the keyboard.<br>
+<p class="story__close">
+    The barrier was never talent. It was the keyboard.<br/>
     — and that is where this study begins.
   </p>
 </section>
-
 <!-- ============== Card 3: The Dilemma + Questions ============== -->
 <section class="card dilemma" id="c3">
-  <span class="card__num">03 · The Real Gap</span>
-  <p class="card__label">The Conceptual Materialization Dilemma</p>
-  <h2 class="card__title">AI lowered <em>one</em> barrier.<br>It raised <em>another</em>.</h2>
-
-  <p class="dilemma__statement">
+<span class="card__num">03 · The Real Gap</span>
+<p class="card__label">The Conceptual Materialization Dilemma</p>
+<h2 class="card__title">AI lowered <em>one</em> barrier.<br/>It raised <em>another</em>.</h2>
+<p class="dilemma__statement">
     SUNO AI removed the need for music theory.
     But without precise prompts, students cannot translate inner emotion into output —
     a gap that <em>reproduces, rather than dismantles,</em> existing inequality.
   </p>
-
-  <p class="card__label" style="margin-top:20px;">Three Research Questions</p>
-  <div class="questions">
-    <div class="question">
-      <span class="question__num">Q1</span>
-      <span class="question__text">Can <strong>Human-AI collaboration</strong> empower diverse learners to transcend <strong>linguistic barriers</strong>?</span>
-    </div>
-    <div class="question">
-      <span class="question__num">Q2</span>
-      <span class="question__text">Can <strong>creative agency</strong> be restored to <strong>non-specialist student composers</strong>?</span>
-    </div>
-    <div class="question">
-      <span class="question__num">Q3</span>
-      <span class="question__text">Can <strong>technological equity</strong> be actualized in a <strong>public junior high context</strong>?</span>
-    </div>
-  </div>
+<p class="card__label" style="margin-top:20px;">Three Research Questions</p>
+<div class="questions">
+<div class="question">
+<span class="question__num">Q1</span>
+<span class="question__text">Can <strong>Human-AI collaboration</strong> empower diverse learners to transcend <strong>linguistic barriers</strong>?</span>
+</div>
+<div class="question">
+<span class="question__num">Q2</span>
+<span class="question__text">Can <strong>creative agency</strong> be restored to <strong>non-specialist student composers</strong>?</span>
+</div>
+<div class="question">
+<span class="question__num">Q3</span>
+<span class="question__text">Can <strong>technological equity</strong> be actualized in a <strong>public junior high context</strong>?</span>
+</div>
+</div>
 </section>
-
 <!-- ============== Card 4: Method + Theory ============== -->
 <section class="card method" id="c4">
-  <span class="card__num">04 · Methodology</span>
-  <p class="card__label">Practitioner Research × ADDIE</p>
-  <h2 class="card__title">A six-week module,<br>at <em>real scale</em>.</h2>
-
-  <p class="method__lead">
-    Cross-disciplinary integration of Taiwan&rsquo;s <span class="accent">Technology</span> &amp; <span class="accent">Arts</span> curricula —
+<span class="card__num">04 · Methodology</span>
+<p class="card__label">Practitioner Research × ADDIE</p>
+<h2 class="card__title">A six-week module,<br/>at <em>real scale</em>.</h2>
+<p class="method__lead">
+    Cross-disciplinary integration of Taiwan’s <span class="accent">Technology</span> &amp; <span class="accent">Arts</span> curricula —
     deployed across heterogeneous classes in a public junior high school.
   </p>
-
-  <div class="method__stats">
-    <div class="method__stat"><strong>18</strong><span>Classes · Grades 7–8</span></div>
-    <div class="method__stat"><strong>N = 496</strong><span>Student Composers</span></div>
-    <div class="method__stat"><strong>6 weeks</strong><span>May–June 2025</span></div>
-    <div class="method__stat"><strong>4 sources</strong><span>Multimodal data</span></div>
-  </div>
-
-  <p class="theory-label">Theoretical Foundations</p>
-  <div class="theory-pillars">
-    <span class="theory-pill">ADDIE Model</span>
-    <span class="theory-pill">Scaffolding · Vygotsky</span>
-    <span class="theory-pill">Cognitive Load · Sweller</span>
-    <span class="theory-pill">Flow · Csikszentmihalyi</span>
-    <span class="theory-pill">Self-Determination · Deci &amp; Ryan</span>
-    <span class="theory-pill">UDL · SDG 4 &amp; 10</span>
-  </div>
+<div class="method__stats">
+<div class="method__stat"><strong>18</strong><span>Classes · Grades 7–8</span></div>
+<div class="method__stat"><strong>N = 496</strong><span>Student Composers</span></div>
+<div class="method__stat"><strong>6 weeks</strong><span>May–June 2025</span></div>
+<div class="method__stat"><strong>4 sources</strong><span>Multimodal data</span></div>
+</div>
+<p class="theory-label">Theoretical Foundations</p>
+<div class="theory-pillars">
+<span class="theory-pill">ADDIE Model</span>
+<span class="theory-pill">Scaffolding · Vygotsky</span>
+<span class="theory-pill">Cognitive Load · Sweller</span>
+<span class="theory-pill">Flow · Csikszentmihalyi</span>
+<span class="theory-pill">Self-Determination · Deci &amp; Ryan</span>
+<span class="theory-pill">UDL · SDG 4 &amp; 10</span>
+</div>
 </section>
-
 <!-- ============== Card 5: The Framework Overview ============== -->
 <section class="card framework" id="c5">
-  <span class="card__num">05 · The Framework</span>
-  <p class="card__label">Three-Tiered Cognitive Scaffolding</p>
-  <h2 class="card__title">Three tiers.<br>Three barriers <em>dissolved</em>.</h2>
-
-  <div class="framework__flow">
-    <span class="framework__node framework__node--start">I have an idea</span>
-    <span class="framework__arrow">→</span>
-    <span class="framework__node">Tier I<br><span style="font-family:var(--font-display);font-style:italic;font-size:11px;color:var(--ink);letter-spacing:0.18em;font-weight:500;">THEMATIC</span></span>
-    <span class="framework__arrow">→</span>
-    <span class="framework__node">Tier II<br><span style="font-family:var(--font-display);font-style:italic;font-size:11px;color:var(--ink);letter-spacing:0.18em;font-weight:500;">PROMPT SITE</span></span>
-    <span class="framework__arrow">→</span>
-    <span class="framework__node">Tier III<br><span style="font-family:var(--font-display);font-style:italic;font-size:11px;color:var(--ink);letter-spacing:0.18em;font-weight:500;">CUSTOM GPT</span></span>
-    <span class="framework__arrow">→</span>
-    <span class="framework__node framework__node--end">A finished song</span>
-  </div>
-
-  <p class="framework__caption">
+<span class="card__num">05 · The Framework</span>
+<p class="card__label">Three-Tiered Cognitive Scaffolding</p>
+<h2 class="card__title">Three tiers.<br/>Three barriers <em>dissolved</em>.</h2>
+<div class="framework__flow">
+<span class="framework__node framework__node--start">I have an idea</span>
+<span class="framework__arrow">→</span>
+<span class="framework__node">Tier I<br/><span style="font-family:var(--font-display);font-style:italic;font-size:11px;color:var(--ink);letter-spacing:0.18em;font-weight:500;">THEMATIC</span></span>
+<span class="framework__arrow">→</span>
+<span class="framework__node">Tier II<br/><span style="font-family:var(--font-display);font-style:italic;font-size:11px;color:var(--ink);letter-spacing:0.18em;font-weight:500;">PROMPT SITE</span></span>
+<span class="framework__arrow">→</span>
+<span class="framework__node">Tier III<br/><span style="font-family:var(--font-display);font-style:italic;font-size:11px;color:var(--ink);letter-spacing:0.18em;font-weight:500;">CUSTOM GPT</span></span>
+<span class="framework__arrow">→</span>
+<span class="framework__node framework__node--end">A finished song</span>
+</div>
+<p class="framework__caption">
     Each tier addresses a <em>specific cognitive barrier</em>:
     ideation paralysis, English-typing demand, and structural lyric formatting.
   </p>
 </section>
-
 <!-- ============== Card 6: Tier 1 ============== -->
 <section class="card tier" id="c6">
-  <span class="card__num">06 · Tier I</span>
-  <div class="tier__badge">
-    <span class="tier__badge-num">I</span>
-    <span class="tier__badge-label">Thematic Framework</span>
-  </div>
-  <h2 class="tier__title">9 themes.<br>180 starting points.</h2>
-  <p class="tier__hook">Calibrated to adolescent emotional life.</p>
-
-  <p class="tier__detail">
+<span class="card__num">06 · Tier I</span>
+<div class="tier__badge">
+<span class="tier__badge-num">I</span>
+<span class="tier__badge-label">Thematic Framework</span>
+</div>
+<h2 class="tier__title">9 themes.<br/>180 starting points.</h2>
+<p class="tier__hook">Calibrated to adolescent emotional life.</p>
+<p class="tier__detail">
     Students choose a sub-topic as an <strong>immediate emotional anchor</strong> —
     eliminating ideation paralysis entirely.
     The framework spans family, friendship, identity, dreams, loss, hope, anxiety, and more.
   </p>
-
-  <div class="tier__features">
-    <span class="feature-tag gold">9 × 20 matrix</span>
-    <span class="feature-tag">Emotional anchors</span>
-    <span class="feature-tag">Zero blank-page anxiety</span>
-  </div>
+<div class="tier__features">
+<span class="feature-tag gold">9 × 20 matrix</span>
+<span class="feature-tag">Emotional anchors</span>
+<span class="feature-tag">Zero blank-page anxiety</span>
+</div>
 </section>
-
 <!-- ============== Card 7: Tier 2 ============== -->
 <section class="card tier" id="c7">
-  <span class="card__num">07 · Tier II</span>
-  <div class="tier__badge">
-    <span class="tier__badge-num">II</span>
-    <span class="tier__badge-label">Prompt Scaffolding Website</span>
-  </div>
-  <h2 class="tier__title">No English typing.<br>Just <em>dropdowns</em>.</h2>
-  <p class="tier__hook">Visual selection over linguistic production.</p>
-
-  <p class="tier__detail">
+<span class="card__num">07 · Tier II</span>
+<div class="tier__badge">
+<span class="tier__badge-num">II</span>
+<span class="tier__badge-label">Prompt Scaffolding Website</span>
+</div>
+<h2 class="tier__title">No English typing.<br/>Just <em>dropdowns</em>.</h2>
+<p class="tier__hook">Visual selection over linguistic production.</p>
+<p class="tier__detail">
     A Google Sites platform with <strong>language selector (CN / EN / KO / JA)</strong>,
     genre tags, phonetic rhyme-scheme picker, and vocal arrangement dropdown.
     <strong>One-click prompt copy</strong> auto-generates a complete structured prompt.
     Mobile-accessible. No English prompt typing required.
   </p>
-
-  <div class="tier__features">
-    <span class="feature-tag gold">Multi-language</span>
-    <span class="feature-tag">Genre tags</span>
-    <span class="feature-tag">Phonetic rhyme</span>
-    <span class="feature-tag">Mobile-first</span>
-  </div>
+<div class="tier__features">
+<span class="feature-tag gold">Multi-language</span>
+<span class="feature-tag">Genre tags</span>
+<span class="feature-tag">Phonetic rhyme</span>
+<span class="feature-tag">Mobile-first</span>
+</div>
 </section>
-
 <!-- ============== Card 8: Tier 3 ============== -->
 <section class="card tier" id="c8">
-  <span class="card__num">08 · Tier III</span>
-  <div class="tier__badge">
-    <span class="tier__badge-num">III</span>
-    <span class="tier__badge-label">Custom GPT · SUNO Lyrics Writer</span>
-  </div>
-  <h2 class="tier__title">Mandarin in.<br>Any language out.</h2>
-  <p class="tier__hook">Adds structure — never alters creative content.</p>
-
-  <p class="tier__detail">
+<span class="card__num">08 · Tier III</span>
+<div class="tier__badge">
+<span class="tier__badge-num">III</span>
+<span class="tier__badge-label">Custom GPT · SUNO Lyrics Writer</span>
+</div>
+<h2 class="tier__title">Mandarin in.<br/>Any language out.</h2>
+<p class="tier__hook">Adds structure — never alters creative content.</p>
+<p class="tier__detail">
     Accepts Mandarin input; outputs fully structured lyrics with markers
     <strong>[Verse / Chorus / Bridge]</strong> in any target language.
     Automatic Mandarin translation + romanized phonetics appended for vocal performance.
   </p>
-
-  <div class="tier__highlight">
+<div class="tier__highlight">
     The Custom GPT adds only <strong>structure</strong> —
     leaving every emotion, every metaphor, every word of student authorship intact.
   </div>
-
-  <div class="tier__features">
-    <span class="feature-tag gold">Structured output</span>
-    <span class="feature-tag">Auto-translation</span>
-    <span class="feature-tag">Romanized phonetics</span>
-    <span class="feature-tag">7+ languages</span>
-  </div>
+<div class="tier__features">
+<span class="feature-tag gold">Structured output</span>
+<span class="feature-tag">Auto-translation</span>
+<span class="feature-tag">Romanized phonetics</span>
+<span class="feature-tag">7+ languages</span>
+</div>
 </section>
-
 <!-- ============== Card 9: HERO - Numbers ============== -->
 <section class="card hero-numbers" id="c9">
-  <span class="card__num">09 · The Outcome</span>
-  <p class="card__label">Six weeks. One cohort. One scaffold.</p>
-  <h2 class="card__title">And then, <em>the wall fell.</em></h2>
-
-  <div class="big-stats">
-    <div>
-      <div class="big-stat__num">18</div>
-      <div class="big-stat__label">Classes</div>
-      <div class="big-stat__sub">Grades 7–8</div>
-    </div>
-    <div>
-      <div class="big-stat__num">496</div>
-      <div class="big-stat__label">Student Creators</div>
-      <div class="big-stat__sub">All composed</div>
-    </div>
-    <div>
-      <div class="big-stat__num">505</div>
-      <div class="big-stat__label">Original Compositions</div>
-      <div class="big-stat__sub">All published</div>
-    </div>
-    <div>
-      <div class="big-stat__num">7+</div>
-      <div class="big-stat__label">Languages</div>
-      <div class="big-stat__sub">CN · EN · JA · KO · VI · AR</div>
-    </div>
-  </div>
-
-  <p class="hero-numbers__caption">
+<span class="card__num">09 · The Outcome</span>
+<p class="card__label">Six weeks. One cohort. One scaffold.</p>
+<h2 class="card__title">And then, <em>the wall fell.</em></h2>
+<div class="big-stats">
+<div>
+<div class="big-stat__num">18</div>
+<div class="big-stat__label">Classes</div>
+<div class="big-stat__sub">Grades 7–8</div>
+</div>
+<div>
+<div class="big-stat__num">496</div>
+<div class="big-stat__label">Student Creators</div>
+<div class="big-stat__sub">All composed</div>
+</div>
+<div>
+<div class="big-stat__num">505</div>
+<div class="big-stat__label">Original Compositions</div>
+<div class="big-stat__sub">All published</div>
+</div>
+<div>
+<div class="big-stat__num">7+</div>
+<div class="big-stat__label">Languages</div>
+<div class="big-stat__sub">CN · EN · JA · KO · VI · AR</div>
+</div>
+</div>
+<p class="hero-numbers__caption">
     Mandarin, English, Japanese, Korean, Vietnamese, Arabic, and beyond —
     the scaffolding effectively bridges <em>virtually any linguistic divide</em>.
     Archived in 18 class SUNO playlists and a Padlet digital gallery.
   </p>
 </section>
-
 <!-- ============== Card 10: Hear It (NEW) ============== -->
 <section class="card hearit" id="c10">
-  <span class="card__num">10 · Hear It</span>
-  <p class="card__label">Listen · One of 506</p>
-  <h2 class="card__title">Found My Sound.</h2>
-  <p class="hearit__subtitle">
+<span class="card__num">10 · Hear It</span>
+<p class="card__label">Listen · One of 506</p>
+<h2 class="card__title">Found My Sound.</h2>
+<p class="hearit__subtitle">
     The sound of a barrier dissolved — in 43 seconds.
   </p>
-
-  <div class="video-frame">
-    <iframe
-      src="https://www.youtube.com/embed/2WV_zcBZQ-Q?rel=0&modestbranding=1"
-      title="Found My Sound (Short ver.) — From Listeners to Creators"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      allowfullscreen
-      loading="lazy"
-      referrerpolicy="strict-origin-when-cross-origin"></iframe>
-  </div>
-
-  <p class="hearit__caption">
-    One of 506. <em>Five hundred and five from them. One from me —</em><br>
+<div class="video-frame">
+<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/2WV_zcBZQ-Q?rel=0&amp;modestbranding=1" title="Found My Sound (Short ver.) — From Listeners to Creators"></iframe>
+</div>
+<p class="hearit__caption">
+    One of 506. <em>Five hundred and five from them. One from me —</em><br/>
     one voice found, then another.
   </p>
-  <p class="hearit__meta">A 43-second glimpse · 496 students + 1 teacher · 506 compositions</p>
+<p class="hearit__meta">A 43-second glimpse · 496 students + 1 teacher · 506 compositions</p>
 </section>
-
 <!-- ============== Card 11: Three Findings ============== -->
 <section class="card findings" id="c11">
-  <span class="card__num">11 · Findings</span>
-  <p class="card__label">Beyond the Numbers</p>
-  <h2 class="card__title">Three things <em>happened</em>.</h2>
-
-  <div class="findings__list">
-    <div class="finding-item">
-      <span class="finding-item__num">I</span>
-      <div class="finding-item__content">
-        <div class="finding-item__title">Sustained Collective Flow</div>
-        <p class="finding-item__desc">
+<span class="card__num">11 · Findings</span>
+<p class="card__label">Beyond the Numbers</p>
+<h2 class="card__title">Three things <em>happened</em>.</h2>
+<div class="findings__list">
+<div class="finding-item">
+<span class="finding-item__num">I</span>
+<div class="finding-item__content">
+<div class="finding-item__title">Sustained Collective Flow</div>
+<p class="finding-item__desc">
           Across <strong>all 18 classes</strong>, qualitative observation revealed sustained collective flow states during Weeks 3–6 — with <strong>behavioral disruptions virtually absent</strong>. The challenge-skill balance is engineerable.
         </p>
-      </div>
-    </div>
-    <div class="finding-item">
-      <span class="finding-item__num">II</span>
-      <div class="finding-item__content">
-        <div class="finding-item__title">Genuine Creative Ownership</div>
-        <p class="finding-item__desc">
+</div>
+</div>
+<div class="finding-item">
+<span class="finding-item__num">II</span>
+<div class="finding-item__content">
+<div class="finding-item__title">Genuine Creative Ownership</div>
+<p class="finding-item__desc">
           Three students composed <strong>entirely self-authored lyrics</strong>, using the Custom GPT solely for structural formatting — direct evidence of creative agency cultivated by the scaffolding, not replaced by it.
         </p>
-      </div>
-    </div>
-    <div class="finding-item">
-      <span class="finding-item__num">III</span>
-      <div class="finding-item__content">
-        <div class="finding-item__title">Autonomous Continuation</div>
-        <p class="finding-item__desc">
+</div>
+</div>
+<div class="finding-item">
+<span class="finding-item__num">III</span>
+<div class="finding-item__content">
+<div class="finding-item__title">Autonomous Continuation</div>
+<p class="finding-item__desc">
           Numerous students <strong>continued creating after the curriculum concluded</strong> — including several classes initiating <strong>graduation song projects</strong>, faculty-recognized as artistically meritorious. Intrinsic motivation, genuinely internalized.
         </p>
-      </div>
-    </div>
-  </div>
+</div>
+</div>
+</div>
 </section>
-
 <!-- ============== Card 11: Conclusion ============== -->
 <section class="card conclusion" id="c12">
-  <span class="card__num">12 · The Heart</span>
-  <p class="card__label">The Real Divide</p>
-  <p class="conclusion__quote">
-    The educational divide in GenAI music creation<br>
-    resides <em>not in hardware access</em>,<br>
-    but in <span class="accent">cognitive and linguistic resources</span> —<br>
+<span class="card__num">12 · The Heart</span>
+<p class="card__label">The Real Divide</p>
+<p class="conclusion__quote">
+    The educational divide in GenAI music creation<br/>
+    resides <em>not in hardware access</em>,<br/>
+    but in <span class="accent">cognitive and linguistic resources</span> —<br/>
     addressable through <em>design</em>.
   </p>
-  <p class="conclusion__sub">
+<p class="conclusion__sub">
     A replicable, tool-agnostic blueprint for large-scale AI integration —
     aligned with UDL principles, SDG 4 (Quality Education), and SDG 10 (Reduced Inequalities).
   </p>
-  <p class="conclusion__sig">From Listeners · to Creators</p>
+<p class="conclusion__sig">From Listeners · to Creators</p>
 </section>
-
 <!-- ============== Card 12: Resources ============== -->
 <section class="card resources" id="c13">
-  <span class="card__num">13 · Beyond the Cards</span>
-  <p class="card__label">Explore the Materials</p>
-  <h2 class="card__title">The full toolkit,<br><em>open to all.</em></h2>
-  <p class="resources__intro">
+<span class="card__num">13 · Beyond the Cards</span>
+<p class="card__label">Explore the Materials</p>
+<h2 class="card__title">The full toolkit,<br/><em>open to all.</em></h2>
+<p class="resources__intro">
     The complete prompt scaffolding website, the Custom GPT, all 505 student compositions, teaching slides — open and replicable.
   </p>
-
 <div class="resource-grid">
-    <a class="resource-link" href="https://sites.google.com/dcjh.tn.edu.tw/suno" target="_blank" rel="noopener">
-      <div class="resource-link__content">
-        <span class="resource-link__title">Prompt Scaffolding Website</span>
-        <span class="resource-link__desc">Google Sites · Tier 2 Tool</span>
-      </div>
-      <span class="resource-link__arrow">→</span>
-    </a>
-    <a class="resource-link" href="https://chatgpt.com/g/g-EEx6GDtyA-sunozuo-ci-gong-ju" target="_blank" rel="noopener">
-      <div class="resource-link__content">
-        <span class="resource-link__title">SUNO Lyrics Writer</span>
-        <span class="resource-link__desc">Custom GPT · Tier 3 Tool</span>
-      </div>
-      <span class="resource-link__arrow">→</span>
-    </a>
-    <a class="resource-link" href="https://padlet.com/wrencc/suno-rhtfkpphfi6c5unq" target="_blank" rel="noopener">
-      <div class="resource-link__content">
-        <span class="resource-link__title">Padlet Digital Gallery</span>
-        <span class="resource-link__desc">505 Student Compositions</span>
-      </div>
-      <span class="resource-link__arrow">→</span>
-    </a>
-    <a class="resource-link" href="https://open.spotify.com/artist/2nsWxxYgNaqRhrwjvzmH8M" target="_blank" rel="noopener">
-      <div class="resource-link__content">
-        <span class="resource-link__title">Spotify · Wren</span>
-        <span class="resource-link__desc">The researcher as creator</span>
-      </div>
-      <span class="resource-link__arrow">→</span>
-    </a>
-    <a class="resource-link" href="https://canva.link/infdthx2ry9j8pn" target="_blank" rel="noopener">
-      <div class="resource-link__content">
-        <span class="resource-link__title">Teaching Materials</span>
-        <span class="resource-link__desc">Canva · Complete Slide Deck</span>
-      </div>
-      <span class="resource-link__arrow">→</span>
-    </a>
-    <a class="resource-link" href="https://canva.link/t3dgbe40pkc1rz5" target="_blank" rel="noopener">
-      <div class="resource-link__content">
-        <span class="resource-link__title">Oral Presentation Slides</span>
-        <span class="resource-link__desc">Canva · Live Presentation Deck</span>
-      </div>
-      <span class="resource-link__arrow">→</span>
-    </a>
-    <a class="resource-link" href="mailto:zoeyeh0822@gmail.com">
-      <div class="resource-link__content">
-        <span class="resource-link__title">Email the Researcher</span>
-        <span class="resource-link__desc">zoeyeh0822@gmail.com</span>
-      </div>
-      <span class="resource-link__arrow">→</span>
-    </a>
-  </div>
+<a class="resource-link" href="https://sites.google.com/dcjh.tn.edu.tw/suno" rel="noopener" target="_blank">
+<div class="resource-link__content">
+<span class="resource-link__title">Prompt Scaffolding Website</span>
+<span class="resource-link__desc">Google Sites · Tier 2 Tool</span>
+</div>
+<span class="resource-link__arrow">→</span>
+</a><a class="resource-link" href="https://suno-scaffold.netlify.app/" rel="noopener" target="_blank"><div class="resource-link__content"><span class="resource-link__title">New SUNO Prompt Scaffold</span><span class="resource-link__desc">Interactive scaffold website · Netlify</span></div><span class="resource-link__arrow">↗</span></a>
+<a class="resource-link" href="https://chatgpt.com/g/g-EEx6GDtyA-sunozuo-ci-gong-ju" rel="noopener" target="_blank">
+<div class="resource-link__content">
+<span class="resource-link__title">SUNO Lyrics Writer</span>
+<span class="resource-link__desc">Custom GPT · Tier 3 Tool</span>
+</div>
+<span class="resource-link__arrow">→</span>
+</a>
+<a class="resource-link" href="https://padlet.com/wrencc/suno-rhtfkpphfi6c5unq" rel="noopener" target="_blank">
+<div class="resource-link__content">
+<span class="resource-link__title">Padlet Digital Gallery</span>
+<span class="resource-link__desc">505 Student Compositions</span>
+</div>
+<span class="resource-link__arrow">→</span>
+</a>
+<a class="resource-link" href="https://open.spotify.com/artist/2nsWxxYgNaqRhrwjvzmH8M" rel="noopener" target="_blank">
+<div class="resource-link__content">
+<span class="resource-link__title">Spotify · Wren</span>
+<span class="resource-link__desc">The researcher as creator</span>
+</div>
+<span class="resource-link__arrow">→</span>
+</a>
+<a class="resource-link" href="https://canva.link/infdthx2ry9j8pn" rel="noopener" target="_blank">
+<div class="resource-link__content">
+<span class="resource-link__title">Teaching Materials</span>
+<span class="resource-link__desc">Canva · Complete Slide Deck</span>
+</div>
+<span class="resource-link__arrow">→</span>
+</a>
+<a class="resource-link" href="mailto:zoeyeh0822@gmail.com">
+<div class="resource-link__content">
+<span class="resource-link__title">Email the Researcher</span>
+<span class="resource-link__desc">zoeyeh0822@gmail.com</span>
+</div>
+<span class="resource-link__arrow">→</span>
+</a>
+</div>
 </section>
-
 <!-- ============== Card 13: Find Me ============== -->
 <section class="card findme" id="c14">
-  <span class="card__num">14 · Find Me</span>
-  <p class="card__label">Two Ways. One Day.</p>
-  <h2 class="card__title">Let&rsquo;s talk.</h2>
-  <div class="divider"></div>
-
-  <div class="findme__sessions">
-    <div class="session">
-      <div class="session__type">Oral Presentation</div>
-      <div class="session__time">11:40–12:00</div>
-      <div class="session__date">May 25 (Mon) · 20 min talk</div>
-      <div class="session__details">
-        <strong>Room B</strong><br>
-        International Conference Hall<br>
-        Guangfu Campus Library, NYCU<br>
-        Session: AI-Driven Educational Scaling &amp; Equity<br>
+<span class="card__num">14 · Find Me</span>
+<p class="card__label">Two Ways. One Day.</p>
+<h2 class="card__title">Let’s talk.</h2>
+<div class="divider"></div>
+<div class="findme__sessions">
+<div class="session">
+<div class="session__type">Oral Presentation</div>
+<div class="session__time">11:40–12:00</div>
+<div class="session__date">May 25 (Mon) · 20 min talk</div>
+<div class="session__details">
+<strong>Room B</strong><br/>
+        International Conference Hall<br/>
+        Guangfu Campus Library, NYCU<br/>
+        Session: AI-Driven Educational Scaling &amp; Equity<br/>
         Paper ID 24
       </div>
-    </div>
-
-    <div class="session">
-      <div class="session__type">Poster Session</div>
-      <div class="session__time">16:30–18:30</div>
-      <div class="session__date">May 25 (Mon) · 2 hours</div>
-      <div class="session__details">
-        <strong>Foyer</strong><br>
-        International Conference Hall<br>
+</div>
+<div class="session">
+<div class="session__type">Poster Session</div>
+<div class="session__time">16:30–18:30</div>
+<div class="session__date">May 25 (Mon) · 2 hours</div>
+<div class="session__details">
+<strong>Foyer</strong><br/>
+        International Conference Hall<br/>
         English or 中文
       </div>
-    </div>
-  </div>
-
-  <div class="findme__info">
-    <p>
-      <strong>Yeh, Jung-Chen　葉容辰</strong><br>
-      Master&rsquo;s Program of Educational Leadership and Management<br>
+</div>
+</div>
+<div class="findme__info">
+<p>
+<strong>Yeh, Jung-Chen　葉容辰</strong><br/>
+      Master’s Program of Educational Leadership and Management<br/>
       Southern Taiwan University of Science and Technology
     </p>
-    <p>
-      <strong>Research Interests ·</strong><br>
+<p>
+<strong>Research Interests ·</strong><br/>
       Generative AI in K-12 education · Music &amp; aesthetic education ·
       Cognitive scaffolding · Educational equity · ADDIE-based design research
     </p>
-  </div>
-
-  <div class="findme__footer">
-    <span>© 2026 Yeh, Jung-Chen</span>
-    <span>FacDev2026 · Paper ID 24</span>
-  </div>
+</div>
+<div class="findme__footer">
+<span>© 2026 Yeh, Jung-Chen</span>
+<span>FacDev2026 · Paper ID 24</span>
+</div>
 </section>
-
 <!-- ============== Card 14: Invitation ============== -->
 <section class="card invitation" id="c15">
-  <span class="card__num">15 · What&rsquo;s Next</span>
-  <p class="card__label">An Open Invitation</p>
-  <h2 class="card__title">This is one experiment<br>in a <em>larger question.</em></h2>
-
-  <p class="invitation__lead">
+<span class="card__num">15 · What’s Next</span>
+<p class="card__label">An Open Invitation</p>
+<h2 class="card__title">This is one experiment<br/>in a <em>larger question.</em></h2>
+<p class="invitation__lead">
     The next steps are <em>cross-school replication</em>, <em>validated instruments</em> for flow and creative self-efficacy, and adapting the framework for other <em>STEM-Arts cross-disciplinary contexts</em>.
   </p>
-
-  <p class="invitation__fields-label">Especially welcome conversations from</p>
-  <div class="invitation__fields">
-    <span class="field-tag">Teacher Education</span>
-    <span class="field-tag">AI in Music Education</span>
-    <span class="field-tag">Educational Equity · SDG</span>
-    <span class="field-tag">Cognitive Scaffolding</span>
-    <span class="field-tag">Universal Design for Learning</span>
-    <span class="field-tag">K-12 GenAI Integration</span>
-    <span class="field-tag">Cross-disciplinary Design</span>
-  </div>
-
-<div class="invitation__contact">
-  <div class="contact-row">
-    <span class="contact-row__label">Email</span>
-    <span><a href="mailto:zoeyeh0822@gmail.com">zoeyeh0822@gmail.com</a></span>
-  </div>
-  <div class="contact-row">
-    <span class="contact-row__label">LinkedIn</span>
-    <span><a href="https://www.linkedin.com/in/zy-zoeyeh/" target="_blank" rel="noopener">Connect on LinkedIn</a></span>
-  </div>
-  <div class="contact-row">
-    <span class="contact-row__label">In Person</span>
-    <span>May 25 · NYCU · Oral 11:40 & Poster 16:30</span>
-  </div>
-  <div class="contact-row">
-    <span class="contact-row__label">中文版</span>
-    <span><a href="nycu-2026-zh.html">research-cards/nycu-2026-zh.html</a></span>
-  </div>
+<p class="invitation__fields-label">Especially welcome conversations from</p>
+<div class="invitation__fields">
+<span class="field-tag">Teacher Education</span>
+<span class="field-tag">AI in Music Education</span>
+<span class="field-tag">Educational Equity · SDG</span>
+<span class="field-tag">Cognitive Scaffolding</span>
+<span class="field-tag">Universal Design for Learning</span>
+<span class="field-tag">K-12 GenAI Integration</span>
+<span class="field-tag">Cross-disciplinary Design</span>
 </div>
-
-  <div class="invitation__signoff">
-    <p>Thank you for reading this far.<br>
-    Every student in this study had a song inside them.<br>
-    The scaffolding helped them find it —<br>
-    what about yours? I&rsquo;d love to hear.</p>
-    <span class="invitation__signature">— Yeh, Jung-Chen</span>
-  </div>
+<div class="invitation__contact">
+<div class="contact-row">
+<span class="contact-row__label">Email</span>
+<span><a href="mailto:zoeyeh0822@gmail.com">zoeyeh0822@gmail.com</a></span>
+</div>
+<div class="contact-row">
+<span class="contact-row__label">In Person</span>
+<span>May 25 · NYCU · Oral 11:40 &amp; Poster 16:30</span>
+</div>
+<div class="contact-row">
+<span class="contact-row__label">中文版</span>
+<span><a href="nycu-2026-zh.html">research-cards/nycu-2026-zh.html</a></span>
+</div>
+</div>
+<div class="invitation__signoff">
+<p>Thank you for reading this far.<br/>
+    Every student in this study had a song inside them.<br/>
+    The scaffolding helped them find it —<br/>
+    what about yours? I’d love to hear.</p>
+<span class="invitation__signature">— Yeh, Jung-Chen</span>
+</div>
 </section>
-
 </main>
-
 <script>
 const cards = document.querySelectorAll('.card');
 const progress = document.getElementById('progress');
@@ -1508,6 +1447,5 @@ document.addEventListener('keydown', (e) => {
 
 window.addEventListener('load', () => { cards[0].classList.add('in-view'); });
 </script>
-
-</body>
+<nav aria-label="Site links" class="utility-nav"><a href="index.html">⌂ 研究小卡 / Home</a><a href="https://echoofwren.github.io/portfolio/" rel="noopener" target="_blank">✦ 作品集 / Portfolio</a></nav></body>
 </html>
