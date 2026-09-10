@@ -317,16 +317,37 @@ body::before {
   .card.in-view > * { animation: none; }
   body { scroll-behavior: auto; }
 }
+
+/* 2026-09-09: conference poster palette, readable mobile cards */
+:root{--ink:#491327;--ink-soft:#6B3C48;--ink-faint:#A37C85;--paper:#FFFCF8;--paper-alt:#F6E8E9;--warm:#9B1938;--line:rgba(115,20,45,.18)}
+.conference-status{font-size:13px;letter-spacing:.06em;color:var(--warm);margin:14px 0;border-left:3px solid var(--warm);padding:6px 12px;max-width:54em}
+.evidence-note{font-size:14px;line-height:1.8;max-width:55em;margin-top:20px;color:var(--ink-soft)}
+.references{max-width:62em;padding-left:1.3em;font-size:14px;line-height:1.8}.references li{margin:10px 0}.references a{color:var(--warm)}
+@media(max-width:580px){body{height:auto;scroll-snap-type:none}.card{min-height:100svh;padding:82px 7vw 100px;overflow:visible}.utility-nav{max-width:calc(100% - 20px)}}
 </style>
 <style>
 .lang-switch{position:fixed;top:18px;left:22px;z-index:130;font-family:var(--font-en,Georgia,serif);font-style:italic;font-size:13px;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(8px);padding:4px 12px;border-radius:999px;letter-spacing:.08em;border:1px solid var(--line)}
 .lang-switch a{color:var(--ink-soft);text-decoration:none;padding:0 4px}.lang-switch a.active{color:var(--warm);font-weight:700}.lang-switch span{color:var(--ink-faint)}
+
+/* 2026-09-09: conference poster palette, readable mobile cards */
+:root{--ink:#491327;--ink-soft:#6B3C48;--ink-faint:#A37C85;--paper:#FFFCF8;--paper-alt:#F6E8E9;--warm:#9B1938;--line:rgba(115,20,45,.18)}
+.conference-status{font-size:13px;letter-spacing:.06em;color:var(--warm);margin:14px 0;border-left:3px solid var(--warm);padding:6px 12px;max-width:54em}
+.evidence-note{font-size:14px;line-height:1.8;max-width:55em;margin-top:20px;color:var(--ink-soft)}
+.references{max-width:62em;padding-left:1.3em;font-size:14px;line-height:1.8}.references li{margin:10px 0}.references a{color:var(--warm)}
+@media(max-width:580px){body{height:auto;scroll-snap-type:none}.card{min-height:100svh;padding:82px 7vw 100px;overflow:visible}.utility-nav{max-width:calc(100% - 20px)}}
 </style><style>
 /* Shared navigation added for the bilingual research-card collection */
 .utility-nav{position:fixed;left:18px;bottom:18px;z-index:140;display:flex;gap:8px;flex-wrap:wrap;max-width:calc(100vw - 36px)}
 .utility-nav a{display:inline-flex;align-items:center;gap:6px;padding:7px 12px;border-radius:999px;text-decoration:none;font-size:12px;letter-spacing:.04em;color:var(--ink-soft);background:color-mix(in srgb,var(--paper) 88%,transparent);border:1px solid var(--line);backdrop-filter:blur(10px);box-shadow:0 4px 18px rgba(0,0,0,.08);transition:.2s ease}
 .utility-nav a:hover{color:var(--warm);transform:translateY(-1px)}
 @media(max-width:640px){.utility-nav{left:10px;bottom:10px;gap:5px}.utility-nav a{padding:6px 9px;font-size:10.5px}}
+
+/* 2026-09-09: conference poster palette, readable mobile cards */
+:root{--ink:#491327;--ink-soft:#6B3C48;--ink-faint:#A37C85;--paper:#FFFCF8;--paper-alt:#F6E8E9;--warm:#9B1938;--line:rgba(115,20,45,.18)}
+.conference-status{font-size:13px;letter-spacing:.06em;color:var(--warm);margin:14px 0;border-left:3px solid var(--warm);padding:6px 12px;max-width:54em}
+.evidence-note{font-size:14px;line-height:1.8;max-width:55em;margin-top:20px;color:var(--ink-soft)}
+.references{max-width:62em;padding-left:1.3em;font-size:14px;line-height:1.8}.references li{margin:10px 0}.references a{color:var(--warm)}
+@media(max-width:580px){body{height:auto;scroll-snap-type:none}.card{min-height:100svh;padding:82px 7vw 100px;overflow:visible}.utility-nav{max-width:calc(100% - 20px)}}
 </style></head>
 <body>
 <div class="progress-bar"><div class="progress-bar__fill" id="progress"></div></div>
@@ -335,7 +356,7 @@ body::before {
 <nav class="nav-dots" id="navDots"></nav>
 <main>
 <!-- ============== 01 Cover ============== -->
-<section class="card cover in-view" id="c1">
+<section class="card cover in-view" id="c1"><p class="conference-status">已獲推薦海報發表 · 2026 年 10 月 2 日 · 尚未發表</p>
 <div class="cover__eyebrow">A Research Card Series · STUST 2026 · 約 3 分鐘</div>
 <h1 class="cover__title">
     落差，<br/>
@@ -352,7 +373,7 @@ body::before {
 </div>
 <div class="cover__meta">
 <strong>葉容辰　Yeh, Jung-Chen</strong>
-<span>指導教授：李嘉宜 助理教授</span>
+<span>共同作者：李嘉宜</span>
 <span>南臺科技大學教育經營所碩士在職專班</span>
 <span>2026 AI 數位人文跨域創新國際研討會</span>
 </div>
@@ -415,7 +436,7 @@ body::before {
 </div>
 <div class="highlight-box">
     關鍵設計：以<strong>上學期 AI 繪圖作業分數</strong>作為「先前 AI 創作表現」的共變量，
-    再比較兩組調整後的 SUNO 表現——排除起點差異的干擾。
+    再比較兩組調整後的 SUNO 表現——調整先前 AI 創作表現的差異；不能排除所有混淆因素。
   </div>
 </section>
 <!-- ============== 05 兩學期課程 ============== -->
@@ -467,7 +488,7 @@ body::before {
 <span class="stat-note">n = 481　·　p &lt; .001　·　d = 0.27</span>
 <p class="body-text" style="margin-top:24px;">
     中文打字速度顯著提升。看似微小的基礎技能，卻是所有 AI 創作的入口——
-    <strong>打不出字的人，就說不出想法。</strong>
+    <strong>更流暢的文字輸入，有助於使用文字提示詞表達想法。</strong>
 </p>
 </section>
 <!-- ============== 07 結果二 ============== -->
@@ -495,7 +516,7 @@ body::before {
 <span class="stat-note">McNemar 確切檢定　·　p &lt; .001</span>
 <div class="highlight-box">
     沒有人「從交變成不交」——
-    這條單向的路徑，是參與度改善最乾淨的證據。
+    這是本班群繳交紀錄所呈現的參與改善；仍不能單獨歸因於 AI 或鷹架。
   </div>
 </section>
 <!-- ============== 08 結果三（圖表） ============== -->
@@ -505,7 +526,7 @@ body::before {
 <span class="result__badge-num">03</span>
 <span class="result__badge-label">群體差異</span>
 </div>
-<h2 class="card__title">差距，<em>縮到看不見</em>。</h2>
+<h2 class="card__title">調整後差異，<em>未達顯著</em>。</h2>
 <div class="chart-wrap">
 <svg aria-label="一般學生與特殊教育需求學生之 SUNO 創作平均分數，原始與 ANCOVA 調整後比較" role="img" viewbox="0 0 660 400" xmlns="http://www.w3.org/2000/svg">
 <!-- 格線 -->
@@ -563,11 +584,11 @@ body::before {
 </div>
 <p class="chart-caption">圖 1 · SUNO 創作平均分數 · ANCOVA 調整前後</p>
 <div class="highlight-box">
-    原始差距 3.72 分；控制「先前 AI 繪圖表現」後，
+    原始平均差距 3.72 分；控制「先前 AI 繪圖表現」後，
     調整後差距縮減至 <strong>2.62 分</strong>——
     <strong>p = .147，未達統計顯著。</strong>
 </div>
-</section>
+<p class="evidence-note">未達統計顯著不等於證明兩組相同，也不代表已證明落差消失。原始與調整後差距不是同一成果的前後測。</p></section>
 <!-- ============== 09 Hero Stat ============== -->
 <section class="card hero-stat" id="c9">
 <span class="card__num">09 · The Number That Matters</span>
@@ -680,7 +701,7 @@ body::before {
 <p>
 <strong>葉容辰　Yeh, Jung-Chen</strong><br/>
       南臺科技大學教育經營所碩士在職專班<br/>
-      指導教授：李嘉宜 助理教授
+      共同作者：李嘉宜
     </p>
 <p>
 <strong>研究興趣 ·</strong><br/>
@@ -735,7 +756,7 @@ body::before {
     是那 32 個孩子，讓這些數字有了意義。</p>
 <span class="contact__signature">—— 葉容辰</span>
 </div>
-</section>
+<h3 style="margin-top:32px">背景延伸文獻</h3><p class="evidence-note">以下為海報新增的背景文獻，不是本研究新取得的實證結果。</p><ol class="references"><li>Miao, F., &amp; Holmes, W. (2023). <a href="https://doi.org/10.54675/EWZM9535" target="_blank" rel="noopener">Guidance for generative AI in education and research.</a> UNESCO.</li><li>Wood, D., Bruner, J. S., &amp; Ross, G. (1976). <a href="https://doi.org/10.1111/j.1469-7610.1976.tb00381.x" target="_blank" rel="noopener">The role of tutoring in problem solving.</a> Journal of Child Psychology and Psychiatry, 17(2), 89–100.</li><li>CAST. (2024). <a href="https://udlguidelines.cast.org/" target="_blank" rel="noopener">Universal Design for Learning Guidelines version 3.0.</a></li></ol><div class="resources"><a class="resource" href="https://orcid.org/0009-0001-0180-2393" target="_blank" rel="noopener">ORCID · Jung-Chen Yeh ↗</a><a class="resource" href="https://www.linkedin.com/in/zy-zoeyeh/" target="_blank" rel="noopener">LinkedIn · Jung-Chen Yeh ↗</a></div></section>
 </main>
 <script>
 const cards = document.querySelectorAll('.card');
