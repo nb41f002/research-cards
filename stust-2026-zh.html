@@ -4,9 +4,9 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
-<meta content="#0F4C5C" name="theme-color"/>
+<meta content="#16422A" name="theme-color"/>
 <title>生成式 AI 支持下仍存在學習落差嗎？ · 葉容辰 · 南臺科技大學</title>
-<meta content="一所國中跨年級科技課程之量化教育公平分析。498 名學生、35 名特殊教育需求學生、兩學期課程紀錄。口頭發表版。2026 AI 數位人文跨域創新國際研討會 · 葉容辰" name="description"/>
+<meta content="一所國中跨年級科技課程之量化教育公平分析。498 名學生、35 名特殊教育需求學生、兩學期課程紀錄。2026 AI 數位人文跨域創新國際研討會 · 葉容辰" name="description"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&amp;family=Noto+Serif+TC:wght@400;500;600;700;900&amp;family=Noto+Sans+TC:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
@@ -15,16 +15,16 @@
    設計系統 · 深青 + 淺米 + 珊瑚（南臺 · AI 數位人文跨域創新）
    ========================================================= */
 :root {
-  --ink: #0F4C5C;
-  --ink-soft: #2F6B7A;
-  --ink-faint: #8FB3BC;
-  --paper: #F1EFE8;
-  --paper-deep: #DFDBCE;
-  --paper-light: #F9F7F1;
-  --warm: #D2603F;
-  --warm-soft: #E8946F;
-  --warm-faint: rgba(210, 96, 63, 0.16);
-  --line: rgba(15, 76, 92, 0.15);
+  --ink: #16422A;
+  --ink-soft: #2C523E;
+  --ink-faint: #7F957C;
+  --paper: #F7F1EC;
+  --paper-deep: #E3E6DC;
+  --paper-light: #FBF8F4;
+  --warm: #3E6B4F;
+  --warm-soft: #B9C7B7;
+  --warm-faint: rgba(62, 107, 79, 0.16);
+  --line: rgba(22, 66, 42, 0.15);
 
   --font-display: 'Noto Serif TC', 'Cormorant Garamond', serif;
   --font-display-en: 'Cormorant Garamond', 'EB Garamond', Georgia, serif;
@@ -33,10 +33,10 @@
 
 html {
   color-scheme: light only;
-  background: #F1EFE8 !important;
+  background: #F7F1EC !important;
 }
 @media (prefers-color-scheme: dark) {
-  html, body { background: #F1EFE8 !important; color: #0F4C5C !important; }
+  html, body { background: #F7F1EC !important; color: #16422A !important; }
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -60,31 +60,31 @@ body {
 body::before {
   content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 1;
   background-image:
-    radial-gradient(circle at 20% 30%, rgba(210, 96, 63, 0.05) 0%, transparent 50%),
-    radial-gradient(circle at 80% 70%, rgba(15, 76, 92, 0.04) 0%, transparent 50%);
+    radial-gradient(circle at 20% 30%, rgba(62, 107, 79, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(22, 66, 42, 0.04) 0%, transparent 50%);
   opacity: 0.7;
 }
 
-.progress-bar { position: fixed; top: 0; left: 0; width: 100%; height: 2px; background: rgba(15,76,92,0.08); z-index: 100; }
+.progress-bar { position: fixed; top: 0; left: 0; width: 100%; height: 2px; background: rgba(22,66,42,0.08); z-index: 100; }
 .progress-bar__fill { height: 100%; width: 0; background: var(--warm); transition: width 0.25s ease; }
 
 .counter {
   position: fixed; top: 18px; right: 22px; z-index: 99;
   font-family: var(--font-display-en); font-style: italic; font-size: 14px;
-  color: var(--ink-soft); background: rgba(241,239,232,0.85);
+  color: var(--ink-soft); background: rgba(247,241,236,0.85);
   backdrop-filter: blur(8px); padding: 4px 12px; border-radius: 999px; letter-spacing: 0.04em;
 }
 .home-link {
   position: fixed; top: 18px; left: 22px; z-index: 99;
   font-family: var(--font-display-en); font-style: italic; font-size: 13px;
-  background: rgba(241,239,232,0.85); backdrop-filter: blur(8px);
+  background: rgba(247,241,236,0.85); backdrop-filter: blur(8px);
   padding: 4px 14px; border-radius: 999px; letter-spacing: 0.06em;
   color: var(--ink-soft); text-decoration: none; transition: color 0.2s;
 }
 .home-link:hover { color: var(--warm); }
 
 .nav-dots { position: fixed; right: 18px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 9px; z-index: 98; }
-.nav-dots a { display: block; width: 7px; height: 7px; border-radius: 50%; background: rgba(15,76,92,0.18); transition: all 0.25s ease; }
+.nav-dots a { display: block; width: 7px; height: 7px; border-radius: 50%; background: rgba(22,66,42,0.18); transition: all 0.25s ease; }
 .nav-dots a.active { background: var(--warm); transform: scale(1.4); }
 @media (max-width: 768px) { .nav-dots { display: none; } }
 
@@ -119,8 +119,8 @@ body::before {
 
 /* ============ Cover ============ */
 .cover {
-  background: radial-gradient(ellipse at top right, rgba(210,96,63,0.12), transparent 60%),
-              radial-gradient(ellipse at bottom left, rgba(15,76,92,0.06), transparent 50%), var(--paper);
+  background: radial-gradient(ellipse at top right, rgba(62,107,79,0.12), transparent 60%),
+              radial-gradient(ellipse at bottom left, rgba(22,66,42,0.06), transparent 50%), var(--paper);
   align-items: flex-start;
 }
 .cover__eyebrow { font-family: var(--font-display-en); font-style: italic; font-size: 14px; letter-spacing: 0.3em; color: var(--warm); text-transform: uppercase; margin-bottom: 24px; }
@@ -183,7 +183,7 @@ body::before {
 .metric-jump__arrow { font-family: var(--font-display-en); font-size: 26px; color: var(--ink); }
 
 .stat-note {
-  display: inline-block; padding: 7px 16px; background: rgba(210,96,63,0.08);
+  display: inline-block; padding: 7px 16px; background: rgba(62,107,79,0.08);
   border: 1px solid var(--warm); border-radius: 999px;
   font-family: var(--font-display-en); font-style: italic; font-size: 14px; color: var(--warm);
   letter-spacing: 0.03em; margin-top: 4px;
@@ -191,7 +191,7 @@ body::before {
 
 .mcnemar { display: flex; gap: 14px; flex-wrap: wrap; margin: 22px 0; }
 .mcnemar__cell { flex: 1; min-width: 150px; padding: 18px 20px; background: var(--paper-light); border: 1px solid var(--line); border-radius: 4px; }
-.mcnemar__cell--highlight { border-color: var(--warm); background: rgba(210,96,63,0.07); }
+.mcnemar__cell--highlight { border-color: var(--warm); background: rgba(62,107,79,0.07); }
 .mcnemar__val { font-family: var(--font-display-en); font-style: italic; font-weight: 600; font-size: 34px; color: var(--ink); line-height: 1; }
 .mcnemar__cell--highlight .mcnemar__val { color: var(--warm); }
 .mcnemar__lbl { font-size: 13px; color: var(--ink-soft); margin-top: 8px; line-height: 1.6; }
@@ -209,8 +209,8 @@ body::before {
 .highlight-box strong { font-style: normal; font-weight: 700; }
 
 /* ============ Hero stat ============ */
-.hero-stat { background: linear-gradient(135deg, var(--ink) 0%, #0A3642 100%); color: var(--paper); align-items: flex-start; }
-.hero-stat .card__num { color: rgba(241,239,232,0.4); }
+.hero-stat { background: linear-gradient(135deg, var(--ink) 0%, #0F2E1E 100%); color: var(--paper); align-items: flex-start; }
+.hero-stat .card__num { color: rgba(247,241,236,0.4); }
 .hero-stat .card__label { color: var(--warm-soft); }
 .hero-stat .card__title { color: var(--paper); }
 .hero-stat .card__title em { color: var(--warm-soft); }
@@ -220,7 +220,7 @@ body::before {
   letter-spacing: -0.03em; margin: 10px 0 6px;
 }
 .hero-stat__sub { font-family: var(--font-display); font-weight: 600; font-size: clamp(18px, 2.2vw, 26px); color: var(--paper); margin-bottom: 26px; }
-.hero-stat__caption { font-family: var(--font-display); font-weight: 500; font-size: clamp(15px, 1.6vw, 19px); color: rgba(241,239,232,0.88); max-width: 34em; line-height: 1.85; }
+.hero-stat__caption { font-family: var(--font-display); font-weight: 500; font-size: clamp(15px, 1.6vw, 19px); color: rgba(247,241,236,0.88); max-width: 34em; line-height: 1.85; }
 .hero-stat__caption em { color: var(--warm-soft); font-style: normal; font-weight: 700; }
 
 /* ============ Limitations ============ */
@@ -245,7 +245,7 @@ body::before {
 .resource-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; max-width: 700px; }
 @media (max-width: 640px) { .resource-grid { grid-template-columns: 1fr; } }
 .resource-link { display: flex; align-items: center; gap: 14px; padding: 16px 20px; background: var(--paper); border: 1px solid var(--line); border-radius: 4px; text-decoration: none; color: var(--ink); transition: all 0.2s ease; }
-.resource-link:hover { border-color: var(--warm); background: rgba(210,96,63,0.06); transform: translateY(-1px); }
+.resource-link:hover { border-color: var(--warm); background: rgba(62,107,79,0.06); transform: translateY(-1px); }
 .resource-link__content { flex: 1; min-width: 0; }
 .resource-link__title { font-family: var(--font-display); font-weight: 600; font-size: 16px; color: var(--ink); line-height: 1.4; display: block; }
 .resource-link__desc { font-family: var(--font-display-en); font-style: italic; font-size: 13px; color: var(--ink-soft); letter-spacing: 0.04em; margin-top: 3px; display: block; }
@@ -254,31 +254,31 @@ body::before {
 
 /* ============ Find Me ============ */
 .findme { background: var(--ink); color: var(--paper); }
-.findme .card__num { color: rgba(241,239,232,0.4); }
+.findme .card__num { color: rgba(247,241,236,0.4); }
 .findme .card__label { color: var(--warm-soft); }
 .findme .card__title { color: var(--paper); }
 .findme .divider { background: var(--warm); }
-.session { padding: 24px 26px; background: rgba(241,239,232,0.08); border: 1px solid rgba(241,239,232,0.15); border-top: 3px solid var(--warm-soft); border-radius: 4px; max-width: 520px; margin: 26px 0; }
-.session__type { font-family: var(--font-display); font-weight: 600; font-size: 14px; letter-spacing: 0.15em; color: var(--warm-soft); margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1px solid rgba(241,239,232,0.25); }
+.session { padding: 24px 26px; background: rgba(247,241,236,0.08); border: 1px solid rgba(247,241,236,0.15); border-top: 3px solid var(--warm-soft); border-radius: 4px; max-width: 520px; margin: 26px 0; }
+.session__type { font-family: var(--font-display); font-weight: 600; font-size: 14px; letter-spacing: 0.15em; color: var(--warm-soft); margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1px solid rgba(247,241,236,0.25); }
 .session__time { font-family: var(--font-display); font-weight: 700; font-size: 22px; color: var(--paper); line-height: 1.3; margin-bottom: 6px; }
-.session__date { font-family: var(--font-display); font-style: italic; font-size: 14px; color: rgba(241,239,232,0.75); margin-bottom: 12px; }
-.session__details { font-size: 13.5px; color: rgba(241,239,232,0.85); line-height: 1.8; }
+.session__date { font-family: var(--font-display); font-style: italic; font-size: 14px; color: rgba(247,241,236,0.75); margin-bottom: 12px; }
+.session__details { font-size: 13.5px; color: rgba(247,241,236,0.85); line-height: 1.8; }
 .session__details strong { color: var(--paper); font-weight: 600; font-family: var(--font-display); font-size: 14px; }
-.findme__info { margin-top: 20px; font-size: 14.5px; line-height: 1.9; color: rgba(241,239,232,0.88); max-width: 36em; }
+.findme__info { margin-top: 20px; font-size: 14.5px; line-height: 1.9; color: rgba(247,241,236,0.88); max-width: 36em; }
 .findme__info strong { font-family: var(--font-display); font-weight: 600; color: var(--paper); }
 .findme__info p { margin-bottom: 12px; }
-.findme__footer { margin-top: auto; padding-top: 36px; font-family: var(--font-display-en); font-style: italic; font-size: 13px; color: rgba(241,239,232,0.45); letter-spacing: 0.1em; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+.findme__footer { margin-top: auto; padding-top: 36px; font-family: var(--font-display-en); font-style: italic; font-size: 13px; color: rgba(247,241,236,0.45); letter-spacing: 0.1em; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
 
 /* ============ Contact ============ */
 .contact {
-  background: radial-gradient(ellipse at 70% 30%, rgba(210,96,63,0.12), transparent 55%),
+  background: radial-gradient(ellipse at 70% 30%, rgba(62,107,79,0.12), transparent 55%),
               linear-gradient(180deg, var(--paper-light) 0%, var(--paper) 100%);
 }
 .contact__lead { font-family: var(--font-display); font-weight: 500; font-size: clamp(17px, 1.9vw, 23px); color: var(--ink); line-height: 1.85; margin: 18px 0 28px; max-width: 28em; }
 .contact__lead em { font-style: italic; color: var(--warm); font-weight: 700; }
 .contact__fields-label { font-family: var(--font-display-en); font-style: italic; font-size: 13px; letter-spacing: 0.18em; color: var(--ink-faint); text-transform: uppercase; margin: 24px 0 14px; }
 .contact__fields { display: flex; flex-wrap: wrap; gap: 9px; margin-bottom: 30px; max-width: 42em; }
-.field-tag { padding: 7px 16px; border: 1px solid var(--warm); color: var(--warm); font-family: var(--font-display); font-weight: 500; font-size: 14.5px; border-radius: 999px; background: rgba(210,96,63,0.04); transition: all 0.2s ease; }
+.field-tag { padding: 7px 16px; border: 1px solid var(--warm); color: var(--warm); font-family: var(--font-display); font-weight: 500; font-size: 14.5px; border-radius: 999px; background: rgba(62,107,79,0.04); transition: all 0.2s ease; }
 .field-tag:hover { background: var(--warm); color: var(--paper); }
 
 .social-links { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 30px; }
@@ -292,7 +292,7 @@ body::before {
 }
 .social-link:hover, .social-link:focus {
   background: var(--ink); color: var(--paper); transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(15,76,92,0.18);
+  box-shadow: 0 4px 16px rgba(22,66,42,0.18);
 }
 .social-link svg { width: 17px; height: 17px; flex-shrink: 0; }
 .social-link__ext { font-family: var(--font-display-en); font-style: italic; font-size: 15px; opacity: 0.65; font-variant-emoji: text; }
@@ -319,7 +319,7 @@ body::before {
 }
 
 /* 2026-09-09: conference poster palette, readable mobile cards */
-:root{--ink:#491327;--ink-soft:#6B3C48;--ink-faint:#A37C85;--paper:#FFFCF8;--paper-alt:#F6E8E9;--warm:#9B1938;--line:rgba(115,20,45,.18)}
+:root{--ink:#16422A;--ink-soft:#2C523E;--ink-faint:#7F957C;--paper:#F7F1EC;--paper-alt:#E8ECE3;--warm:#3E6B4F;--line:rgba(22,66,42,.18)}
 .conference-status{font-size:13px;letter-spacing:.06em;color:var(--warm);margin:14px 0;border-left:3px solid var(--warm);padding:6px 12px;max-width:54em}
 .evidence-note{font-size:14px;line-height:1.8;max-width:55em;margin-top:20px;color:var(--ink-soft)}
 .references{max-width:62em;padding-left:1.3em;font-size:14px;line-height:1.8}.references li{margin:10px 0}.references a{color:var(--warm)}
@@ -330,7 +330,7 @@ body::before {
 .lang-switch a{color:var(--ink-soft);text-decoration:none;padding:0 4px}.lang-switch a.active{color:var(--warm);font-weight:700}.lang-switch span{color:var(--ink-faint)}
 
 /* 2026-09-09: conference poster palette, readable mobile cards */
-:root{--ink:#491327;--ink-soft:#6B3C48;--ink-faint:#A37C85;--paper:#FFFCF8;--paper-alt:#F6E8E9;--warm:#9B1938;--line:rgba(115,20,45,.18)}
+:root{--ink:#16422A;--ink-soft:#2C523E;--ink-faint:#7F957C;--paper:#F7F1EC;--paper-alt:#E8ECE3;--warm:#3E6B4F;--line:rgba(22,66,42,.18)}
 .conference-status{font-size:13px;letter-spacing:.06em;color:var(--warm);margin:14px 0;border-left:3px solid var(--warm);padding:6px 12px;max-width:54em}
 .evidence-note{font-size:14px;line-height:1.8;max-width:55em;margin-top:20px;color:var(--ink-soft)}
 .references{max-width:62em;padding-left:1.3em;font-size:14px;line-height:1.8}.references li{margin:10px 0}.references a{color:var(--warm)}
@@ -343,12 +343,12 @@ body::before {
 @media(max-width:640px){.utility-nav{left:10px;bottom:10px;gap:5px}.utility-nav a{padding:6px 9px;font-size:10.5px}}
 
 /* 2026-09-09: conference poster palette, readable mobile cards */
-:root{--ink:#491327;--ink-soft:#6B3C48;--ink-faint:#A37C85;--paper:#FFFCF8;--paper-alt:#F6E8E9;--warm:#9B1938;--line:rgba(115,20,45,.18)}
+:root{--ink:#16422A;--ink-soft:#2C523E;--ink-faint:#7F957C;--paper:#F7F1EC;--paper-alt:#E8ECE3;--warm:#3E6B4F;--line:rgba(22,66,42,.18)}
 .conference-status{font-size:13px;letter-spacing:.06em;color:var(--warm);margin:14px 0;border-left:3px solid var(--warm);padding:6px 12px;max-width:54em}
 .evidence-note{font-size:14px;line-height:1.8;max-width:55em;margin-top:20px;color:var(--ink-soft)}
 .references{max-width:62em;padding-left:1.3em;font-size:14px;line-height:1.8}.references li{margin:10px 0}.references a{color:var(--warm)}
 @media(max-width:580px){body{height:auto;scroll-snap-type:none}.card{min-height:100svh;padding:82px 7vw 100px;overflow:visible}.utility-nav{max-width:calc(100% - 20px)}}
-</style></head>
+</style><style>.hero-stat__big{line-height:1.08;margin-bottom:18px}.findme{justify-content:flex-start;padding-top:calc(8vh + 44px)}</style></head>
 <body>
 <div class="progress-bar"><div class="progress-bar__fill" id="progress"></div></div>
 <div class="counter" id="counter">01 / 15</div>
@@ -356,7 +356,7 @@ body::before {
 <nav class="nav-dots" id="navDots"></nav>
 <main>
 <!-- ============== 01 Cover ============== -->
-<section class="card cover in-view" id="c1"><p class="conference-status">口頭發表 · 2026 年 10 月 2 日 · 場次依大會議程</p>
+<section class="card cover in-view" id="c1">
 <div class="cover__eyebrow">A Research Card Series · STUST 2026 · 約 3 分鐘</div>
 <h1 class="cover__title">
     落差，<br/>
@@ -434,9 +434,6 @@ body::before {
 <span class="theory-pill">SUNO 評分 487 筆</span>
 <span class="theory-pill">兩項皆有效 486 筆</span>
 </div>
-<div class="highlight-box">
-    口頭發表呈現 20260808 第七版鎖定主表的<strong>描述結果</strong>。原摘要的成對 t 檢定、McNemar 與 ANCOVA，依同一版資料重新複核中。
-  </div>
 </section>
 <!-- ============== 05 兩學期課程 ============== -->
 <section class="card" id="c5">
@@ -487,7 +484,6 @@ body::before {
 <span class="stat-note">中文最高有效速度　·　n = 467　·　各人最高紀錄</span>
 <p class="body-text" style="margin-top:24px;">
     流暢的文字輸入，是用提示詞表達想法的基礎。
-    <strong>本場呈現最高有效速度的描述；前後變化依相同時間點配對另行分析。</strong>
 </p>
 </section>
 <!-- ============== 07 結果二 ============== -->
@@ -512,10 +508,7 @@ body::before {
 <div class="mcnemar__lbl">兩項評分<br/><strong>皆有效</strong></div>
 </div>
 </div>
-<span class="stat-note">分母為鎖定母體 498 人　·　可追溯依 Padlet 追溯欄位</span>
-<div class="highlight-box">
-    作品可追溯與正式繳交分開記錄；跨學期繳交變化依正式繳交規則另行配對。
-  </div>
+<span class="stat-note">分母為 498 人</span>
 </section>
 <!-- ============== 08 結果三（圖表） ============== -->
 <section class="card" id="c8">
@@ -527,28 +520,28 @@ body::before {
 <h2 class="card__title">兩組原始平均差 <em>3.48 分</em>。</h2>
 <div class="chart-wrap">
 <svg aria-label="一般學生與特殊教育需求學生之 SUNO 作業原始平均分數" role="img" viewbox="0 0 660 400" xmlns="http://www.w3.org/2000/svg">
-<g stroke="rgba(15,76,92,0.12)" stroke-dasharray="3 4" stroke-width="1">
+<g stroke="rgba(22,66,42,0.12)" stroke-dasharray="3 4" stroke-width="1">
 <line x1="72" x2="640" y1="330" y2="330"></line><line x1="72" x2="640" y1="258" y2="258"></line><line x1="72" x2="640" y1="186" y2="186"></line><line x1="72" x2="640" y1="114" y2="114"></line><line x1="72" x2="640" y1="42" y2="42"></line>
 </g>
-<g fill="#8FB3BC" font-family="Cormorant Garamond, Georgia, serif" font-size="13" font-style="italic" text-anchor="end">
+<g fill="#7F957C" font-family="Cormorant Garamond, Georgia, serif" font-size="13" font-style="italic" text-anchor="end">
 <text x="62" y="335">0</text><text x="62" y="263">25</text><text x="62" y="191">50</text><text x="62" y="119">75</text><text x="62" y="47">100</text>
 </g>
-<line stroke="#0F4C5C" stroke-width="1.6" x1="72" x2="640" y1="330" y2="330"></line>
-<rect fill="#0F4C5C" height="215.6" rx="2" width="96" x="139" y="114.4"></rect>
-<text fill="#0F4C5C" font-family="Cormorant Garamond, Georgia, serif" font-size="21" font-style="italic" font-weight="600" text-anchor="middle" x="187" y="104">74.87</text>
-<rect fill="#D2603F" height="205.6" rx="2" width="96" x="427" y="124.4"></rect>
-<text fill="#D2603F" font-family="Cormorant Garamond, Georgia, serif" font-size="21" font-style="italic" font-weight="600" text-anchor="middle" x="475" y="114">71.39</text>
-<g fill="none" stroke="#8FB3BC" stroke-width="1.2"><path d="M 235 74 L 331 74 L 331 82 M 331 74 L 427 74 L 427 82"></path></g>
-<text fill="#2F6B7A" font-family="Noto Sans TC, sans-serif" font-size="14" text-anchor="middle" x="331" y="66">原始差距 3.48 分</text>
-<g fill="#0F4C5C" font-family="Noto Sans TC, sans-serif" font-size="15" text-anchor="middle"><text font-weight="600" x="187" y="356">一般學生</text><text font-weight="600" x="475" y="356">特殊教育需求學生</text></g>
-<g fill="#8FB3BC" font-family="Cormorant Garamond, Georgia, serif" font-size="14" font-style="italic" text-anchor="middle"><text x="187" y="374">n = 456 · SD = 9.38</text><text x="475" y="374">n = 31 · SD = 9.77</text></g>
+<line stroke="#16422A" stroke-width="1.6" x1="72" x2="640" y1="330" y2="330"></line>
+<rect fill="#16422A" height="215.6" rx="2" width="96" x="139" y="114.4"></rect>
+<text fill="#16422A" font-family="Cormorant Garamond, Georgia, serif" font-size="21" font-style="italic" font-weight="600" text-anchor="middle" x="187" y="104">74.87</text>
+<rect fill="#7F957C" height="205.6" rx="2" width="96" x="427" y="124.4"></rect>
+<text fill="#4A7358" font-family="Cormorant Garamond, Georgia, serif" font-size="21" font-style="italic" font-weight="600" text-anchor="middle" x="475" y="114">71.39</text>
+<g fill="none" stroke="#7F957C" stroke-width="1.2"><path d="M 235 74 L 331 74 L 331 82 M 331 74 L 427 74 L 427 82"></path></g>
+<text fill="#2C523E" font-family="Noto Sans TC, sans-serif" font-size="14" text-anchor="middle" x="331" y="66">原始差距 3.48 分</text>
+<g fill="#16422A" font-family="Noto Sans TC, sans-serif" font-size="15" text-anchor="middle"><text font-weight="600" x="187" y="356">一般學生</text><text font-weight="600" x="475" y="356">特殊教育需求學生</text></g>
+<g fill="#7F957C" font-family="Cormorant Garamond, Georgia, serif" font-size="14" font-style="italic" text-anchor="middle"><text x="187" y="374">n = 456 · SD = 9.38</text><text x="475" y="374">n = 31 · SD = 9.77</text></g>
 </svg>
 </div>
 <p class="chart-caption">圖 1 · SUNO 作業原始平均分數（未調整，滿分 100 分）</p>
 <div class="highlight-box">
     487 筆有效分數中，一般學生平均 <strong>74.87 分</strong>，SEN 學生平均 <strong>71.39 分</strong>。
 </div>
-<p class="evidence-note">本圖為描述統計。調整後比較與顯著性檢定，依同一版資料複核後再報告。</p></section>
+</section>
 <!-- ============== 09 Hero Stat ============== -->
 <section class="card hero-stat" id="c9">
 <span class="card__num">09 · The Number That Matters</span>
@@ -579,7 +572,6 @@ body::before {
 <span class="question__text"><strong>在家自學</strong>：平日在家自學，AI 繪圖單元期間每週到校上資訊課，提示詞寫到五要素的完整敘事。</span>
 </div>
 </div>
-<p class="evidence-note">個案取自同課程 113 學年上學期 AI 繪圖單元的研究者課堂觀察與 Padlet 作品，以代號呈現；引號內為學生提示詞。</p>
 </section>
 <!-- ============== 10 Limitations ============== -->
 <section class="card" id="c10">
@@ -601,7 +593,7 @@ body::before {
 </div>
 </div>
 <div class="highlight-box">
-    本研究提供一所學校現場的<strong>量化描述</strong>；推論統計依 498 人版重新複核中。
+    本研究提供一所學校現場的<strong>量化描述</strong>。
   </div>
 </section>
 <!-- ============== 11 Conclusion ============== -->
@@ -669,9 +661,9 @@ body::before {
 <h2 class="card__title">歡迎來聊聊。</h2>
 <div class="divider"></div>
 <div class="session">
-<div class="session__type">口頭發表</div>
+<div class="session__type">研討會資訊</div>
 <div class="session__time">2026 AI 數位人文跨域創新國際研討會</div>
-<div class="session__date">2026 年 10 月 2 日（星期五）</div><p style="margin-top:12px;font-size:13px;line-height:1.75;color:var(--ink-soft);max-width:38em;">主講約 10 分鐘，提問與建議另計；場次時間與地點依大會議程。</p>
+<div class="session__date">2026 年 10 月 2 日（星期五）</div>
 <div class="session__details">
 <strong>南臺科技大學　人文社會學院</strong><br/>
       臺南市永康區南臺街 1 號<br/><br/>
@@ -736,7 +728,7 @@ body::before {
     這些數字背後，是 498 位學生兩個學期的創作。</p>
 <span class="contact__signature">葉容辰</span>
 </div>
-<h3 style="margin-top:32px">參考文獻</h3><p class="evidence-note">本場口頭發表引用的文獻（APA 第七版）。</p><ol class="references"><li>CAST. (2024). <i>Universal design for learning guidelines</i> (Version 3.0). <a href="https://udlguidelines.cast.org/" target="_blank" rel="noopener">https://udlguidelines.cast.org/</a></li><li>Liu, C.-C., Wang, H.-J., &amp; Gu, X.-Q. (2025). From access to mastery: Integrating AI in blended learning for equitable, inclusive, and accessible music theory educations. <i>The Internet and Higher Education, 66</i>, Article 101018. <a href="https://doi.org/10.1016/j.iheduc.2025.101018" target="_blank" rel="noopener">https://doi.org/10.1016/j.iheduc.2025.101018</a></li><li>Miao, F., &amp; Holmes, W. (2023). <i>Guidance for generative AI in education and research</i>. UNESCO. <a href="https://doi.org/10.54675/EWZM9535" target="_blank" rel="noopener">https://doi.org/10.54675/EWZM9535</a></li><li>Rao, K., Ok, M. W., &amp; Bryant, B. R. (2014). A review of research on universal design educational models. <i>Remedial and Special Education, 35</i>(3), 153–166. <a href="https://doi.org/10.1177/0741932513518980" target="_blank" rel="noopener">https://doi.org/10.1177/0741932513518980</a></li><li>van de Pol, J., Volman, M., &amp; Beishuizen, J. (2010). Scaffolding in teacher–student interaction: A decade of research. <i>Educational Psychology Review, 22</i>(3), 271–296. <a href="https://doi.org/10.1007/s10648-010-9127-6" target="_blank" rel="noopener">https://doi.org/10.1007/s10648-010-9127-6</a></li><li>Wood, D., Bruner, J. S., &amp; Ross, G. (1976). The role of tutoring in problem solving. <i>Journal of Child Psychology and Psychiatry, 17</i>(2), 89–100. <a href="https://doi.org/10.1111/j.1469-7610.1976.tb00381.x" target="_blank" rel="noopener">https://doi.org/10.1111/j.1469-7610.1976.tb00381.x</a></li><li>Zhao, X., Cox, A., &amp; Chen, X. (2025). The use of generative AI by students with disabilities in higher education. <i>The Internet and Higher Education, 66</i>, Article 101014. <a href="https://doi.org/10.1016/j.iheduc.2025.101014" target="_blank" rel="noopener">https://doi.org/10.1016/j.iheduc.2025.101014</a></li></ol><div class="resources"><a class="resource" href="https://orcid.org/0009-0001-0180-2393" target="_blank" rel="noopener">ORCID · Jung-Chen Yeh ↗</a><a class="resource" href="https://www.linkedin.com/in/zy-zoeyeh/" target="_blank" rel="noopener">LinkedIn · Jung-Chen Yeh ↗</a></div></section>
+<h3 style="margin-top:32px">參考文獻</h3><ol class="references"><li>CAST. (2024). <i>Universal design for learning guidelines</i> (Version 3.0). <a href="https://udlguidelines.cast.org/" target="_blank" rel="noopener">https://udlguidelines.cast.org/</a></li><li>Liu, C.-C., Wang, H.-J., &amp; Gu, X.-Q. (2025). From access to mastery: Integrating AI in blended learning for equitable, inclusive, and accessible music theory educations. <i>The Internet and Higher Education, 66</i>, Article 101018. <a href="https://doi.org/10.1016/j.iheduc.2025.101018" target="_blank" rel="noopener">https://doi.org/10.1016/j.iheduc.2025.101018</a></li><li>Miao, F., &amp; Holmes, W. (2023). <i>Guidance for generative AI in education and research</i>. UNESCO. <a href="https://doi.org/10.54675/EWZM9535" target="_blank" rel="noopener">https://doi.org/10.54675/EWZM9535</a></li><li>Rao, K., Ok, M. W., &amp; Bryant, B. R. (2014). A review of research on universal design educational models. <i>Remedial and Special Education, 35</i>(3), 153–166. <a href="https://doi.org/10.1177/0741932513518980" target="_blank" rel="noopener">https://doi.org/10.1177/0741932513518980</a></li><li>van de Pol, J., Volman, M., &amp; Beishuizen, J. (2010). Scaffolding in teacher–student interaction: A decade of research. <i>Educational Psychology Review, 22</i>(3), 271–296. <a href="https://doi.org/10.1007/s10648-010-9127-6" target="_blank" rel="noopener">https://doi.org/10.1007/s10648-010-9127-6</a></li><li>Wood, D., Bruner, J. S., &amp; Ross, G. (1976). The role of tutoring in problem solving. <i>Journal of Child Psychology and Psychiatry, 17</i>(2), 89–100. <a href="https://doi.org/10.1111/j.1469-7610.1976.tb00381.x" target="_blank" rel="noopener">https://doi.org/10.1111/j.1469-7610.1976.tb00381.x</a></li><li>Zhao, X., Cox, A., &amp; Chen, X. (2025). The use of generative AI by students with disabilities in higher education. <i>The Internet and Higher Education, 66</i>, Article 101014. <a href="https://doi.org/10.1016/j.iheduc.2025.101014" target="_blank" rel="noopener">https://doi.org/10.1016/j.iheduc.2025.101014</a></li></ol><div class="resources"><a class="resource" href="https://orcid.org/0009-0001-0180-2393" target="_blank" rel="noopener">ORCID · Jung-Chen Yeh ↗</a><a class="resource" href="https://www.linkedin.com/in/zy-zoeyeh/" target="_blank" rel="noopener">LinkedIn · Jung-Chen Yeh ↗</a></div></section>
 </main>
 <script>
 const cards = document.querySelectorAll('.card');
